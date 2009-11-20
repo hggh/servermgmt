@@ -1,0 +1,13 @@
+class CreateIptypes < ActiveRecord::Migration
+  def self.up
+    create_table :iptypes do |t|
+      t.string :name
+
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :iptypes
+  end
+end

@@ -1,0 +1,307 @@
+  [4;36;1mSQL (0.000115)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000082)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000148)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (2.034479)[0m   [0mCREATE DATABASE servermgmt ENCODING = 'utf8'[0m
+/!\ FAILSAFE /!\  Fri Nov 20 23:22:38 +0100 2009
+  Status: 500 Internal Server Error
+  No route matches "/" with {:method=>:get}
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/webrick_server.rb:112:in `handle_dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/webrick_server.rb:78:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/webrick_server.rb:62:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/commands/servers/webrick.rb:66
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /home/jonas/rails/servermgmt/vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /home/jonas/rails/servermgmt/vendor/rails/activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /home/jonas/rails/servermgmt/vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+/!\ FAILSAFE /!\  Fri Nov 20 23:22:40 +0100 2009
+  Status: 500 Internal Server Error
+  No route matches "/" with {:method=>:get}
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/webrick_server.rb:112:in `handle_dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/webrick_server.rb:78:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/webrick_server.rb:62:in `dispatch'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/commands/servers/webrick.rb:66
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /home/jonas/rails/servermgmt/vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /home/jonas/rails/servermgmt/vendor/rails/activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /home/jonas/rails/servermgmt/vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /home/jonas/rails/servermgmt/vendor/rails/railties/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:22:46) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlOGUxNGJjYmM5ZTU2MDEzM2Y4OTcwNTQ0ZmJhNTRm
+YWYiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7AAY6CkB1c2VkewA=--54e82c6520a931c496a02b67d45c1751b612045d
+  Parameters: {"action"=>"index", "controller"=>"home"}
+
+
+CGI::Session::CookieStore::TamperedWithCookie (CGI::Session::CookieStore::TamperedWithCookie):
+    /vendor/rails/actionpack/lib/action_controller/session/cookie_store.rb:144:in `unmarshal'
+    /vendor/rails/actionpack/lib/action_controller/session/cookie_store.rb:101:in `restore'
+    /usr/lib/ruby/1.8/cgi/session.rb:310:in `[]'
+    /vendor/rails/actionpack/lib/action_controller/cgi_process.rb:136:in `session'
+    /vendor/rails/actionpack/lib/action_controller/cgi_process.rb:168:in `stale_session_check!'
+    /vendor/rails/actionpack/lib/action_controller/cgi_process.rb:116:in `session'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1135:in `assign_shortcuts_without_flash'
+    /vendor/rails/actionpack/lib/action_controller/flash.rb:166:in `assign_shortcuts'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:523:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /vendor/rails/railties/lib/webrick_server.rb:112:in `handle_dispatch'
+    /vendor/rails/railties/lib/webrick_server.rb:78:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/rails/railties/lib/webrick_server.rb:62:in `dispatch'
+    /vendor/rails/railties/lib/commands/servers/webrick.rb:66
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+Rendering /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:22:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"home"}
+  [4;36;1mSQL (0.000127)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000089)[0m   [0mSET client_min_messages TO 'notice'[0m
+Rendering home/index
+Completed in 0.00434 (230 reqs/sec) | Rendering: 0.00158 (36%) | DB: 0.00022 (4%) | 200 OK [http://localhost/home/index]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:22:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering home/index
+Completed in 0.00382 (261 reqs/sec) | Rendering: 0.00101 (26%) | DB: 0.00000 (0%) | 200 OK [http://localhost/home/index]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:23:29) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering home/index
+Completed in 0.00408 (245 reqs/sec) | Rendering: 0.00088 (21%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.000112)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000080)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.004088)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.013476)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000560)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000191)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000114)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000082)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000608)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000195)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000115)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000078)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000589)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000213)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.038060)[0m   [0;1mCREATE TABLE "networks" ("id" serial primary key, "network" character varying(255) DEFAULT NULL NULL, "comment" character varying(255) DEFAULT NULL NULL, "created_at" timestamp DEFAULT NULL NULL, "updated_at" timestamp DEFAULT NULL NULL) [0m
+  [4;35;1mSQL (0.001258)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091120222418')[0m
+  [4;36;1mSQL (0.000569)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000117)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000083)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000157)[0m   [0;1mSET search_path TO public[0m
+  [4;35;1mSQL (1.095454)[0m   [0mCREATE DATABASE servermgmt ENCODING = 'utf8'[0m
+  [4;36;1mSQL (0.000120)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000079)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.004105)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (0.014843)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.000492)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000188)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000167)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000085)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000594)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000196)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.038122)[0m   [0;1mCREATE TABLE "networks" ("id" serial primary key, "network" cidr DEFAULT NULL NULL, "comment" character varying(255) DEFAULT NULL NULL, "created_at" timestamp DEFAULT NULL NULL, "updated_at" timestamp DEFAULT NULL NULL) [0m
+  [4;35;1mSQL (0.001225)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091120222418')[0m
+  [4;36;1mSQL (0.000468)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000123)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000084)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000606)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000211)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000284)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000115)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000085)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000612)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateNetworks (20091120222418)
+  [4;35;1mSQL (0.000209)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateIptypes (20091120224413)
+  [4;36;1mSQL (0.000214)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.020498)[0m   [0mCREATE TABLE "iptypes" ("id" serial primary key, "name" character varying(255) DEFAULT NULL NULL, "created_at" timestamp DEFAULT NULL NULL, "updated_at" timestamp DEFAULT NULL NULL) [0m
+  [4;36;1mSQL (0.000893)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091120224413')[0m
+  [4;35;1mSQL (0.000332)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000113)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000078)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (0.000523)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000304)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing NetworksController#index (for 127.0.0.1 at 2009-11-20 23:45:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"networks"}
+  [4;36;1mSQL (0.000122)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (0.000084)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mNetwork Load (0.001547)[0m   [0;1mSELECT * FROM "networks" [0m
+Rendering template within layouts/networks
+Rendering networks/index
+Completed in 0.01476 (67 reqs/sec) | Rendering: 0.00364 (24%) | DB: 0.00175 (11%) | 200 OK [http://localhost/networks]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:45:40) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering home/index
+Completed in 0.00423 (236 reqs/sec) | Rendering: 0.00145 (34%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:46:27) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/default
+Rendering home/index
+
+
+ActionView::MissingTemplate (Missing layout layouts/default.html.erb in view path /home/jonas/rails/servermgmt/app/views):
+    /vendor/rails/actionpack/lib/action_view/template.rb:85:in `raise_missing_template_exception'
+    /vendor/rails/actionpack/lib/action_view/template.rb:78:in `set_extension_and_file_name'
+    /vendor/rails/actionpack/lib/action_view/template.rb:15:in `initialize'
+    /vendor/rails/actionpack/lib/action_view/base.rb:245:in `new'
+    /vendor/rails/actionpack/lib/action_view/base.rb:245:in `render_file'
+    /vendor/rails/actionpack/lib/action_controller/layout.rb:257:in `render_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:51:in `render'
+    /vendor/rails/activesupport/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:51:in `render'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1157:in `default_render'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1163:in `perform_action_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /vendor/rails/railties/lib/webrick_server.rb:112:in `handle_dispatch'
+    /vendor/rails/railties/lib/webrick_server.rb:78:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /vendor/rails/railties/lib/webrick_server.rb:62:in `dispatch'
+    /vendor/rails/railties/lib/commands/servers/webrick.rb:66
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:509:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+Rendering /home/jonas/rails/servermgmt/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-11-20 23:48:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--b2238ceeaebcabf242c0be5003d62e50199383f2
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/default
+Rendering home/index
+Completed in 0.00473 (211 reqs/sec) | Rendering: 0.00189 (40%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
