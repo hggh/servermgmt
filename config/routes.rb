@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :servertyps
+
   map.resources :iptypes
 
-  map.resources :networks
+  map.resources :networks, :has_many => :ips
 
   # The priority is based upon order of creation: first created -> highest priority.
 

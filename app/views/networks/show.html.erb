@@ -9,5 +9,12 @@
 </p>
 
 
+----------------<br/>
+<% @network.ips.each do |i| %>
+<p>
+<%=h i.ip %>
+<% end %>
+
+
 <%= link_to 'Edit', edit_network_path(@network) %> |
 <%= link_to 'Back', networks_path %>

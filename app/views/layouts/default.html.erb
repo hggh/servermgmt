@@ -1,12 +1,20 @@
-<html>
-	<head>
-		<title>HggHs Server MGMT</title>
-		<%= stylesheet_link_tag 'scaffold' %>
-	</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>HggHs Server MGMT</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<body>
+</head>
+
+<body>
+Links:<br/>
+<a href="/">Home</a> <br/>
+<%= link_to "Networks", networks_path %> <br/>
+<%= link_to "IP Types", iptypes_path %> <br/>
+<%= link_to "Server Types", servertyps_path %> <br/>
 
 	<%= yield  %>
 
-	</body>
+</body>
 </html>
