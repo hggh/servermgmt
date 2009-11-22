@@ -1,2 +1,20 @@
 <h1>Servers#show</h1>
-<p>Find me in app/views/servers/show.html.erb</p>
+
+<p>
+  <b>Server:</b>
+    <%=h @server.name %>
+    </p>
+
+    <p>
+      <b>Comment:</b>
+        <%=h @server.comment %>
+	</p>
+
+
+	<% @server.ips.each do |i| %>
+	<p>
+	<%=h i.ip %>
+	<%=h i.iptype.name %>
+
+	<% end %>
+

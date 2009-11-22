@@ -6,7 +6,6 @@ class NetworksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @networks }
     end
   end
 
@@ -17,7 +16,6 @@ class NetworksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @network }
     end
   end
 

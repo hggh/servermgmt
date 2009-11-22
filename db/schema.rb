@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20091122161051) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "iptype_id"
+    t.integer  "server_id"
   end
 
   create_table "iptypes", :force => true do |t|
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20091122161051) do
     t.datetime "updated_at"
   end
 
-  create_table "servertyps", :force => true do |t|
+  create_table "servertypes", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

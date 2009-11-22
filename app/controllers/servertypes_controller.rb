@@ -1,12 +1,13 @@
-class ServertypeesController < ApplicationController
+class ServertypesController < ApplicationController
   # GET /servertypes
+  helper :servertype
   # GET /servertypes.xml
   def index
-    @servertypes = Servertypee.find(:all)
+    @servertypes = Servertype.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @servertypees }
+      format.xml  { render :xml => @servertypes }
     end
   end
 

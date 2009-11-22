@@ -1,15 +1,18 @@
 class ServersController < ApplicationController
   def index
-      @servers = Server.find(:all)
+    @servers = Server.find(:all)
 
-          respond_to do |format|
-	        format.html # index.html.erb
-		      format.xml  { render :xml => @servers }
-		          end
-
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @servers }
+    end
   end
 
   def show
+    @server = Server.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+    end
   end
 
   def new

@@ -9,7 +9,7 @@
 <% for server in @servers %>
   <tr>
     <td><%=h server.name %></td>
-    <td><%=h server.servertyps.name %></td>
+    <td><%=h server.servertype.name %></td>
     <td><%= link_to 'Show', server %></td>
     <td><%= link_to 'Edit', edit_server_path(server) %></td>
     <td><%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -19,4 +19,4 @@
 
 <br />
 
-<%= link_to 'New servertyp', new_server_path %>
+<%= link_to 'New servertype', new_server_path %>
