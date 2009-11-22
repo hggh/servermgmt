@@ -12,7 +12,9 @@
 ----------------<br/>
 <% @network.ips.each do |i| %>
 <p>
-<%=h i.ip %>
+<%=h i.ip %> 
+<%=h i.iptype.name %>
+
 <% end %>
 
 

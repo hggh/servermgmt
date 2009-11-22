@@ -1,4 +1,5 @@
 class IptypesController < ApplicationController
+  helper :iptypes
   # GET /iptypes
   # GET /iptypes.xml
   def index

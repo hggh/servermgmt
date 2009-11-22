@@ -3,4 +3,5 @@ class Network < ActiveRecord::Base
 	validates_presence_of :comment
 	validates_length_of :comment, :minimum => 5
 	has_many :ips
+	before_destroy :ensure_not_used
 end

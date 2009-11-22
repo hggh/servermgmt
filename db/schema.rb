@@ -9,13 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091120233411) do
+ActiveRecord::Schema.define(:version => 20091122161051) do
 
   create_table "ips", :force => true do |t|
     t.string   "ip",         :limit => nil
     t.integer  "network_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "iptype_id"
   end
 
   create_table "iptypes", :force => true do |t|
@@ -27,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20091120233411) do
   create_table "networks", :force => true do |t|
     t.string   "network",    :limit => nil
     t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "servers", :force => true do |t|
+    t.string   "name"
+    t.string   "comment"
+    t.integer  "servertype_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
