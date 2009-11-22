@@ -1,20 +1,20 @@
-<h1>Listing servertyps</h1>
+<h1>Listing servertypes</h1>
 
 <table>
   <tr>
     <th>Name</th>
   </tr>
 
-<% for servertyp in @servertyps %>
+<% for servertype in @servertypes %>
   <tr>
-    <td><%=h servertyp.name %></td>
-    <td><%= link_to 'Show', servertyp %></td>
-    <td><%= link_to 'Edit', edit_servertyp_path(servertyp) %></td>
-    <td><%= link_to 'Destroy', servertyp, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=h servertype.name %></td>
+    <td><%= link_to 'Show', servertype %></td>
+    <td><%= link_to 'Edit', edit_servertype_path(servertyp) %></td>
+    <td><%= link_to 'Destroy', servertype, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New servertyp', new_servertyp_path %>
+<%= link_to 'New servertyp', new_servertype_path %>
