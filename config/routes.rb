@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :servertyps
+  map.resources :servertypes
 
   map.resources :iptypes
 
