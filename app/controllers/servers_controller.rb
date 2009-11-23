@@ -24,6 +24,15 @@ class ServersController < ApplicationController
 
   end
 
+  def addip
+    @ip = Ip.new
+    @networks = Network.find(:all)
+    @server = Server.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+    end
+  end
+
   def create
     @server = Server.new(params[:server])
 
