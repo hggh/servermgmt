@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  comment: MyString
+  mac: 
+  Server: 
+
+two:
+  comment: MyString
+  mac: 
+  Server: 

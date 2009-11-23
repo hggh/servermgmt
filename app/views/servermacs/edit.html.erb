@@ -1,0 +1,24 @@
+<h1>Editing servermac</h1>
+
+<% form_for(@servermac) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_field :comment %>
+  </p>
+  <p>
+    <%= f.label :mac %><br />
+    <%= f.text_field :mac %>
+  </p>
+  <p>
+    <%= f.label :Server %><br />
+    <%= f.text_field :Server %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @servermac %> |
+<%= link_to 'Back', servermacs_path %>

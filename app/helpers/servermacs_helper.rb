@@ -1,0 +1,2 @@
+module ServermacsHelper
+end

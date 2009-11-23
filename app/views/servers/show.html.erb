@@ -1,8 +1,23 @@
 <h1>Servers#show</h1>
 
+    <p>
+      <b>Customer:</b>
+        <%=h @server.customer.name %>
+	</p>
 <p>
   <b>Server:</b>
     <%=h @server.name %>
+    </p>
+
+    <p>
+      <b>Operation System:</b>
+       <%=h @server.serveroperationsystem.name %>
+	</p>
+
+
+<p>
+  <b>Server Type:</b>
+    <%=h @server.servertype.name %>
     </p>
 
     <p>

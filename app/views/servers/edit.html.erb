@@ -1,2 +1,32 @@
-<h1>Servers#edit</h1>
-<p>Find me in app/views/servers/edit.html.erb</p>
+<h1>Server: edit</h1>
+<% form_for(@server) do |f| %>
+        <%= f.error_messages %>
+
+        <p>
+                <%= f.label :customer_id  %><br />
+                <%= f.select :customer_id,
+                        Customer.find(:all).collect{|d| [d.name,d.id]} %>
+        </p>
+
+        <p><%= f.label :name %><br />
+                <%= f.text_field :name %>
+        </p>
+
+        <p>
+                <%= f.label :servertype_id %><br />
+                <%= f.select :servertype_id,
+                        Servertype.find(:all).collect{|d| [d.name,d.id]} %>
+        </p>
+        <p>
+                <%= f.label :serveroperationsystem_id %><br />
+                <%= f.select :serveroperationsystem_id,
+                        Serveroperationsystem.find(:all).collect{|d| [d.name,d.id]} %>
+        </p>
+
+
+        <p>
+                <%= f.submit "Update" %>
+        </p>
+
+<% end %>
+

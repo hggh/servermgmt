@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :serveroperationsystems
+
+  map.resources :servermacs
+
+  map.resources :customers
+
   map.resources :servertypes
 
   map.resources :iptypes

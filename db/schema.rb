@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091122161051) do
+ActiveRecord::Schema.define(:version => 20091123204815) do
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ips", :force => true do |t|
     t.string   "ip",         :limit => nil
@@ -33,12 +39,28 @@ ActiveRecord::Schema.define(:version => 20091122161051) do
     t.datetime "updated_at"
   end
 
+  create_table "servermacs", :force => true do |t|
+    t.string   "comment"
+    t.string   "mac",        :limit => nil
+    t.integer  "server_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "serveroperationsystems", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "servers", :force => true do |t|
     t.string   "name"
     t.string   "comment"
     t.integer  "servertype_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
+    t.integer  "operationsystem_id"
   end
 
   create_table "servertypes", :force => true do |t|
