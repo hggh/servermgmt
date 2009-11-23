@@ -1,10 +1,79 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #F1EFE2; }
 
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+h1, h2, h3, h4 { font-family: "Trebuchet MS", Verdana, sans-serif;}
+h1 {margin:0; padding:0; font-size: 24px;}
+h2, .wiki h1 {font-size: 20px;padding: 2px 10px 1px 0px;margin: 0 0 10px 0; border-bottom: 1px solid #bbbbbb; color: #444;}
+h3, .wiki h2 {font-size: 16px;padding: 2px 10px 1px 0px;margin: 0 0 10px 0; border-bottom: 1px solid #bbbbbb; color: #444;}
+h4, .wiki h3 {font-size: 13px;padding: 2px 10px 1px 0px;margin-bottom: 5px; border-bottom: 1px dotted #bbbbbb; color: #444;}
+
+
+#top-menu {background: #2C4056; color: #fff; height:1.8em; font-size: 0.8em; padding: 2px 2px 0px 6px;}
+#top-menu ul {margin: 0;  padding: 0;}
+#top-menu li {
+  float:left;
+    list-style-type:none;
+      margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+	  white-space:nowrap;
+	  }
+
+#top-menu a {color: #fff; margin-right: 8px; font-weight: bold;}
+#top-menu #loggedas { float: right; margin-right: 0.5em; color: #fff; }
+
+#top-menu { font-size: 80%; height: 1.8em; }
+#top-menu a { font-weight: bold; }
+#header {height:5.3em;margin:0;background-color:#507AAA;color:#f8f8f8; padding: 4px 8px 0px 6px; position:relative;}
+#header a {color:#f8f8f8;}
+#header h1 a.ancestor { font-size: 80%; }
+
+
+#header {height:6.2em;margin:0;background-color:#507AAA;color:#f8f8f8; padding: 4px 8px 0px 6px; position:relative;}
+#header h1 { margin-top: 0.3em; margin-left: 0px; }
+#main-menu {position: absolute;  bottom: 0px;  left:6px; margin-right: -500px;}
+#main-menu ul {margin: 0;  padding: 0;}
+
+#main-menu li {
+  float:left;
+    list-style-type:none;
+      margin: 0px 2px 0px 0px;
+        padding: 0px 0px 0px 0px;
+	  white-space:nowrap;
+	  }
+	  #main-menu li a {
+	    display: block;
+	      color: #fff;
+	        text-decoration: none;
+		  font-weight: bold;
+		    margin: 0;
+		      padding: 4px 10px 4px 10px;
+		      }
+
+
+#main-menu li {
+	float:left;
+	list-style-type:none;
+	margin: 0px 2px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	white-space:nowrap;
 }
+#main-menu li a {
+	padding: 4px 10px 4px 10px;
+	background: #507AAA;
+	font-weight: bold;
+}
+#main-menu li a:hover {background:#759FCF; color:#fff;}
+#main-menu li a.selected, #main-menu li a.selected:hover {background:#fff; color:#555;}
+
+
+#main-menu li a:hover {background:#759FCF;}
+#main-menu li a.selected {background: #fff; color:#555; }
+
+h2, h3, h4, .wiki h1, .wiki h2, .wiki h3 { border-bottom: 0px; color:#606060; font-family: Trebuchet MS,Georgia,"Times New Roman",serif; }
+h2, .wiki h1 { letter-spacing:-1px; }
+h4 { border-bottom: dotted 1px #c0c0c0; }
+
+#main { font:100% Verdana,Tahoma,Arial,sans-serif; background: #fff; }
+
 
 pre {
   background-color: #eee;
@@ -12,9 +81,6 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
 
 .fieldWithErrors {
   padding: 2px;

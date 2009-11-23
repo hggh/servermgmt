@@ -1,6 +1,6 @@
 class ServertypesController < ApplicationController
   # GET /servertypes
-  helper :servertype
+  #helper :servertype
   # GET /servertypes.xml
   def index
     @servertypes = Servertype.find(:all)
