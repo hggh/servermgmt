@@ -1,4 +1,19 @@
 class ServersController < ApplicationController
+ def createip
+    @ip = Ip.new(params[:ip])
+
+    respond_to do |format|
+      if @ip.save
+        flash[:notice] = 'IP address was successfully created.'
+        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @ip.server_id ) }
+      else
+        @server = Server.find(@ip.server_id)
+        format.html { render :action => "addip" }
+      end
+    end
+
+  end
+
   def index
     @servers = Server.find(:all)
 
