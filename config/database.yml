@@ -33,6 +33,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: servermgmt_production
+  adapter: postgresql
+  encoding: unicode
+  database: servermgmt
   username: servermgmt
-  password:
+  password: servermgmt
