@@ -1,4 +1,5 @@
 class Ip < ActiveRecord::Base
+	default_scope :order => :ip
 	require 'ipaddr'
 	def is_ipaddress
 		begin
@@ -14,7 +15,8 @@ class Ip < ActiveRecord::Base
 	end
 
 	belongs_to :network
-	belongs_to  :iptype
+	belongs_to :server
+	belongs_to :iptype
 	validates_presence_of :ip
 	validate :is_ipaddress
 	validates_uniqueness_of :ip, :if => :is_ipaddress

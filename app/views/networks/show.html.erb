@@ -13,7 +13,8 @@
 <% @network.ips.each do |i| %>
 <p>
 <%=h i.ip %> 
-<%=h i.iptype.name %>
+<% if i.iptype != nil %><%=h i.iptype.name %><% end %>
+<% if i.server != nil %><%=h i.server.name %><% end %>
 
 <% end %>
 
