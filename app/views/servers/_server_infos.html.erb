@@ -1,0 +1,46 @@
+<table>
+  <tr>
+    <td>Customer:</td>
+    <td><%=h @server.customer.name %></td>
+  </tr>
+   <tr>
+    <td>Server:</td>
+    <td><%=h @server.name %></td>
+  </tr>
+  <tr>
+    <td valign="top">Comment:</td>
+    <td><%=h @server.comment %></td>
+  </tr>
+  <tr>
+    <td>Server Type:</td>
+    <td><%=h @server.servertype.name %></td>
+  <tr>
+    <td>Operation System:</td>
+    <td><%=h @server.serveroperationsystem.name %></td>
+  </tr>
+</table>
+ 
+
+<h2>IP Addresses:</h2>
+<% if @server.ips.count > 0 %>
+
+<table>
+  <tr>
+    <th>IP</th>
+    <th>Type</th>
+    <th> </th>
+  </tr>
+
+  <% @server.ips.each do |i| %>
+   <tr>
+     <td><%=h i.ip %></td>
+     <td><%=h i.iptype.name %></td>
+		 <td><%= link_to 'Net', i.network %></td>
+		 <td><%= link_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete %></td>
+   </tr>
+   <% end %>
+   
+</table>
+<% else %>
+ - no ip addresses for this server -
+<% end %>

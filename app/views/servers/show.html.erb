@@ -1,35 +1,5 @@
-<h1>Servers#show</h1>
+<%= render :partial => "server_menubar" %>
+<h1>Server - Show: <%=h @server.name %></h1>
+<br/>
 
-    <p>
-      <b>Customer:</b>
-        <%=h @server.customer.name %>
-	</p>
-<p>
-  <b>Server:</b>
-    <%=h @server.name %>
-    </p>
-
-    <p>
-      <b>Operation System:</b>
-       <%=h @server.serveroperationsystem.name %>
-	</p>
-
-
-<p>
-  <b>Server Type:</b>
-    <%=h @server.servertype.name %>
-    </p>
-
-    <p>
-      <b>Comment:</b>
-        <%=h @server.comment %>
-	</p>
-
-
-	<% @server.ips.each do |i| %>
-	<p>
-	<%=h i.ip %>
-	<%=h i.iptype.name %>
-
-	<% end %>
-
+<%= render :partial => "server_infos" %>

@@ -1,23 +1,38 @@
-<p>
-  <b>Network:</b>
-  <%=h @network.network %>
-</p>
 
-<p>
-  <b>Comment:</b>
-  <%=h @network.comment %>
-</p>
+<table>
+	<tr>
+		<td>Network:</td>
+		<td><%=h @network.network %></td>
+	</tr>
+	<tr>
+		<td>Comment:</td>
+		<td><<%=h @network.comment %>/td>
+	</tr>
+</table>
 
-
-----------------<br/>
-<% @network.ips.each do |i| %>
-<p>
-<%=h i.ip %> 
-<% if i.iptype != nil %><%=h i.iptype.name %><% end %>
-<% if i.server != nil %><%=h i.server.name %><% end %>
-
+<br/>
+<% if @network.ips.count > 0 %>
+  <table>
+  	<tr>
+  		<th>IP</th>
+			<th>Type</th>
+			<th>Server</th>
+  	</tr>
+  <% @network.ips.each do |i| %>
+	<tr>
+		<td><%=h i.ip %> </td>
+		<td><% if i.iptype != nil %><%=h i.iptype.name %><% end %></td>
+		<td><% if i.server != nil %>
+		    <% link_to(i.server) do %>
+		    <%=h i.server.name %>
+				<% end %>
+			<% end %></td>
+	</tr>
+	<% end %>
+  </table>
+<% else %>
+ - no ips on this net found -
 <% end %>
-
 
 <%= link_to 'Edit', edit_network_path(@network) %> |
 <%= link_to 'Back', networks_path %>

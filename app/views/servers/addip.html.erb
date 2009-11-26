@@ -1,68 +1,28 @@
-<h1>Servers#show</h1>
-
-    <p>
-      <b>Customer:</b>
-        <%=h @server.customer.name %>
-	</p>
-<p>
-  <b>Server:</b>
-    <%=h @server.name %>
-    </p>
-
-    <p>
-      <b>Operation System:</b>
-       <%=h @server.serveroperationsystem.name %>
-	</p>
-
-
-<p>
-  <b>Server Type:</b>
-    <%=h @server.servertype.name %>
-    </p>
-
-    <p>
-      <b>Comment:</b>
-        <%=h @server.comment %>
-	</p>
-
-
-	<% @server.ips.each do |i| %>
-	<p>
-	<%=h i.ip %>
-	<%=h i.iptype.name %>
-
-	<% end %>
-
-
--------------------------------------<br/>
-<p>
-Add Ip<br/>
-
-</p>
-
+<%= render :partial => "server_menubar" %>
+<h1>Server - Show: <%=h @server.name %></h1>
+<br/>
+<h2>Add IP Address to Server</h2>
 <% form_for @ip, :url => { :action => "createip" } do |f| %>
-        <%= f.error_messages %>
-        <p>
-                <%= f.label :network_id %><br />
-                <%= f.select :network_id,
-                        Network.find(:all).collect{|d| [d.network,d.id]} %>
-        </p>
-       <p><%= f.label :ip %><br />
-                <%= f.text_field :ip %>
-        </p>
-
-        <p>
-                <%= f.label :iptype_id %><br />
-                <%= f.select :iptype_id,
-                        Iptype.find(:all).collect{|d| [d.name,d.id]} %>
-        </p>
-
-
-        <p>
-		<%= hidden_field(:ip, :server_id , :value => @server.id ) %>
-                <%= f.submit "Create" %>
-
-        </p>
-
+  <%= f.error_messages %>
+	<table>
+		<tr>
+			<td><%= f.label :network_id %></td>
+			<td><%= f.select :network_id, Network.find(:all).collect{|d| [d.network,d.id]} %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :iptype_id %></td>
+			<td><%= f.select :iptype_id, Iptype.find(:all).collect{|d| [d.name,d.id]} %></td>
+		</tr>	
+		<tr>
+			<td><%= f.label :ip %></td>
+			<td><%= f.text_field :ip %></td>
+		</tr>
+		<tr>
+			<td colspan="2"> <%= hidden_field(:ip, :server_id , :value => @server.id ) %><%= f.submit "Create" %></td>
+		</tr>
+	</table>
 <% end %>
-
+<hr/>
+<br/>
+<h2>Server: <%=h @server.name %></h2>
+<%= render :partial => "server_infos" %>

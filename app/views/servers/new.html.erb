@@ -1,36 +1,29 @@
-<h1>New Server</h1>
-<br/>
+<h1>Server - New</h1>
 
 <% form_for(@server) do |f| %>
-	<%= f.error_messages %>
-
-	<p>
-		<%= f.label :customer_id  %><br />
-		<%= f.select :customer_id,
-			Customer.find(:all).collect{|d| [d.name,d.id]} %>
-	</p>
-
-	<p><%= f.label :name %><br />
-		<%= f.text_field :name %>
-	</p>
-
-	<p>
-		<%= f.label :servertype_id %><br />
-		<%= f.select :servertype_id,
-			Servertype.find(:all).collect{|d| [d.name,d.id]} %>
-	</p>
-        <p>
-                <%= f.label :serveroperationsystem_id %><br />
-                <%= f.select :serveroperationsystem_id,
-                        Serveroperationsystem.find(:all).collect{|d| [d.name,d.id]} %>
-        </p>
-
-
-
-	<p>
-		<%= f.submit "Create" %>
-	</p>
-
+        <%= f.error_messages %>
+<table>
+  <tr>
+    <td>Customer:</td>
+    <td><%= f.select :customer_id,Customer.find(:all).collect{|d| [d.name,d.id]} %></td>
+  </tr>
+   <tr>
+    <td>Server:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td valign="top">Comment:</td>
+    <td><%=h @server.comment %></td>
+  </tr>
+  <tr>
+    <td>Server Type:</td>
+    <td><%= f.select :servertype_id, Servertype.find(:all).collect{|d| [d.name,d.id]} %></td>
+  <tr>
+    <td>Operation System:</td>
+    <td><%= f.select :serveroperationsystem_id, Serveroperationsystem.find(:all).collect{|d| [d.name,d.id]} %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= f.submit "Create" %></td>
+  </tr>
+</table>
 <% end %>
-
-
