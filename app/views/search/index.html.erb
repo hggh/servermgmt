@@ -1,0 +1,27 @@
+
+<% if @servers.count > 0 %>
+<h3>Found for: <%=h @question %></h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+  </tr>
+
+<% for server in @servers %>
+  <tr>
+    <td><%=h server.name %></td>
+    <td><%=h server.serveroperationsystem.name %></td>
+    <td><%= link_to 'Show', server %></td>
+    <td><%= link_to 'Edit', edit_server_path(server) %></td>
+    <td><%= link_to 'Add IP', :controller => "servers", :action => "addip", :id => server %></td>
+    <td><%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<% else %>
+
+Nothing found for: <%=h @question %>
+
+<% end %>

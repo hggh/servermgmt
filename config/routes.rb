@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :ips
 
   map.resources :home
+  
+  map.resources :search
 
   map.resources :networks
   #, :has_many => :ips
