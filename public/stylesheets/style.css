@@ -265,21 +265,18 @@ div.flash {
 }
 
 div.flash.error, #errorExplanation {
-    background: url(../images/false.png) 8px 5px no-repeat;
     background-color: #ffe3e3;
     border-color: #dd0000;
     color: #550000;
 }
 
 div.flash.notice {
-    background: url(../images/true.png) 8px 5px no-repeat;
     background-color: #dfffdf;
     border-color: #9fcf9f;
     color: #005f00;
 }
 
 div.flash.warning {
-    background: url(../images/warning.png) 8px 5px no-repeat;
     background-color: #FFEBC1;
     border-color: #FDBF3B;
     color: #A6750C;
@@ -400,12 +397,10 @@ body {
 }
 
 #wrapper {
-    background: #fff url(../images/content-right.png) 100% 0 repeat-y;
     padding-right: 10px;
 }
 
 #wrapper2 {
-    background: #fff url(../images/content-left.png) repeat-y;
     padding-left: 10px;
 }
 
@@ -468,35 +463,6 @@ table#browser a {
     line-height: 16px;
 }
 
-#footer {
-    text-align: right;
-    height: 40px;
-    color: #999;
-    background: #F1EFE2 url(../images/footer-bg.png) 0 0 repeat-x;
-    border: 0;
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-top: -4px;
-    padding: 0;
-}
-
-#footer a {
-    color: #999;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-#footer .bgl {
-    height: 40px;
-    background: transparent url(../images/footer-left.png) 0 0 no-repeat;
-}
-
-#footer .bgr {
-    height: 40px;
-    background: transparent url(../images/footer-right.png) 100% 0 no-repeat;
-    padding-top: 22px;
-    padding-right: 30px;
-}
 
 #main {
     font: 100% Verdana, Tahoma, Arial, sans-serif;
