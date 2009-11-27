@@ -1,8 +1,14 @@
-<p>
-  <b>Name:</b>
-  <%=h @serveroperationsystem.name %>
-</p>
+<%= render :partial => "serveros_menubar" %>
+<h1>Server OS - Show: <%=h @serveroperationsystem.name %></h1>
+<br/>
 
-
-<%= link_to 'Edit', edit_serveroperationsystem_path(@serveroperationsystem) %> |
-<%= link_to 'Back', serveroperationsystems_path %>
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><%=h @serveroperationsystem.name %></td>
+	</tr>
+	<tr>
+		<td valign="top">Debian Preseeding:</td>
+		<td><%= simple_format(@serveroperationsystem.config_preseed) %></td>
+	</tr>
+</table>

@@ -11,8 +11,13 @@ class ServeroperationsystemsController < ApplicationController
     @serveroperationsystem = Serveroperationsystem.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
+  end
+  
+  def di
+    @serveroperationsystem = Serveroperationsystem.find(params[:id])
+       render :action => "di", :layout => "di-layout"
   end
 
   def new
