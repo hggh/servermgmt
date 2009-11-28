@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Network</th>
+		<th>Customer</th>
     <th>Comment</th>
 		<th>Usage</th>
   </tr>
@@ -10,6 +11,7 @@
 <% for network in @networks %>
   <tr>
     <td><%=h network.network %></td>
+		<td><%=h network.customer.name %></td>
     <td><%=h network.comment %></td>
 		<td><%=h network.ips.count %></td>
     <td><%= link_to 'Show', network %></td>

@@ -1,12 +1,19 @@
+<%= render :partial => "network_menubar" %>
+<h1>Network - Show: <%=h @network.network %></h1>
+<br/>
 
 <table>
+	<tr>
+    <td>Customer:</td>
+    <td><%=h @network.customer.name %></td>
+  </tr>
 	<tr>
 		<td>Network:</td>
 		<td><%=h @network.network %></td>
 	</tr>
 	<tr>
 		<td>Comment:</td>
-		<td><<%=h @network.comment %>/td>
+		<td><%=h @network.comment %></td>
 	</tr>
 </table>
 
