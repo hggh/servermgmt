@@ -1,0 +1,19 @@
+<%= render :partial => "server_menubar" %>
+<h1>Server - Show: <%=h @server.name %></h1>
+<br/>
+<h2>Add MAC Address to Server</h2>
+<% form_for @servermac, :url => { :action => "createmac" } do |f| %>
+  <%= f.error_messages %>
+  <table>
+      <td><%= f.label :mac %></td>
+      <td><%= f.text_field :mac %></td>
+    </tr>
+    <tr>
+      <td colspan="2"> <%= hidden_field(:servermac, :server_id , :value => @server.id ) %><%= f.submit "Create" %></td>
+    </tr>
+  </table>
+<% end %>
+<hr/>
+<br/>
+<h2>Server: <%=h @server.name %></h2>
+<%= render :partial => "server_infos" %>
