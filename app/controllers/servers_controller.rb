@@ -13,6 +13,21 @@ class ServersController < ApplicationController
     end
     
   end
+
+  def createmac
+    @servermac = Servermac.new(params[:servermac])
+    
+    respond_to do |format|
+      if @servermac.save
+        flash[:notice] = 'MAC address was successfully created.'
+        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @servermac.server_id ) }
+      else
+        @server = Server.find(@servermac.server_id)
+        format.html { render :action => "addmac" }
+      end
+    end
+    
+  end
   
   def index
     @servers = Server.find(:all)
@@ -48,6 +63,14 @@ class ServersController < ApplicationController
     end
   end
   
+  def addmac
+    @servermac = Servermac.new
+    @server = Server.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   def create
     @server = Server.new(params[:server])
     
@@ -65,7 +88,13 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
   end
   
-  def destory
+  def destroy
+    @server = Server.find(params[:id])
+    @server.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(servers_url) }
+    end
   end
   
 end

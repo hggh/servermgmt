@@ -44,3 +44,25 @@
 <% else %>
  - no ip addresses for this server -
 <% end %>
+
+<br/><br/>
+<h2>MAC Addresses:</h2>
+<% if @server.servermacs.count > 0 %>
+
+<table>
+	<tr>
+		<th>MAC</th>
+		<th></th>
+	</tr>
+	
+	<% @server.servermacs.each do |i| %>
+	<tr>
+		<td><%=h i.mac%></td>
+		<td><%= link_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<% end %>
+</table>
+
+<% else %>
+ - no mac addresses for this server -
+<% end %>
