@@ -3,12 +3,14 @@
 <table>
   <tr>
     <th>Name</th>
+		<th>Customer</th>
     <th>Type</th>
   </tr>
 
 <% for server in @servers %>
   <tr>
     <td><%=h server.name %></td>
+		<td><%=h server.customer.name %></td>
     <td><%=h server.serveroperationsystem.name %></td>
     <td><%= link_to 'Show', server %></td>
     <td><%= link_to 'Edit', edit_server_path(server) %></td>
