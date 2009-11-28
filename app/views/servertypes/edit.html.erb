@@ -3,13 +3,19 @@
 <% form_for(@servertype) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td>Hardware:</td>
+    <td><%= f.select :server_type_hardware_id, ServerTypeHardware.find(:all).collect{|d| [d.name,d.id]} %>
+  </tr>
+  <tr>
+    <td colspan="2"><%= f.submit "Update" %></td>
+  </tr>
+</table>
 <% end %>
 
 <%= link_to 'Show', @servertype %> |

@@ -1,8 +1,14 @@
-<p>
-  <b>Name:</b>
-  <%=h @servertype.name %>
-</p>
+<%= render :partial => "serverytpe_menubar" %>
+<h1>Servertype - Show: <%=h @servertype.name %></h1>
+<br/>
 
-
-<%= link_to 'Edit', edit_servertype_path(@servertype) %> |
-<%= link_to 'Back', servertypes_path %>
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><%=h @servertype.name %></td>
+	</tr>
+	<tr>
+		<td>Hardware:</td>
+		<td><%=h @servertype.server_type_hardware.name %></td>
+	</tr>
+</table>
