@@ -96,5 +96,16 @@ class ServersController < ApplicationController
       format.html { redirect_to(servers_url) }
     end
   end
-  
+  def update
+    @server = Server.find(params[:id])
+
+    respond_to do |format|
+      if @server.update_attributes(params[:server])
+        flash[:notice] = 'Server was successfully updated.'
+        format.html { redirect_to(@server) }
+      else
+        format.html { render :action => "edit" }
+      end
+    end
+  end  
 end
