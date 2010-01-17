@@ -43,6 +43,8 @@ class ServersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
     end
+    rescue ActiveRecord::RecordNotFound
+      render_404
   end
   
   def new
