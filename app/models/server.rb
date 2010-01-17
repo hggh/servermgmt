@@ -13,4 +13,5 @@ class Server < ActiveRecord::Base
   
   has_many :ips, :dependent => :destroy
   has_many :servermacs, :dependent => :destroy
+  has_one :server_domain
 end
