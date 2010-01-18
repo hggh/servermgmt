@@ -9,4 +9,8 @@ class Network < ActiveRecord::Base
   
   belongs_to :customer
 	has_many :ips, :dependent => :destroy
+  
+  def self.NetworkbyCust(customerid)
+    Network.find(:all, :conditions => "customer_id = #{customerid}")
+  end
 end

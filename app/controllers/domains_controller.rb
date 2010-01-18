@@ -1,34 +1,4 @@
-class ServersController < ApplicationController
-  def createip
-    @ip = Ip.new(params[:ip])
-    
-    respond_to do |format|
-      if @ip.save
-        flash[:notice] = 'IP address was successfully created.'
-        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @ip.server_id ) }
-      else
-        @server = Server.find(@ip.server_id)
-        format.html { render :action => "addip" }
-      end
-    end
-    
-  end
-
-  def createmac
-    @servermac = Servermac.new(params[:servermac])
-    
-    respond_to do |format|
-      if @servermac.save
-        flash[:notice] = 'MAC address was successfully created.'
-        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @servermac.server_id ) }
-      else
-        @server = Server.find(@servermac.server_id)
-        format.html { render :action => "addmac" }
-      end
-    end
-    
-  end
-  
+class DomainsController < ApplicationController
   def index
     @servers = Server.find(:all)
     
@@ -50,26 +20,9 @@ class ServersController < ApplicationController
     @server = Server.new
     
     respond_to do |format|
-      format.html
+      format.html # new.html.erb
     end
     
-  end
-  
-  def addip
-    @ip = Ip.new
-    @networks = Network.find(:all)
-    @server = Server.find(params[:id])
-    respond_to do |format|
-      format.html
-    end
-  end
-  
-  def addmac
-    @servermac = Servermac.new
-    @server = Server.find(params[:id])
-    respond_to do |format|
-      format.html
-    end
   end
   
   def create

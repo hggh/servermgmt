@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :servertypes
 
+  map.resources :server_domains
+
   map.resources :iptypes
 
   map.resources :servers

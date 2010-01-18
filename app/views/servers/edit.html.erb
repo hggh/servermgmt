@@ -13,6 +13,10 @@
     <td><%= f.text_field :name %></td>
   </tr>
   <tr>
+    <td>Domain:</td>
+    <td><%= f.select :domain_id, Domain.DomainbyCust(@server.customer_id).collect{|d| [d.name,d.id]} %></td>
+  </tr>
+  <tr>
     <td valign="top">Comment:</td>
     <td><%=h @server.comment %></td>
   </tr>

@@ -3,13 +3,15 @@
 <table>
   <tr>
     <th>Name</th>
+		<th>Type</th>
 		<th>Customer</th>
     <th>OS</th>
   </tr>
 
 <% for server in @servers %>
   <tr>
-    <td><%=h server.name %></td>
+    <td><%=h server.name %>.<%=h server.domain.name %></td>
+		<td><%=h server.servertype.server_type_hardware.name %></td>
 		<td><%=h server.customer.name %></td>
     <td><%=h server.serveroperationsystem.name %></td>
     <td><%= link_to 'Show', server %></td>
@@ -23,4 +25,4 @@
 
 <br />
 
-<%= link_to 'New servertype', new_server_path %>
+<%= link_to 'New Server', new_server_path %>
