@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ttl: 1
+  domain_id: 1
+
+two:
+  ttl: 1
+  domain_id: 1

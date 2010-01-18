@@ -1,6 +1,6 @@
 class DomainsController < ApplicationController
   def index
-    @servers = Server.find(:all)
+    @domains = Domain.find(:all)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -8,30 +8,30 @@ class DomainsController < ApplicationController
   end
   
   def show
-    @server = Server.find(params[:id])
+    @domain = Domain.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
     rescue ActiveRecord::RecordNotFound
       render_404
   end
   
   def new
-    @server = Server.new
-    
+    @domain = Domain.new
+
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
     
   end
   
   def create
-    @server = Server.new(params[:server])
+    @domain = Domain.new(params[:domain])
     
     respond_to do |format|
-      if @server.save
-        flash[:notice] = 'Server was successfully created.'
-        format.html { redirect_to(@server) }
+      if @domain.save
+        flash[:notice] = 'Domain was successfully created.'
+        format.html { redirect_to(:controller => 'domains' ) }
       else
         format.html { render :action => "new" }
       end
@@ -39,24 +39,24 @@ class DomainsController < ApplicationController
   end
   
   def edit
-    @server = Server.find(params[:id])
+    @domain = Domain.find(params[:id])
   end
   
   def destroy
-    @server = Server.find(params[:id])
-    @server.destroy
+    @domain = Domain.find(params[:id])
+    @domain.destroy
 
     respond_to do |format|
-      format.html { redirect_to(servers_url) }
+      format.html { redirect_to(domains_url) }
     end
   end
   def update
-    @server = Server.find(params[:id])
+    @domain = Domain.find(params[:id])
 
     respond_to do |format|
-      if @server.update_attributes(params[:server])
-        flash[:notice] = 'Server was successfully updated.'
-        format.html { redirect_to(@server) }
+      if @domain.update_attributes(params[:domain])
+        flash[:notice] = 'Domain was successfully updated.'
+        format.html { redirect_to(@domain) }
       else
         format.html { render :action => "edit" }
       end

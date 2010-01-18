@@ -33,7 +33,7 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         flash[:notice] = 'Customer was successfully created.'
-        format.html { redirect_to(@customer) }
+        format.html { redirect_to(:controller => 'customers') }
       else
         format.html { render :action => "new" }
       end

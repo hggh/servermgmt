@@ -1,0 +1,22 @@
+<h1>Listing Domains</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Customer</th>
+  </tr>
+
+<% for domain in @domains %>
+  <tr>
+    <td><%=h domain.name %></td>
+    <td><%=h domain.customer.name %></td>
+    <td><%= link_to 'Show', domain %></td>
+    <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
+    <td><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Domain', new_domain_path %>
