@@ -29,6 +29,30 @@ class ServersController < ApplicationController
     
   end
   
+  def addvirtual
+    @server_virtual = ServerVirtual.new(params[:server_virtual])
+    respond_to do |format|
+      if @server_virtual.save
+        flash[:notice] = 'Virtual System was connected to hardware.'
+        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @server_virtual.hardware_id ) }
+      else
+        @server = Server.find(@server_virtual.hardware_id)
+        format.html { render :action => "show" }
+      end
+    end
+  end
+  
+  def dropvirtual
+    @server_virtual = ServerVirtual.find(params[:id])
+    server_id = @server_virtual.hardware_id
+    @server_virtual.destroy
+    
+    respond_to do |format|
+      flash[:notice] = 'Virtual System was disconnected to hardware.'
+      format.html { redirect_to(:controller => 'servers', :action => "show", :id=> server_id ) }
+    end
+  end
+  
   def index
     @servers = Server.find(:all)
     
@@ -39,6 +63,7 @@ class ServersController < ApplicationController
   
   def show
     @server = Server.find(params[:id])
+    @server_virtual = ServerVirtual.new
     respond_to do |format|
       format.html # show.html.erb
     end

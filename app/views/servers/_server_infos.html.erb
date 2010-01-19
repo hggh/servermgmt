@@ -37,15 +37,27 @@
 </table>
 
 
-<% if @server.servertype.server_type_hardware.id == 3 %>
+<% if @server.servertype.server_type_hardware.id == 3 and defined?@server_virtual %>
 <h2>Domain0 System:</h2>
   <% if ServerVirtual.getVirtuals(@server.id).count > 0 %>
 	   <ul>
 			<% ServerVirtual.getVirtuals(@server.id).each do |v| %>
-			 <li><%= link_to "#{Server.find(v.virtual_id).name}.#{Server.find(v.virtual_id).domain.name}", Server.find(v.virtual_id) %></li>
+			 <li><%= link_to "#{Server.find(v.virtual_id).name}.#{Server.find(v.virtual_id).domain.name}", Server.find(v.virtual_id) %> &nbsp;[<%= link_to 'X',  :controller => "servers", :action => "dropvirtual", :id => v %>]</li>
 			<% end %>
 	   </ul>
   <% end %>
+	<% if Server.getFreeVirtualServers().count > 0 %>
+	Add new virtual Systems to hardware:<br/>
+	 <% form_for @server_virtual, :url => { :action => "addvirtual" } do |f| %>
+        <%= f.error_messages %>
+				<%= hidden_field(:server_virtual, :hardware_id , :value => @server.id ) %>
+	      <%= f.select :virtual_id, Server.getFreeVirtualServers().collect{|d| ["#{d.name}.#{d.domain.name} ",d.id]} %>
+				
+				<%= f.submit "Add Virtual System to Hardware" %>
+	 <% end %>
+	 <% else %>
+	 - no more virtual Servers found -
+	 <% end %>
 <% end %>
  
 

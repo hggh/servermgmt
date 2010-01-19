@@ -10,7 +10,7 @@
 
 <% for server in @servers %>
   <tr>
-    <td><%=h server.name %>.<%=h server.domain.name %></td>
+    <td><%= link_to "#{server.name}.#{server.domain.name}", server %></td>
 		<td><%=h server.servertype.server_type_hardware.name %></td>
 		<td><%=h server.customer.name %></td>
     <td><%=h server.serveroperationsystem.name %></td>

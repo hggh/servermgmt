@@ -31,7 +31,7 @@
 		<td><% if i.iptype != nil %><%=h i.iptype.name %><% end %></td>
 		<td><% if i.server != nil %>
 		    <% link_to(i.server) do %>
-		    <%=h i.server.name %>
+		    <%=h i.server.name %>.<%=h i.server.domain.name %>
 				<% end %>
 			<% end %></td>
 	</tr>
