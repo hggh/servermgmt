@@ -21,4 +21,6 @@ class Server < ActiveRecord::Base
   
   has_many :ips, :dependent => :destroy
   has_many :servermacs, :dependent => :destroy
+  
+  #has_many :server_virtals, :foreign_key => "hardware_id", :dependent => :destroy
 end

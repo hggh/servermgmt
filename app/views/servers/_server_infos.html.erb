@@ -22,7 +22,31 @@
     <td>Operation System:</td>
     <td><%=h @server.serveroperationsystem.name %></td>
   </tr>
+	<% if @server.servertype.server_type_hardware.id == 2 %>
+	<tr>
+		<td>Hardware Platform:</td>
+		<td>
+			<% if ServerVirtual.getHardware(@server.id).count == 1 %>
+			 <% ServerVirtual.getHardware(@server.id).each do |h| %>
+        <%= link_to "#{Server.find(h.hardware_id).name}.#{Server.find(h.hardware_id).domain.name}", Server.find(h.hardware_id) %>
+			 <% end %>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
 </table>
+
+
+<% if @server.servertype.server_type_hardware.id == 3 %>
+<h2>Domain0 System:</h2>
+  <% if ServerVirtual.getVirtuals(@server.id).count > 0 %>
+	   <ul>
+			<% ServerVirtual.getVirtuals(@server.id).each do |v| %>
+			 <li><%= link_to "#{Server.find(v.virtual_id).name}.#{Server.find(v.virtual_id).domain.name}", Server.find(v.virtual_id) %></li>
+			<% end %>
+	   </ul>
+  <% end %>
+<% end %>
  
 
 <h2>IP Addresses:</h2>

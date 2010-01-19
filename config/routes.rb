@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.connect '/home/settings', :controller => 'static', :action => 'page', :id => 'settings'
   map.resources :serveroperationsystems
 
   map.resources :servermacs
@@ -20,8 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :search
 
   map.resources :networks
-  #, :has_many => :ips
-
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
