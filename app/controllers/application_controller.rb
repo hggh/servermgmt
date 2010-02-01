@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   layout 'default'
   
-  
   def render_404
     render :template => "common/404", :layout => 'error', :status => 404
     return false
