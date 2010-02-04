@@ -34,6 +34,18 @@
 		</td>
 	</tr>
 	<% end %>
+  <tr>
+    <td>Server Groups</td>
+    <td>
+      <% if @server.server_group_members.count > 0 %>
+        <% @server.server_group_members.each do |g| %>
+	  <%=h g.server_group.name %><br/>
+	<% end %>
+      <% else %>
+      no Groups
+      <% end %>
+    </td>
+  </tr>
 </table>
 
 
