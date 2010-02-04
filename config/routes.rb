@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :configkeys
+
   
   map.connect '/home/settings', :controller => 'static', :action => 'page', :id => 'settings'
   map.resources :serveroperationsystems

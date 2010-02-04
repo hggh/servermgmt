@@ -1,7 +1,5 @@
 class IptypesController < ApplicationController
   helper :iptypes
-  # GET /iptypes
-  # GET /iptypes.xml
   def index
     @iptypes = Iptype.find(:all)
 
@@ -11,8 +9,6 @@ class IptypesController < ApplicationController
     end
   end
 
-  # GET /iptypes/1
-  # GET /iptypes/1.xml
   def show
     @iptype = Iptype.find(params[:id])
 
@@ -55,8 +51,6 @@ class IptypesController < ApplicationController
     end
   end
 
-  # PUT /iptypes/1
-  # PUT /iptypes/1.xml
   def update
     @iptype = Iptype.find(params[:id])
 
@@ -72,8 +66,6 @@ class IptypesController < ApplicationController
     end
   end
 
-  # DELETE /iptypes/1
-  # DELETE /iptypes/1.xml
   def destroy
     @iptype = Iptype.find(params[:id])
     @iptype.destroy

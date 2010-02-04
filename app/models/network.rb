@@ -6,6 +6,8 @@ class Network < ActiveRecord::Base
 	validates_length_of :comment, :minimum => 4
   validates_presence_of :customer
   
+  validates_uniqueness_of :network, :scope => :customer_id
+  
   
   belongs_to :customer
 	has_many :ips, :dependent => :destroy

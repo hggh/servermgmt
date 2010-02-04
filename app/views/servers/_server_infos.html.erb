@@ -106,3 +106,29 @@
 <% else %>
  - no mac addresses for this server -
 <% end %>
+
+<br/><br/>
+<h2>Puppet Configuration</h2>
+<% if @server.configkey_values.count > 0 %>
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Default</td>
+		<td>Server Value</td>
+		<td></td>
+		<td></td>
+	</tr>
+  <% @server.configkey_values.each do |ckv| %>
+	<tr>
+		<td><%= ckv.configkey.name %></td>
+		<td><%= ckv.configkey.default %></td>
+		<td><%= ckv.value %></td>
+		<td>Edit</td>
+		<td>Destory</td>
+	</tr>
+	<% end %>
+</table>
+<% else %>
+ - no puppet configuration keys found
+<% end %>
+<%= link_to 'Add Puppet Configuration Value', :controller => "servers", :action => "addpuppetcfgvalue", :id => @server %>

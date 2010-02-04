@@ -29,6 +29,27 @@ class ServersController < ApplicationController
     
   end
   
+  def createpuppetcfgvalue
+    @configkey_value = ConfigkeyValue.new(params[:configkey_value])
+    respond_to do |format|
+      if @configkey_value.save
+        flash[:notice] = 'Puppet Cfg Value was successfully created.'
+        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @configkey_value.server_id ) }
+      else
+        @server = Server.find(@configkey_value.server_id)
+        format.html { render :action => "addpuppetcfgvalue" }
+      end
+    end
+  end
+  
+  def addpuppetcfgvalue
+    @configkey_value = ConfigkeyValue.new
+    @server = Server.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   def addvirtual
     @server_virtual = ServerVirtual.new(params[:server_virtual])
     respond_to do |format|
