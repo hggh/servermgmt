@@ -1,0 +1,2 @@
+module ConfigkeysHelper
+end

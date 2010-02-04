@@ -1,0 +1,22 @@
+<h1>Listing configkeys</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Default</th>
+  </tr>
+
+<% @configkeys.each do |configkey| %>
+  <tr>
+    <td><%=h configkey.name %></td>
+    <td><%=h configkey.default %></td>
+    <td><%= link_to 'Show', configkey %></td>
+    <td><%= link_to 'Edit', edit_configkey_path(configkey) %></td>
+    <td><%= link_to 'Destroy', configkey, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New configkey', new_configkey_path %>

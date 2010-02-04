@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  configkey_id: 1
+  value: MyText
+  server_id: 1
+  server_group_id: 1
+
+two:
+  configkey_id: 1
+  value: MyText
+  server_id: 1
+  server_group_id: 1

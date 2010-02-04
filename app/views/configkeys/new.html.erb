@@ -1,0 +1,20 @@
+<%= render :partial => "menubar" %>
+<h1>New Puppet Configuration Key</h1>
+
+<% form_for(@configkey) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :default %><br />
+    <%= f.text_field :default %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', configkeys_path %>

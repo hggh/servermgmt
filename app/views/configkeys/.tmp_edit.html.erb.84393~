@@ -1,0 +1,20 @@
+<h1>Editing configkey</h1>
+
+<% form_for(@configkey) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :default %><br />
+    <%= f.text_field :default %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @configkey %> |
+<%= link_to 'Back', configkeys_path %>
