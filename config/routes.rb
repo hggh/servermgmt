@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :server_groups
+
   map.resources :configkeys
 
   
