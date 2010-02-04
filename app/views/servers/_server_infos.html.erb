@@ -39,7 +39,7 @@
     <td>
       <% if @server.server_group_members.count > 0 %>
         <% @server.server_group_members.each do |g| %>
-	  <%=h g.server_group.name %><br/>
+	  <%= link_to "#{g.server_group.name}", g.server_group %> [X]<br/>
 	<% end %>
       <% else %>
       no Groups

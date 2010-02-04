@@ -29,6 +29,10 @@ class Server < ActiveRecord::Base
   def self.getFreeVirtualServers
     servers_free = Server.find(:all, :joins => " LEFT JOIN servertypes ON servertypes.id = servers.servertype_id LEFT JOIN server_virtuals ON server_virtuals.virtual_id = servers.id " , :conditions => "servertypes.server_type_hardware_id = 2 AND server_virtuals.virtual_id IS NULL")
   end
+
+  def fqdn
+  	"#{name}#{domain.name}"
+  end
   
   private
     def clean_server_virtuals    

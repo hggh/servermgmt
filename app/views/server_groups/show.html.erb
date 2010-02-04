@@ -1,6 +1,11 @@
 <p>
   <b>Name:</b>
   <%=h @server_group.name %>
+  <% if @server_group.server_group_members.count > 0 %>
+    <% @server_group.server_group_members.each do |m| %>
+    Foo: <%= link_to "#{m.server.fqdn}", m.server %>
+    <% end %>
+  <% end %>
 </p>
 
 
