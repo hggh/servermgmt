@@ -88,7 +88,7 @@
      <td><%=h i.ip %></td>
      <td><%=h i.iptype.name %></td>
 		 <td><%= link_to 'Net', i.network %></td>
-		 <td><%= link_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete %></td>
+		 <td><%= link_to 'Delete', i, :confirm => 'Are you sure?', :method => :delete %></td>
    </tr>
    <% end %>
    
@@ -110,7 +110,7 @@
 	<% @server.servermacs.each do |i| %>
 	<tr>
 		<td><%=h i.mac%></td>
-		<td><%= link_to 'Destroy', i, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to 'Delete', i, :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>
 </table>
@@ -132,12 +132,20 @@
 	</tr>
   <% @server.configkey_values.each do |ckv| %>
 	<tr>
-		<td><%= ckv.configkey.name %></td>
-		<td><%= ckv.configkey.default %></td>
-		<td><%= ckv.value %></td>
-		<td>Edit</td>
-		<td>Destory</td>
+		<td><%=h ckv.configkey.name %></td>
+		<td><%=h ckv.configkey.default %></td>
+		<td><%=h ckv.value %></td>
+		<td><a onclick="document.getElementById('ckv<%= ckv.id %>').style.display='inline';" >Edit</a></td>
+		<td><%= link_to 'Delete', ckv,:confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
+	 <% form_for(ckv) do |f| %>
+	<tr style="display:none;" id="ckv<%=h ckv.id %>">
+		<td><%= f.text_field :value %></td>
+		<td><%= hidden_field(:configkey_value, :server_id , :value => @server.id ) %>
+		<%= hidden_field(:configkey_value, :configkey_id , :value => ckv.configkey.id ) %>
+		<%= f.submit "Update" %></td>
+	</tr>
+	<% end %>
 	<% end %>
 </table>
 <% else %>

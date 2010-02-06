@@ -1,4 +1,5 @@
 class Configkey < ActiveRecord::Base
+  default_scope :order => :name
   validates_uniqueness_of :name
   validates_length_of :name, :minimum => 5
   
