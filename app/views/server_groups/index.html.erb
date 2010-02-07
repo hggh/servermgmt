@@ -11,8 +11,9 @@
     <td><%=h server_group.name %></td>
     <td style="text-align:center"><%=h server_group.server_group_members.count %></td>
     <td><%= link_to 'Show', server_group %></td>
+		<td><%= link_to 'New Member', :controller => "server_groups", :action => "newmember", :id => server_group.id %></td>
     <td><%= link_to 'Edit', edit_server_group_path(server_group) %></td>
-    <td><%= link_to 'Destroy', server_group, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', server_group, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

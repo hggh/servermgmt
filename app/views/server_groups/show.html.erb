@@ -1,14 +1,23 @@
-<p>
-  <b>Name:</b>
-  <%=h @server_group.name %>
-  <br/>
-  <% if @server_group.server_group_members.count > 0 %>
-    <% @server_group.server_group_members.each do |m| %>
-    Server: <%= link_to "#{m.server.fqdn}", m.server %><br/>
-    <% end %>
-  <% end %>
-</p>
+<%= render :partial => "menubar" %>
+<h1>Server Group - Show: <%=h @server_group.name %></h1>
+<br/>
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><%=h @server_group.name %></td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Members:</td>
+		<td>
+			<% if @server_group.server_group_members.count > 0 %>
+			 <% @server_group.server_group_members.each do |m| %>
+			   Server: <%= link_to "#{m.server.fqdn}", m.server %><br/>
+			 <% end %>
+			<% else %>
+			 no member
+		  <% end %>
+		</td>
+	</tr>
 
-
-<%= link_to 'Edit', edit_server_group_path(@server_group) %> |
-<%= link_to 'Back', server_groups_path %>
+</table>

@@ -5,5 +5,9 @@ class ServerGroup < ActiveRecord::Base
 
 	has_many :server_group_members, :dependent => :destroy
 	has_many :configkey_values, :dependent => :destroy
+  
+  def getServerNotinGroup
+    Server.find(:all, :joins => " LEFT JOIN (SELECT * FROM server_group_members WHERE server_group_id= #{id}) AS tmp ON tmp.server_id = servers.id", :conditions => "tmp.id IS NULL")
+  end
 
 end

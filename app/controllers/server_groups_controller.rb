@@ -1,38 +1,28 @@
 class ServerGroupsController < ApplicationController
-  # GET /server_groups
-  # GET /server_groups.xml
   def index
     @server_groups = ServerGroup.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @server_groups }
     end
   end
 
-  # GET /server_groups/1
-  # GET /server_groups/1.xml
   def show
     @server_group = ServerGroup.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @server_group }
     end
   end
 
-  # GET /server_groups/new
-  # GET /server_groups/new.xml
   def new
     @server_group = ServerGroup.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @server_group }
     end
   end
 
-  # GET /server_groups/1/edit
   def edit
     @server_group = ServerGroup.find(params[:id])
   end
@@ -46,10 +36,8 @@ class ServerGroupsController < ApplicationController
       if @server_group.save
         flash[:notice] = 'ServerGroup was successfully created.'
         format.html { redirect_to(@server_group) }
-        format.xml  { render :xml => @server_group, :status => :created, :location => @server_group }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @server_group.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -63,10 +51,8 @@ class ServerGroupsController < ApplicationController
       if @server_group.update_attributes(params[:server_group])
         flash[:notice] = 'ServerGroup was successfully updated.'
         format.html { redirect_to(@server_group) }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @server_group.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -79,7 +65,28 @@ class ServerGroupsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(server_groups_url) }
-      format.xml  { head :ok }
     end
+  end
+  
+  def newmember
+    @server_group = ServerGroup.find(params[:id])
+    @server_group_member = ServerGroupMember.new
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def addmember
+    @server_group_member = ServerGroupMember.new(params[:server_group_member])
+    
+    respond_to do |format|
+      if @server_group_member.save
+        flash[:notice] = 'Server was successfully added.'
+        format.html { redirect_to(:controller => 'server_groups' ) }
+      else
+        # FIXME: error handling
+        format.html { render :action => "index" }
+      end
+    end    
   end
 end
