@@ -10,13 +10,13 @@
 
 <% for network in @networks %>
   <tr>
-    <td><%=h network.network %></td>
+    <td><%= link_to network.network, network  %></td>
 		<td><%=h network.customer.name %></td>
     <td><%=h network.comment %></td>
 		<td><%=h network.ips.count %></td>
     <td><%= link_to 'Show', network %></td>
     <td><%= link_to 'Edit', edit_network_path(network) %></td>
-    <td><%= link_to 'Destroy', network, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', network, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

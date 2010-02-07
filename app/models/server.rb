@@ -31,7 +31,7 @@ class Server < ActiveRecord::Base
   end
 
   def fqdn
-  	"#{name}#{domain.name}"
+  	"#{name}.#{domain.name}"
   end
   
   private

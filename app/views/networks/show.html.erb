@@ -29,17 +29,10 @@
 	<tr>
 		<td><%=h i.ip %> </td>
 		<td><% if i.iptype != nil %><%=h i.iptype.name %><% end %></td>
-		<td><% if i.server != nil %>
-		    <% link_to(i.server) do %>
-		    <%=h i.server.name %>.<%=h i.server.domain.name %>
-				<% end %>
-			<% end %></td>
+		<td><% if i.server != nil %><%= link_to "#{i.server.fqdn}", i.server %><% end %></td>
 	</tr>
 	<% end %>
   </table>
 <% else %>
  - no ips on this net found -
 <% end %>
-
-<%= link_to 'Edit', edit_network_path(@network) %> |
-<%= link_to 'Back', networks_path %>
