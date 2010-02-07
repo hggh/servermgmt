@@ -23,6 +23,7 @@ class Ip < ActiveRecord::Base
   validates_presence_of :iptype
   validate :is_ipaddress
   validates_uniqueness_of :ip, :if => :is_ipaddress
+  validates_uniqueness_of :primary, :if => :is_ipaddress, :scope => [ :ip, :server_id ]
   
   
   
