@@ -1,0 +1,23 @@
+<%= render :partial => "menubar" %>
+<h1>Server Group - New Member: <%=h @server_group.name %></h1>
+<br/>
+<% form_for @server_group_member, :url => { :action => "addmember" } do |f| %>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%=h @server_group.name %>
+		<%= hidden_field(:server_group_member, :server_group_id , :value => @server_group.id ) %>
+		</td>
+  </tr>
+	<tr>
+		 <td>Server:</td>
+		 <td>
+		 	<%= f.select :server_id, @server_group.getServerNotinGroup().collect{|d| [d.fqdn,d.id]} %>
+		 	
+		 </td>
+	</tr>
+  <tr>
+    <td colspan="2"><%= f.submit "Add Member" %></td>
+  </tr>
+</table>
+<% end %>
