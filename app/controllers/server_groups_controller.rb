@@ -89,4 +89,22 @@ class ServerGroupsController < ApplicationController
       end
     end    
   end
+  
+  def delmember
+    @server_group_member = ServerGroupMember.find(params[:id])
+    server = Server.find(@server_group_member.server_id)
+    server_group = ServerGroup.find(@server_group_member.server_group_id)
+    @server_group_member.destroy
+    
+    respond_to do |format|
+      format.html {
+        flash[:notice] = 'Server was successfully droped from Server Group.'
+        if params[:from] == "server_group_view" 
+          redirect_to(server_group)
+        elsif params[:from] == "server_view"
+          redirect_to(server)
+        end
+      }
+    end
+  end
 end

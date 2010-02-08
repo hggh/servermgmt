@@ -2,6 +2,7 @@ class Server < ActiveRecord::Base
   default_scope :order => :name
   
   before_destroy :clean_server_virtuals
+  before_save :make_lowercase
   
   validates_presence_of :customer_id
   validates_presence_of :name
@@ -40,5 +41,9 @@ class Server < ActiveRecord::Base
       @server_virts_hw.each do |s|
         s.destroy  
       end
+    end
+    
+    def make_lowercase
+      self.name.downcase!
     end
 end

@@ -39,7 +39,7 @@
     <td>
       <% if @server.server_group_members.count > 0 %>
         <% @server.server_group_members.each do |g| %>
-	  <%= link_to "#{g.server_group.name}", g.server_group %> [X]<br/>
+	  <%= link_to "#{g.server_group.name}", g.server_group %> [<%= link_to 'X', { :controller => "server_groups",:action => "delmember", :id => g ,:from => 'server_view'}, :confirm => 'Are you sure?', :method => :delete %>]<br/>
 	<% end %>
       <% else %>
       no Groups

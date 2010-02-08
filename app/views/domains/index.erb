@@ -8,7 +8,7 @@
 
 <% for domain in @domains %>
   <tr>
-    <td><%=h domain.name %></td>
+    <td><%=h domain.name %> <% if domain.DomainIsIdn %> (IDN: <%=h domain.idn %>)<% end %></td>
     <td><%=h domain.customer.name %></td>
     <td><%= link_to 'Show', domain %></td>
     <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
