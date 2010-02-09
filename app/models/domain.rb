@@ -27,6 +27,7 @@ class Domain < ActiveRecord::Base
   def self.DomainbyCust(customerid)
     Domain.find(:all, :conditions => "customer_id = #{customerid}")
   end
+  
   private
     def make_lowercase
       self.name.downcase!

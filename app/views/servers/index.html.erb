@@ -11,7 +11,12 @@
 <% for server in @servers %>
   <tr>
     <td><%= link_to "#{server.name}.#{server.domain.name}", server %></td>
-		<td><%=h server.servertype.server_type_hardware.name %></td>
+		<td>
+			<%=h server.servertype.server_type_hardware.name %>
+			<% if server.getVirtualServers.count > 0 %>
+			(<%=h server.getVirtualServers.count %>)
+			<% end %>
+		</td>
 		<td><%=h server.customer.name %></td>
     <td><%=h server.serveroperationsystem.name %></td>
     <td><%= link_to 'Show', server %></td>

@@ -5,19 +5,21 @@
   <tr>
     <th>Name</th>
     <th>Default</th>
+		<th>Used by Servers</th>
   </tr>
 
 <% @configkeys.each do |configkey| %>
   <tr>
     <td><%=h configkey.name %></td>
-    <td><%=h configkey.default %></td>
+    <td style="text-align:center;"><%=h configkey.default %></td>
+		<td style="text-align:center;"><%=h configkey.configkey_values.count %></td>
     <td><%= link_to 'Show', configkey %></td>
     <td><%= link_to 'Edit', edit_configkey_path(configkey) %></td>
-    <td><%= link_to 'Destroy', configkey, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', configkey, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New configkey', new_configkey_path %>
+<%= link_to 'New Puppet Configuration Key', new_configkey_path %>

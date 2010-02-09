@@ -34,6 +34,10 @@ class Server < ActiveRecord::Base
   def fqdn
   	"#{name}.#{domain.name}"
   end
+ 
+  def getVirtualServers
+    ServerVirtual.find(:all, :conditions => "hardware_id = #{id}")
+  end
   
   private
     def clean_server_virtuals    

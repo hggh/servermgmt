@@ -1,3 +1,3 @@
 Server: <%= link_to "Index", servers_path %> | <%= link_to 'Show', @server %> | <%= link_to 'Edit', edit_server_path(@server) %> |  
-<%= link_to 'Add IP', :controller => "servers", :action => "addip", :id => @server %> | <%= link_to 'Add MAC', :controller => "servers", :action => "addmac", :id => @server %> | <%= link_to 'Destroy', @server, :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Add IP', :controller => "servers", :action => "addip", :id => @server %> | <%= link_to 'Add MAC', :controller => "servers", :action => "addmac", :id => @server %> | <%= link_to 'Add PCfg', :controller => "servers", :action => "addpuppetcfgvalue", :id => @server.id %> | <%= link_to 'Delete', @server, :confirm => 'Are you sure?', :method => :delete %>
 <hr/>

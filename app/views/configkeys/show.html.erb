@@ -1,13 +1,29 @@
 <%= render :partial => "menubar" %>
-<p>
-  <b>Name:</b>
-  <%=h @configkey.name %>
-</p>
+<h1>Show: <%=h @configkey.name %></h1>
+<br/>
 
-<p>
-  <b>Default:</b>
-  <%=h @configkey.default %>
-</p>
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><%=h @configkey.name %></td>
+	</tr>
+	<tr>
+    <td>Default:</td>
+		<td><%=h @configkey.default %></td>
+	</tr>
+	<tr>
+		<td valign="top">Servers:</td>
+		<td valign="top">
+			<% if @configkey.configkey_values.count > 0 %>
+        <% @configkey.configkey_values.each do |cfg| %>
+				  <%= link_to "#{cfg.server.fqdn}", cfg.server %> <br/>
+				<% end %>
+			<% else %>
+			- no servers found -
+			<% end %>
+		</td>
+	</tr>
+</table>
 
 
 <%= link_to 'Edit', edit_configkey_path(@configkey) %> |
