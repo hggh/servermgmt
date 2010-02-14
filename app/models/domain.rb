@@ -2,6 +2,8 @@ class Domain < ActiveRecord::Base
   require 'idn'
   include IDN
   
+  default_scope :order => :name
+  
   has_many :servers
   has_many :domain_records, :dependent => :destroy
   belongs_to :customer

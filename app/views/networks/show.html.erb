@@ -29,7 +29,7 @@
   <% @network.ips.each do |i| %>
 	<tr>
 		<td><%=h i.ip %> </td>
-		<td><% if i.iptype != nil %><%=h i.iptype.name %><% end %></td>
+		<td><% if i.ip_type != nil %><%=h i.ip_type.name %><% end %></td>
 		<td><% if i.server != nil %><%= link_to "#{i.server.fqdn}", i.server %><% end %></td>
 		<td><% if i.server != nil %><%= link_to 'Delete', { :controller => "ips", :action => "destroy", :id => i,  :from => 'network_view' }, :confirm => 'Are you sure?', :method => :delete %><% end %></td>
 	</tr>

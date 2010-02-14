@@ -11,7 +11,35 @@
     <td>Name:</td>
     <td><%= f.text_field :name %></td>
   </tr>
+	<tr>
+		<td>SOA TTL:</td>
+		<td><%= f.text_field :soa_ttl %></td>
+  </tr>
   <tr>
+    <td>SOA Primary NS:</td>
+    <td><%= f.text_field :soa_primary_ns %></td>
+  </tr>
+  <tr>
+    <td>SOA Email:</td>
+    <td><%= f.text_field :soa_email %></td>
+  </tr>
+  <tr>
+    <td>SOA Refresh:</td>
+    <td><%= f.text_field :soa_refresh %></td>
+  </tr>
+	<tr>
+    <td>SOA Retry:</td>
+    <td><%= f.text_field :soa_retry %></td>
+  </tr>
+  <tr>
+    <td>SOA Expire:</td>
+    <td><%= f.text_field :soa_expire %></td>
+  </tr>	
+  <tr>
+    <td>SOA TTL (Caching):</td>
+    <td><%= f.text_field :soa_ttl_caching %></td>
+  </tr>
+	<tr>
     <td colspan="2"><%= f.submit "Create" %></td>
   </tr>
 </table>

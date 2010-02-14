@@ -1,4 +1,6 @@
-<h1>Editing servertyp</h1>
+<%= render :partial => "serverytpe_menubar" %>
+<h1>Servertype - Edit: <%=h @servertype.name %></h1>
+<br/>
 
 <% form_for(@servertype) do |f| %>
   <%= f.error_messages %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100214122028) do
+ActiveRecord::Schema.define(:version => 20100214212312) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -48,20 +48,20 @@ ActiveRecord::Schema.define(:version => 20100214122028) do
     t.integer  "customer_id"
   end
 
+  create_table "ip_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ips", :force => true do |t|
     t.string   "ip"
     t.integer  "network_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "iptype_id"
+    t.integer  "ip_type_id"
     t.integer  "server_id"
     t.integer  "is_primary"
-  end
-
-  create_table "iptypes", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "networks", :force => true do |t|

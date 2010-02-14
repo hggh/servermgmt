@@ -9,7 +9,7 @@
   <tr>
     <td><%=h iptype.name %></td>
     <td><%= link_to 'Show', iptype %></td>
-    <td><%= link_to 'Edit', edit_iptype_path(iptype) %></td>
+    <td><%= link_to 'Edit', edit_ip_type_path(iptype) %></td>
     <td><%= link_to 'Destroy', iptype, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -17,4 +17,4 @@
 
 <br />
 
-<%= link_to 'New iptype', new_iptype_path %>
+<%= link_to 'New IP Type', new_ip_type_path %>

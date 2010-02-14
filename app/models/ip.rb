@@ -16,11 +16,11 @@ class Ip < ActiveRecord::Base
   
   belongs_to :network
   belongs_to :server
-  belongs_to :iptype
+  belongs_to :ip_type
   
   validates_presence_of :ip
   validates_presence_of :network_id
-  validates_presence_of :iptype
+  validates_presence_of :ip_type
   validate :is_ipaddress
   validates_uniqueness_of :ip, :if => :is_ipaddress
   validates_uniqueness_of :is_primary, :if => :is_ipaddress, :scope => [ :ip, :server_id ]

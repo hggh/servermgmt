@@ -10,8 +10,8 @@
 			<td><%= f.select :network_id, Network.NetworkbyCust(@server.customer_id).collect{|d| [d.network,d.id]} %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :iptype_id %></td>
-			<td><%= f.select :iptype_id, Iptype.find(:all).collect{|d| [d.name,d.id]} %></td>
+			<td><%= f.label :ip_type_id %></td>
+			<td><%= f.select :ip_type_id, IpType.find(:all).collect{|d| [d.name,d.id]} %></td>
 		</tr>	
 		<tr>
 			<td><%= f.label :ip %></td>

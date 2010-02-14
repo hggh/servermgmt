@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :domain_records
 
-  map.resources :iptypes
+  map.resources :ip_types
 
   map.resources :servers
 

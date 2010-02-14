@@ -1,35 +1,34 @@
-class IptypesController < ApplicationController
-  helper :iptypes
+class IpTypesController < ApplicationController
   def index
-    @iptypes = Iptype.find(:all)
+    @iptypes = IpType.find(:all)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
 
   def show
-    @iptype = Iptype.find(params[:id])
+    @iptype = IpType.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
   end
 
   def new
-    @iptype = Iptype.new
+    @iptype = IpType.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
 
   def edit
-    @iptype = Iptype.find(params[:id])
+    @iptype = IpType.find(params[:id])
   end
 
   def create
-    @iptype = Iptype.new(params[:iptype])
+    @iptype = IpType.new(params[:ip_type])
 
     respond_to do |format|
       if @iptype.save
@@ -42,10 +41,10 @@ class IptypesController < ApplicationController
   end
 
   def update
-    @iptype = Iptype.find(params[:id])
+    @iptype = IpType.find(params[:id])
 
     respond_to do |format|
-      if @iptype.update_attributes(params[:iptype])
+      if @iptype.update_attributes(params[:ip_type])
         flash[:notice] = 'Iptype was successfully updated.'
         format.html { redirect_to(@iptype) }
       else
@@ -55,12 +54,11 @@ class IptypesController < ApplicationController
   end
 
   def destroy
-    @iptype = Iptype.find(params[:id])
+    @iptype = IpType.find(params[:id])
     @iptype.destroy
 
     respond_to do |format|
       format.html { redirect_to(iptypes_url) }
-      format.xml  { head :ok }
     end
   end
 end
