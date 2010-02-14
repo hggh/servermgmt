@@ -1,0 +1,35 @@
+<h1>Show: <%=h @domain.name %></h1>
+<br/>
+<table>
+	<tr>
+		<td>Domain: </td>
+		<td><%=h @domain.name %></td>
+	</tr>
+	<tr>
+		<td>Customer:</td>
+		<td><%=h @domain.customer.name %></td>
+	<tr>
+		<td>Serial:</td>
+		<td><%=h @domain.serial %></td>
+	</tr>
+</table>
+
+<h2>Records</h2>
+<table>
+	<tr>
+		<td>Record Id</td>
+		<td>Record Type</td>
+		<td>Record Name</td>
+		<td>Update</td>
+		<td>Delete</td>
+	</tr>
+	<% @domain.domain_records.each do |rr| %>
+	<tr>
+		<td><%=h rr.id %></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><%= link_to "Delete", rr,:confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<% end %>
+</table>
