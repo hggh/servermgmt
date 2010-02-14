@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100207223054) do
+ActiveRecord::Schema.define(:version => 20100214122028) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -85,6 +85,14 @@ ActiveRecord::Schema.define(:version => 20100207223054) do
     t.datetime "updated_at"
   end
 
+  create_table "server_macs", :force => true do |t|
+    t.string   "comment"
+    t.string   "mac"
+    t.integer  "server_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "server_type_hardwares", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -94,14 +102,6 @@ ActiveRecord::Schema.define(:version => 20100207223054) do
   create_table "server_virtuals", :force => true do |t|
     t.integer  "hardware_id"
     t.integer  "virtual_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "servermacs", :force => true do |t|
-    t.string   "comment"
-    t.string   "mac"
-    t.integer  "server_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

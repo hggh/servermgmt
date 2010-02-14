@@ -104,7 +104,7 @@
 
 <br/><br/>
 <h2>MAC Addresses:</h2>
-<% if @server.servermacs.count > 0 %>
+<% if @server.server_macs.count > 0 %>
 
 <table>
 	<tr>
@@ -112,7 +112,7 @@
 		<th></th>
 	</tr>
 	
-	<% @server.servermacs.each do |i| %>
+	<% @server.server_macs.each do |i| %>
 	<tr>
 		<td><%=h i.mac%></td>
 		<td><%= link_to 'Delete', i, :confirm => 'Are you sure?', :method => :delete %></td>

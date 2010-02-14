@@ -23,7 +23,7 @@ class Server < ActiveRecord::Base
   belongs_to :domain
   
   has_many :ips, :dependent => :destroy
-  has_many :servermacs, :dependent => :destroy
+  has_many :server_macs, :dependent => :destroy
   has_many :configkey_values, :dependent => :destroy
   has_many :server_group_members,  :dependent => :destroy
   

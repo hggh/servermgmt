@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :serveroperationsystems
 
-  map.resources :servermacs
+  map.resources :server_macs
 
   map.resources :customers
 

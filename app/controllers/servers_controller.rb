@@ -15,7 +15,7 @@ class ServersController < ApplicationController
   end
 
   def createmac
-    @servermac = Servermac.new(params[:servermac])
+    @servermac = ServerMac.new(params[:server_mac])
     
     respond_to do |format|
       if @servermac.save
@@ -111,7 +111,7 @@ class ServersController < ApplicationController
   end
   
   def addmac
-    @servermac = Servermac.new
+    @server_mac = ServerMac.new
     @server = Server.find(params[:id])
     respond_to do |format|
       format.html
