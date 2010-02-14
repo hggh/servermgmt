@@ -11,7 +11,7 @@ class ServertypesController < ApplicationController
     @servertype = Servertype.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
   end
 
@@ -19,11 +19,10 @@ class ServertypesController < ApplicationController
     @servertype = Servertype.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
 
-  # GET /servertypes/1/edit
   def edit
     @servertype = Servertype.find(params[:id])
   end
