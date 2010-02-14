@@ -27,8 +27,6 @@ class ServerGroupsController < ApplicationController
     @server_group = ServerGroup.find(params[:id])
   end
 
-  # POST /server_groups
-  # POST /server_groups.xml
   def create
     @server_group = ServerGroup.new(params[:server_group])
 
@@ -42,8 +40,6 @@ class ServerGroupsController < ApplicationController
     end
   end
 
-  # PUT /server_groups/1
-  # PUT /server_groups/1.xml
   def update
     @server_group = ServerGroup.find(params[:id])
 
@@ -57,8 +53,6 @@ class ServerGroupsController < ApplicationController
     end
   end
 
-  # DELETE /server_groups/1
-  # DELETE /server_groups/1.xml
   def destroy
     @server_group = ServerGroup.find(params[:id])
     @server_group.destroy
