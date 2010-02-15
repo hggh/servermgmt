@@ -12,11 +12,16 @@
 		<td><%=h @configkey.default %></td>
 	</tr>
 	<tr>
-		<td valign="top">Servers:</td>
+		<td valign="top">Servers/Groups:</td>
 		<td valign="top">
 			<% if @configkey.configkey_values.count > 0 %>
         <% @configkey.configkey_values.each do |cfg| %>
-				  <%= link_to "#{cfg.server.fqdn}", cfg.server %> <br/>
+				  <% if cfg.server_id %>
+				  <%= link_to "#{cfg.server.fqdn}", cfg.server %>
+					<% else %>
+					<%= link_to "#{cfg.server_group.name}", cfg.server_group %>
+					<% end %>
+					<br/>
 				<% end %>
 			<% else %>
 			- no servers found -

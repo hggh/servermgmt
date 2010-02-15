@@ -1,0 +1,21 @@
+<%= render :partial => "menubar" %>
+<h1>Server Group - Show: <%=h @server_group.name %></h1>
+<br/>
+<h2>Add Puppet Configuration Key Value to Server</h2>
+<% form_for @configkey_value do |f| %>
+  <%= f.error_messages %>
+  <table>
+
+    <tr>
+      <td>Puppet Configuration Key</td>
+      <td><%= f.select :configkey_id, Configkey.getKeysforServerGroup(@server_group.id).collect{|d| [d.name,d.id]} %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :value %></td>
+      <td><%= f.text_field :value %></td>
+    </tr>
+    <tr>
+      <td colspan="2"> <%= hidden_field(:configkey_value, :server_group_id , :value => @server_group.id ) %><%= f.submit "Create" %></td>
+    </tr>
+  </table>
+<% end %>

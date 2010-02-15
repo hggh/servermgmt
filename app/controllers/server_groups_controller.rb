@@ -7,6 +7,15 @@ class ServerGroupsController < ApplicationController
     end
   end
 
+  def addpuppetcfgvalue
+    @server_group = ServerGroup.find(params[:id])
+    @configkey_value = ConfigkeyValue.new
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show
     @server_group = ServerGroup.find(params[:id])
 

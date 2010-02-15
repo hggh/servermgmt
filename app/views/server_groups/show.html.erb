@@ -21,3 +21,38 @@
 	</tr>
 
 </table>
+
+<h2>Puppet Configuration</h2>
+<% if @server_group.configkey_values.count > 0 %>
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Default</td>
+    <td>Group Value</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @server_group.configkey_values.each do |ckv| %>
+  <tr>
+    <td><%=h ckv.configkey.name %></td>
+    <td><%=h ckv.configkey.default %></td>
+    <td><%=h ckv.value %></td>
+    <td><a onclick="document.getElementById('ckv<%= ckv.id %>').style.display='inline';" >Edit</a></td>
+    <td><%= link_to 'Delete', { :controller => "configkey_values", :action => "destroy", :id => ckv.id, :from => 'group_view' },:confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+   <% form_for(ckv) do |f| %>
+  <tr style="display:none;" id="ckv<%=h ckv.id %>">
+    <td><%= f.text_field :value %></td>
+    <td><%= hidden_field(:configkey_value, :server_group_id , :value => @server_group.id ) %>
+    <%= hidden_field(:configkey_value, :configkey_id , :value => ckv.configkey.id ) %>
+		<input type="hidden" name="from" value="group_view"/>
+    <%= f.submit "Update" %></td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+<% else %>
+ - no puppet configuration keys found
+<% end %>
+<br/>
+<%= link_to 'Add Puppet Configuration Value', :controller => "server_groups", :action => "addpuppetcfgvalue", :id => @server_group %>
