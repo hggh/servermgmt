@@ -1,0 +1,18 @@
+<h1>Login</h1>
+
+<% form_for @user, :url => { :action => "trylogin" } do |f| %>
+  <%= f.error_messages %>
+<table>
+	<tr>
+		<td>Username:</td>
+		<td><%= f.text_field :username %></td>
+	</tr>
+	<tr>
+		<td>Password:</td>
+		<td><%= f.password_field :passwd -%></td>
+	</tr>
+	<tr>
+    <td colspan="2"><%= f.submit "Login" %></td>
+  </tr>
+</table>
+<% end %>
