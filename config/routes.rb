@@ -32,6 +32,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :networks
   
+  map.resources :users
+  
+  map.login 'login', :controller => 'user_login', :action => 'login'
+  
+  map.logout 'logout', :controller => 'user_login', :action => 'logout'
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
 
