@@ -14,7 +14,9 @@
 	<ul>
 		<li><%= link_to "Home", :controller => "home" %></li>
 		<li><%= link_to "Settings", :controller => "home", :action => "settings" %>
+		<% if @current_user %>
 		<li><%= link_to "Logout", logout_path %></li>
+		<% end %>
 	</ul>
 </div>
 <% if flash[:notice] %>

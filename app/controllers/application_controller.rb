@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   MAX_SESSION_PERIOD = 3600
+  @current_user = nil
 
 
   # See ActionController::RequestForgeryProtection for details
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
   before_filter :session_expiry
   before_filter :login_required
   
-  filter_parameter_logging :passwd
+  filter_parameter_logging :passwd, :password, :password_confirmation
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
   def render_404
@@ -30,9 +31,11 @@ class ApplicationController < ActionController::Base
 
   def login_required
     if session[:user] and User.cookie_checkauth(session[:user])
+      @current_user = User.cookie_checkauth(session[:user])
       return true
     end
     if cookies[:login] and User.cookie_checkauth(cookies[:login])
+      @current_user = User.cookie_checkauth(cookies[:login])
       return true
     end
     session[:return_to]=request.request_uri

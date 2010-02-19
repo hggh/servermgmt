@@ -1,4 +1,6 @@
 class ServeroperationsystemsController < ApplicationController
+  # We don't want an username + password login to Debian Installation Information
+  skip_before_filter :login_required, :only => [ 'di' ]
   def index
     @serveroperationsystems = Serveroperationsystem.find(:all)
 

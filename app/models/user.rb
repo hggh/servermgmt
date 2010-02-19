@@ -10,28 +10,31 @@ class User < ActiveRecord::Base
   attr_protected :id, :passwd
 
   def self.authenticate(login, pass)
+    return nil if pass == ''
     u = find(:first, :conditions =>["username = ? AND active = 1", login])
-    return nil if u.nil?
-    return u if User.encrypt(pass)==u.passwd
+    if u and User.encrypt(pass) == u.passwd
+      return u
+    end
     nil
   end
   
   def cookie_remember
-    id.to_s + "::" + Digest::SHA1.hexdigest(username + passwd)
+    id.to_s + "::" + User.encrypt(username + passwd)
   end
   
   def self.cookie_checkauth(cpasswd)
     u = find(:first, :conditions => ["id = ? AND active = 1", cpasswd.split('::')[0].to_i])
     if u and u.cookie_remember == cpasswd
-      return true
+      return u
     end
     nil
   end
   
 
-#  def passwd=(pass)
-#
-#  end
+  def password=(pass)
+    @password=pass
+    self.passwd = User.encrypt(@password)
+  end
 
   protected
   
