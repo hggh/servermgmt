@@ -31,4 +31,6 @@ Copyright (C) 2010 Jonas Genannt <jonas@brachium-system.net>
 
    You can access web server on: http://localhost:3000/
 
+   Default User: admin ; password: admin
+
 8. If it is running, switch to mongrel and NGINX/Apache load balancing
