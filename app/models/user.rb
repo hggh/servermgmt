@@ -36,6 +36,18 @@ class User < ActiveRecord::Base
     self.passwd = User.encrypt(@password)
   end
 
+  def self.create_or_update(options = {})
+    id = options.delete(:id)
+    record = find_by_id(id) || new
+    record.id = id
+    record.attributes = options
+    record.save!
+    
+    record
+  end
+
+
+
   protected
   
     def self.encrypt(pass)
