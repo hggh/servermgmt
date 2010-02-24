@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100224200026) do
+ActiveRecord::Schema.define(:version => 20100224201934) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20100224200026) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"
+    t.inet     "gw"
   end
 
   create_table "server_group_members", :force => true do |t|
