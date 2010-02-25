@@ -67,3 +67,4 @@ Rails::Initializer.run do |config|
 end
 require 'postgre_extensions'
 require 'activerecord_base_create_update'
+require 'server_manager'
