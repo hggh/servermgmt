@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  default_scope :order => :username
   validates_presence_of :username
   validates_length_of :username, :minimum => 5, :maximun => 20
   validates_uniqueness_of :username
