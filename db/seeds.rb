@@ -4,6 +4,10 @@ ServerTypeHardware.create_or_update(:id => 3, :name => "Domain0")
 
 User.create_or_update(:id => 1, :username => 'admin', :password => 'admin', :password_confirmation => 'admin', :active => 1)
 
+ServerOperationSystem.create_or_update(:id => 1, :name => "Debian Lenny")
+
+IpType.create_or_update(:id => 1, :name => "Host")
+
 Vlan.create_or_update(:id => 1, :name => 'nativ')
 Vlan.create_or_update(:id => 2, :name => '1')
 Vlan.create_or_update(:id => 3, :name => '2')
