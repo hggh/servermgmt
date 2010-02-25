@@ -1,4 +1,5 @@
 class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter < ActiveRecord::ConnectionAdapters::AbstractAdapter
+  remove_const(:NATIVE_DATABASE_TYPES)
   NATIVE_DATABASE_TYPES = {
         :primary_key => "serial primary key".freeze,
         :string      => { :name => "character varying", :limit => 255 },
@@ -13,7 +14,8 @@ class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter < ActiveRecord::Connec
         :binary      => { :name => "bytea" },
         :boolean     => { :name => "boolean" },
         :xml         => { :name => "xml" },
-        :inet        => { :name => "inet" }
+        :inet        => { :name => "inet" },
+        :cidr        => { :name => "cidr" }
   }
 end
 
@@ -21,6 +23,10 @@ class ActiveRecord::ConnectionAdapters::TableDefinition
   def inet(*args)
     options = args.extract_options!
     column(args[0], 'inet', options)
+  end
+  def cidr(*args)
+    options = args.extract_options!
+    column(args[0], 'cidr', options)
   end
 end
 
@@ -51,6 +57,8 @@ class ActiveRecord::ConnectionAdapters::PostgreSQLColumn
       # Hack: We want to use inet type
       when /^inet$/
               :inet
+      when /^cidr$/
+              :cidr
       # Network address types
       when /^(?:cidr|inet|macaddr)$/
               :string
