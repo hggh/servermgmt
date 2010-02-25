@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: servermgmt
+  database: servermgmt_dev
   username: servermgmt
   password: servermgmt
 
