@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect '/home/settings', :controller => 'static', :action => 'page', :id => 'settings'
   
-  map.resources :serveroperationsystems
+  map.resources :server_operation_systems
 
   map.resources :server_macs
 

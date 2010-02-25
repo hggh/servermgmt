@@ -7,7 +7,7 @@ class Server < ActiveRecord::Base
   validates_presence_of :customer_id
   validates_presence_of :name
   validates_presence_of :servertype_id
-  validates_presence_of :serveroperationsystem_id
+  validates_presence_of :server_operation_system_id
   validates_presence_of :domain_id
   validates_length_of :name, :minimum => 3
   validates_uniqueness_of :name, :scope => :domain_id
@@ -19,7 +19,7 @@ class Server < ActiveRecord::Base
   
   belongs_to :customer
   belongs_to :servertype
-  belongs_to :serveroperationsystem
+  belongs_to :server_operation_system
   belongs_to :domain
   
   has_many :ips, :dependent => :destroy

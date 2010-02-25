@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100224201934) do
+ActiveRecord::Schema.define(:version => 20100225203432) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -94,6 +94,13 @@ ActiveRecord::Schema.define(:version => 20100224201934) do
     t.datetime "updated_at"
   end
 
+  create_table "server_operation_systems", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "config_preseed"
+  end
+
   create_table "server_type_hardwares", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -107,13 +114,6 @@ ActiveRecord::Schema.define(:version => 20100224201934) do
     t.datetime "updated_at"
   end
 
-  create_table "serveroperationsystems", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "config_preseed"
-  end
-
   create_table "servers", :force => true do |t|
     t.string   "name"
     t.string   "comment"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20100224201934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"
-    t.integer  "serveroperationsystem_id"
+    t.integer  "server_operation_system_id"
     t.integer  "domain_id"
   end
 

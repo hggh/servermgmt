@@ -1,0 +1,20 @@
+<h1>Listing serveroperationsystems</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for serveroperationsystem in @serveroperationsystems %>
+  <tr>
+    <td><%=h serveroperationsystem.name %></td>
+    <td><%= link_to 'Show', serveroperationsystem %></td>
+    <td><%= link_to 'Edit', edit_server_operation_system_path(serveroperationsystem) %></td>
+    <td><%= link_to 'Destroy', serveroperationsystem, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Server Operation System', new_server_operation_system_path %>
