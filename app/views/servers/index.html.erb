@@ -19,7 +19,7 @@
 			<% end %>
 		</td>
 		<td><%=h server.customer.name %></td>
-    <td><%=h server.serveroperationsystem.name %></td>
+    <td><%=h server.server_operation_system.name %></td>
     <td><%= link_to 'Show', server %></td>
     <td><%= link_to 'Edit', edit_server_path(server) %></td>
 		<td><%= link_to 'Add IP', :controller => "servers", :action => "addip", :id => server %></td>
