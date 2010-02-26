@@ -9,6 +9,8 @@ ServerOperationSystem.create_or_update(:id => 1, :name => "Debian Etch")
 
 IpType.create_or_update(:id => 1, :name => "Host")
 
+Setting.create_or_update(:id => 1, :key => 'puppet', :boolean => 1)
+
 Vlan.create_or_update(:id => 1, :name => 'nativ')
 Vlan.create_or_update(:id => 2, :name => '1')
 Vlan.create_or_update(:id => 3, :name => '2')

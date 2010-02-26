@@ -5,7 +5,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :configkey_values
 
-  
   map.connect '/home/settings', :controller => 'static', :action => 'page', :id => 'settings'
   
   map.resources :server_operation_systems
@@ -33,6 +32,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :networks
   
   map.resources :users
+
+  map.resources :settings
   
   map.login 'login', :controller => 'user_login', :action => 'login'
   

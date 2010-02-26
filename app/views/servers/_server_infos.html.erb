@@ -124,6 +124,7 @@
  - no mac addresses for this server -
 <% end %>
 
+<% if Setting.get('puppet') == 'true' %>
 <br/><br/>
 <h2>Puppet Configuration</h2>
 <% if @server.configkey_values.count > 0 %>
@@ -156,5 +157,4 @@
 <% else %>
  - no puppet configuration keys found
 <% end %>
-<br/>
-<%= link_to 'Add Puppet Configuration Value', :controller => "servers", :action => "addpuppetcfgvalue", :id => @server %>
+<% end %>

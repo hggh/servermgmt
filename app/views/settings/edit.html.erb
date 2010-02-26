@@ -1,0 +1,26 @@
+<h1>Server Manager Settings: Edit <%=h @setting.key %></h1>
+<br/>
+
+<% form_for(@setting) do |f| %>
+        <%= f.error_messages %>
+<table>
+  <tr>
+    <td>Setting Key:</td>
+    <td><%=h @setting.key %></td>
+  </tr>
+	<tr>
+		<td>Value:</td>
+		<td>
+			<% if @setting.boolean == 1%>
+			<%= f.select :value, ['false', 'true'].collect{|d| [d]} %>
+			<% else %>
+			<%= f.text_field :value %>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= f.submit "Update" %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,24 @@
+<h1>Server Manager Settings</h1>
+<br/>
+
+
+<table>
+  <tr>
+  	<td>Setting Key</td>
+		<td>Value</td>
+		<td></td>
+  </tr>
+	<% @settings.each do |s| %>
+	<tr>
+		<td><%=h s.key %></td>
+		<td>
+			<% if s.boolean == 1 and s.value.to_s == '' %>
+			false
+			<% else %>
+			<%=h s.value %>
+			<% end %>
+		</td>
+		<td><%= link_to "Edit", edit_setting_path(s) %></td>
+	</tr>
+	<% end %>
+</table>
