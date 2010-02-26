@@ -40,7 +40,7 @@ class Server < ActiveRecord::Base
   
   def getPuppet
     hostid = Puppet::Host.find(:first, :conditions => "name = '#{fqdn}'")
-    if hostid
+    if hostid and Setting.get('puppet') == "true"
       return hostid
     end
     nil
