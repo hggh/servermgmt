@@ -75,7 +75,7 @@ class ServersController < ApplicationController
   end
   
   def index
-    @servers = Server.find(:all)
+    @servers = Server.find(:all, :include => :domain, :order => 'servers.name,domains.name')
     
     respond_to do |format|
       format.html # index.html.erb

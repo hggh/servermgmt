@@ -1,5 +1,4 @@
 class Server < ActiveRecord::Base
-  default_scope :order => :name
   
   before_destroy :clean_server_virtuals
   before_save :make_lowercase
