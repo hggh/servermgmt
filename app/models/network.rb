@@ -16,6 +16,32 @@ class Network < ActiveRecord::Base
     Network.find(:all, :conditions => "customer_id = #{customerid}")
   end
 
+  def hostmask
+    @hostmask = Network.find_by_sql("SELECT hostmask(network) AS hostmask FROM networks WHERE id=#{id}")
+    return @hostmask[0]['hostmask']
+  end
+
+  def netmask
+    @netmask = Network.find_by_sql("SELECT netmask(network) AS netmask FROM networks WHERE id=#{id}")
+    return @netmask[0]['netmask']
+  end
+
+  def broadcast
+    @broadcast = Network.find_by_sql("SELECT host(broadcast(network)) AS broadcast FROM networks WHERE id=#{id}")
+    return @broadcast[0]['broadcast']
+  end
+
+  def size
+    IPAddr.new(broadcast()).to_i - IPAddr.new(network).to_i + 1
+  end
+
+  def ipversion
+    if IPAddr.new(network).ipv6?
+      6
+    else
+      4
+    end
+  end
 
   def gw=(gateway)
     gw_clean = ''
@@ -24,7 +50,11 @@ class Network < ActiveRecord::Base
     else
       if check_network
         ipaddr = IPAddr.new(network.split('/')[0])
-        gw_clean = IPAddr.new(ipaddr.to_i + 1 , Socket::AF_INET).to_s
+        if ipaddr.ipv6?
+          gw_clean = IPAddr.new(ipaddr.to_i + 1 , Socket::AF_INET6).to_s
+        else
+          gw_clean = IPAddr.new(ipaddr.to_i + 1 , Socket::AF_INET).to_s
+        end
       end
     end
     write_attribute(:gw, gw_clean)

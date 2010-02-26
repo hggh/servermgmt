@@ -12,9 +12,29 @@
 		<td><%=h @network.network %></td>
 	</tr>
   <tr>
+    <td>Netmask:</td>
+    <td><%=h @network.netmask %></td>
+  </tr>
+  <tr>
+    <td>Broadcast:</td>
+    <td><% if @network.ipversion == 4 %>
+		    <%=h @network.broadcast %>
+				<% else %>
+				--
+				<% end %></td>
+  </tr>
+  <tr>
+    <td>Hostmask/Wildcast:</td>
+    <td><%=h @network.hostmask %></td>
+  </tr>
+  <tr>
     <td>Gateway:</td>
     <td><%=h @network.gw %></td>
-  </tr>	
+  </tr>
+  <tr>
+    <td>Used:</td>
+    <td><%=h @network.ips.count %>/<%=h @network.size %></td>
+  </tr> 	
 	<tr>
 		<td>Comment:</td>
 		<td><%=h @network.comment %></td>
