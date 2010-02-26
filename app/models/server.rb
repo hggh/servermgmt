@@ -38,6 +38,27 @@ class Server < ActiveRecord::Base
     ServerVirtual.find(:all, :conditions => "hardware_id = #{id}")
   end
   
+  def getPuppet
+    hostid = Puppet::Host.find(:first, :conditions => "name = '#{fqdn}'")
+    if hostid
+      return hostid
+    end
+    nil
+  end
+  
+  def listIPsNotDocumented
+    ips_not_found = Array.new
+    if Setting.get('puppet') == "true" and self.getPuppet
+      self.getPuppet.getIps.each do |ip|
+        sip = Ip.find(:all, :conditions => "server_id = #{id} AND ip = '#{ip}'")
+        if sip.count == 0
+          ips_not_found.insert(-1,ip)
+        end
+      end
+    end
+    ips_not_found
+  end
+  
   private
     def clean_server_virtuals    
       @server_virts_hw = ServerVirtual.find(:all, :conditions => "hardware_id = #{id} OR virtual_id = #{id}")

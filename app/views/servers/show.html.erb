@@ -1,5 +1,14 @@
 <%= render :partial => "server_menubar" %>
 <h1>Server - Show: <%=h @server.fqdn %></h1>
 <br/>
-
+<% if @server.listIPsNotDocumented.count > 0 %>
+  <div style="border:dotted;border-color:red;backgound-color:blue;">
+   <span style="font-weight:bold;">Warning: The following IP address/s are used at server, but not listed at servermanager:</span><br/>
+		<% @server.listIPsNotDocumented.each do |ip| %>
+		IP: <%=h ip %><br/>
+		<% end %>
+		
+  </div>
+	<br/>
+<% end %>
 <%= render :partial => "server_infos" %>

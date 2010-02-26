@@ -47,8 +47,30 @@
     </td>
   </tr>
 </table>
+<br/>
 
-
+<%# Puppet Begin %>
+<% if @server.getPuppet %>
+<%= link_to_function("Display Puppet Facts", nil, :id => "puppet_fact_link") do |page|
+    page[:puppet_facts].toggle()
+    page[:puppet_fact_link].replace_html "Hide Puppet Facts"
+  end %>
+</br/>
+<table style="display:none" id="puppet_facts">
+	<tr>
+		<th>Facter Name</th>
+		<th>Facter Value</th>
+	</tr>
+  <% @server.getPuppet.get_facts.each do |value|%>
+	<tr>
+		<td style="font-weight:bold;"><%= value.fact_name.name %></td>
+		<td><%= value.value %></td>
+	</tr>
+  <% end %>
+</table>
+<br/><br/>
+<% end %>
+<%# Puppet END %>
 <% if @server.servertype.server_type_hardware.id == 3 and defined?@server_virtual %>
 <h2>Domain0 System:</h2>
   <% if ServerVirtual.getVirtuals(@server.id).count > 0 %>
