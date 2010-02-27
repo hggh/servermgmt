@@ -29,7 +29,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><%= link_to "Delete", rr,:confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to "Delete", domain_record_path(@domain,rr),:confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>
 </table>

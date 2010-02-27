@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100226192150) do
+ActiveRecord::Schema.define(:version => 20100227143421) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -33,11 +33,26 @@ ActiveRecord::Schema.define(:version => 20100226192150) do
     t.datetime "updated_at"
   end
 
+  create_table "domain_nameservers", :force => true do |t|
+    t.integer  "nameserver_id"
+    t.integer  "domain_id"
+    t.boolean  "primary_ns"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "domain_record_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "domain_records", :force => true do |t|
     t.integer  "ttl"
     t.integer  "domain_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "domain_record_type_id"
   end
 
   create_table "domains", :force => true do |t|
@@ -62,6 +77,13 @@ ActiveRecord::Schema.define(:version => 20100226192150) do
     t.integer  "server_id"
     t.integer  "is_primary"
     t.inet     "ip"
+  end
+
+  create_table "nameservers", :force => true do |t|
+    t.string   "name"
+    t.inet     "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "networks", :force => true do |t|

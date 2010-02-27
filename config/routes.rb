@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :domains
 
-  map.resources :domain_records
+  map.resources :domains do |domain| domain.resources :records, :controller => "domain_records" end 
 
   map.resources :ip_types
 
@@ -34,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.resources :settings
+
+  map.resources :nameservers
   
   map.login 'login', :controller => 'user_login', :action => 'login'
   

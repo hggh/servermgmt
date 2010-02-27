@@ -1,5 +1,8 @@
 class DomainRecord < ActiveRecord::Base
-	has_one :domain
+
+	belongs_to :domain
+  belongs_to :domain_record_type
+
   after_destroy :update_serial
   before_save :update_serial
 

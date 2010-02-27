@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nameserver_id: 1
+  domain_id: 1
+  primary_ns: false
+
+two:
+  nameserver_id: 1
+  domain_id: 1
+  primary_ns: false
