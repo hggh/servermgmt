@@ -1,0 +1,19 @@
+<%= render :partial => "menubar" %>
+<h1>Nameserver - Listing</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>IP</th>
+		<th>Domains</th>
+  </tr>
+<% @nameservers.each do |ns| %>
+  <tr>
+  	<td><%= link_to "#{ns.name}", nameserver_path(ns) %></td>
+		<td><%=h ns.ip %></td>
+		<td style="text-align:center;"><%=h ns.domain_nameservers.count %></td>
+		<td><%= link_to "Edit", edit_nameserver_path(ns) %></td>
+		<td><%= link_to 'Delete', ns, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+ </table>

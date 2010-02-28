@@ -1,0 +1,25 @@
+<%= render :partial => "menubar" %>
+<h1>Nameserver - Show: <%= @nameserver.name %></h1>
+
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%=h @nameserver.name %></td>
+  </tr>
+  <tr>
+    <td>IP Address:</td>
+    <td><%=h @nameserver.ip %></td>
+  </tr>
+</table>   
+
+
+<br/>
+<h2>Domains using this nameserver:</h2>
+<ul>
+	<% @nameserver.domain_nameservers.each do |nd| %>
+	<li>
+		<%= link_to nd.domain.name, domain_path(nd.domain) %>
+		<% if nd.primary_ns %> *<% end %>
+	</li>
+	<% end %>
+</ul>

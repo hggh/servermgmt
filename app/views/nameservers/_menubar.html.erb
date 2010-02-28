@@ -1,0 +1,8 @@
+Nameserver: <%= link_to "Index", nameservers_path %> |
+<%= link_to "New", new_nameserver_path %> 
+<% if @nameserver and @nameserver.id != nil %> |
+<%= link_to 'Show', @nameserver %> | 
+<%= link_to 'Edit', edit_nameserver_path(@nameserver) %> |  
+<%= link_to 'Delete', @nameserver, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+<hr/>

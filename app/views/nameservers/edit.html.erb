@@ -1,0 +1,19 @@
+<%= render :partial => "menubar" %>
+<h1>Nameserver - Edit: <%= @nameserver.name %></h1>
+
+<% form_for(@nameserver) do |f| %>
+        <%= f.error_messages %>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td>IP Address:</td>
+    <td><%= f.text_field :ip %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= f.submit "Update" %></td>
+  </tr>
+</table>   
+<% end %>
