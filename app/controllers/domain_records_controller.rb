@@ -8,4 +8,12 @@ class DomainRecordsController < ApplicationController
       format.html { redirect_to(@domain ) }
     end
   end
+
+  def new
+    @domain = Domain.find(params[:domain_id])
+    @domain_record = DomainRecord.new
+    respond_to do |format|
+      format.html
+    end
+  end
 end

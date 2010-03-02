@@ -7,7 +7,15 @@ class Nameserver < ActiveRecord::Base
   
   has_many :domain_nameservers, :dependent => :destroy
 
-  # FIXME: If user change the record, we have to trigger an update to all domains, that using this NS
+  after_update :update_domain_serial
+  before_destroy :update_domain_serial
+
+  def update_domain_serial
+    @domains = Domain.find(:all, :include => [ "domain_nameservers" ], :conditions => "domain_nameservers.nameserver_id=#{id}")
+    @domains.each do |dd|
+      dd.touch
+    end
+  end
   
   def checkip
     if ServerManager.new.is_ipaddress(ip)

@@ -1,0 +1,28 @@
+<%= render :partial => "domains/menubar" %>
+<h1>New Domain Record: <%=h @domain.name %></h1>
+<br/>
+
+<% form_for(@domain_record) do |f| %>
+        <%= f.error_messages %>
+<table>
+  <tr>
+    <td>Domain:</td>
+    <td>
+      <%=h @domain.name %>
+      <%= hidden_field(:domain_record, :domain_id , :value => @domain.id ) %>
+    </td>
+  </tr>
+  <tr>
+    <td>Type:</td>
+    <td>
+      <%= f.select :domain_record_type_id, DomainRecordType.find(:all, :order => "name").collect{|d| [d.name,d.id]} %>
+    </td>
+  </tr>
+  <tr>
+    <td>TTL:</td>
+    <td><%= f.text_field :ttl %></td>
+  <tr>
+    <td colspan="2"><%= f.submit "Create" %></td>
+  </tr>
+</table>
+<% end %>

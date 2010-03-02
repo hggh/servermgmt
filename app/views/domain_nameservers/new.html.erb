@@ -1,0 +1,28 @@
+<%= render :partial => "domains/menubar" %>
+<h1>New Domain Nameserver: <%=h @domain.name %></h1>
+<br/>
+
+<% form_for(@domain_nameserver) do |f| %>
+        <%= f.error_messages %>
+<table>
+	<tr>
+		<td>Domain:</td>
+		<td>
+			<%=h @domain.name %>
+			<%= hidden_field(:domain_nameserver, :domain_id , :value => @domain.id ) %>
+		</td>
+	</tr>
+	<tr>
+		<td>Nameserver:</td>
+		<td>
+			<%= f.select :nameserver_id, Nameserver.find(:all).collect{|d| [d.name,d.id]} %>
+		</td>
+	</tr>
+	<tr>
+		<td>Primary:</td>
+		<td><%= f.select :primary_ns, [ 'false', 'true'].collect{|d| [d]} %></td>
+	<tr>
+		<td colspan="2"><%= f.submit "Create" %></td>
+	</tr>
+</table>
+<% end %>
