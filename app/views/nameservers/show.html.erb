@@ -20,6 +20,8 @@
 	<li>
 		<%= link_to nd.domain.name, domain_path(nd.domain) %>
 		<% if nd.primary_ns %> *<% end %>
+		[<%= link_to "X",  domain_nameserver_path(nd.domain,nd) , :confirm => 'Are you sure?', :method => :delete %>]
 	</li>
 	<% end %>
 </ul>
+
