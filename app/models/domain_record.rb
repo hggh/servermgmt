@@ -1,6 +1,7 @@
 class DomainRecord < ActiveRecord::Base
   validates_presence_of :ttl
   validates_presence_of :domain_record_type_id
+  validates_presence_of :domain_id
   validates_numericality_of :ttl
 
 	belongs_to :domain
