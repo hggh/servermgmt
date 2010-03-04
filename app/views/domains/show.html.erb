@@ -1,10 +1,18 @@
 <%= render :partial => "menubar" %>
 <h1>Show: <%=h @domain.name %></h1>
 <br/>
+<% if @domain.getMaster == nil %>
+<div style="border-color:red;border-style:dotted;font-weight:bold;">
+  Warning: No Master Nameserver for this Domain configured!
+</div><br/>
+<% end %>
 <table>
 	<tr>
 		<td>Domain: </td>
-		<td><%=h @domain.name %></td>
+		<td>
+			<%=h @domain.name %>
+			<% if @domain.isReverseZone %> (IP-Reverse Zone)<% end %>
+		</td>
 	</tr>
 	<tr>
 		<td>Customer:</td>
@@ -37,17 +45,27 @@
 <table>
 	<tr>
 		<td>Record Id</td>
+    <td>Record Name</td>
 		<td>Record Type</td>
-		<td>Record Name</td>
-		<td>Update</td>
+		<td>Record Content</td>
+		<td>Extra Value</td>
+		<td>Edit</td>
 		<td>Delete</td>
 	</tr>
-	<% @domain.domain_records.each do |rr| %>
+  <% if @domain.isReverseZone
+    order = "CAST(source || 0  AS integer) ASC"
+  else
+    order = "source ASC"
+  end %>
+	<% DomainRecord.find(:all, :conditions => "domain_id = #{@domain.id}", :order => "#{order}").each do |rr| %>
+
 	<tr>
-		<td><%=h rr.id %></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td style="text-align:center;"><%=h rr.id %></td>
+		<td style="text-align:center;"><%=h rr.source %></td>
+		<td style="text-align:center;"><%=h rr.domain_record_type.name %></td>
+		<td style="text-align:center;"><%=h rr.value %></td>
+		<td style="text-align:center;"><%=h rr.extra_value %></td>
+		<td><%= link_to "Edit", edit_domain_record_path(@domain,rr) %></td>
 		<td><%= link_to "Delete", domain_record_path(@domain,rr),:confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>

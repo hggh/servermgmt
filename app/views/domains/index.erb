@@ -10,7 +10,12 @@
 
 <% for domain in @domains %>
   <tr>
-    <td><%=h domain.name %> <% if domain.DomainIsIdn %> (IDN: <%=h domain.idn %>)<% end %></td>
+    <td>
+    	<% if domain.getMaster == nil %>
+			<img src="<%= image_path('warning.png') %>" title="Warning: Domain has no primary Nameserver"/>
+			<% end %>
+    	<%= link_to domain.name, domain %> <% if domain.DomainIsIdn %> (IDN: <%=h domain.idn %>)<% end %>
+		</td>
 		<td style="text-align:center;"><%=h domain.domain_records.count %></td>
 		<td><%=h domain.customer.name %></td>
     <td><%= link_to 'Show', domain %></td>

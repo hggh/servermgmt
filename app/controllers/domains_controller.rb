@@ -61,5 +61,5 @@ class DomainsController < ApplicationController
         format.html { render :action => "edit" }
       end
     end
-  end  
+  end
 end
