@@ -1,8 +1,8 @@
-<%= render :partial => "server_menubar" %>
+<%= render :partial => "servers/server_menubar" %>
 <h1>Server - Show: <%=h @server.name %></h1>
 <br/>
 <h2>Add IP Address to Server</h2>
-<% form_for @ip, :url => { :action => "createip" } do |f| %>
+<% form_for @ip, :url => {:action => 'create'} do |f| %>
   <%= f.error_messages %>
 	<table>
 		<tr>
@@ -25,4 +25,4 @@
 <hr/>
 <br/>
 <h2>Server: <%=h @server.name %></h2>
-<%= render :partial => "server_infos" %>
+<%= render :partial => "servers/server_infos" %>

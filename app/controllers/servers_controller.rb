@@ -1,34 +1,4 @@
 class ServersController < ApplicationController
-  def createip
-    @ip = Ip.new(params[:ip])
-    
-    respond_to do |format|
-      if @ip.save
-        flash[:notice] = 'IP address was successfully created.'
-        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @ip.server_id ) }
-      else
-        @server = Server.find(@ip.server_id)
-        format.html { render :action => "addip" }
-      end
-    end
-    
-  end
-
-  def createmac
-    @servermac = ServerMac.new(params[:server_mac])
-    
-    respond_to do |format|
-      if @servermac.save
-        flash[:notice] = 'MAC address was successfully created.'
-        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @servermac.server_id ) }
-      else
-        @server = Server.find(@servermac.server_id)
-        format.html { render :action => "addmac" }
-      end
-    end
-    
-  end
-  
   def createpuppetcfgvalue
     @configkey_value = ConfigkeyValue.new(params[:configkey_value])
     respond_to do |format|
@@ -97,23 +67,6 @@ class ServersController < ApplicationController
       format.html
     end
     
-  end
-  
-  def addip
-    @ip = Ip.new
-    @networks = Network.find(:all)
-    @server = Server.find(params[:id])
-    respond_to do |format|
-      format.html
-    end
-  end
-  
-  def addmac
-    @server_mac = ServerMac.new
-    @server = Server.find(params[:id])
-    respond_to do |format|
-      format.html
-    end
   end
   
   def create

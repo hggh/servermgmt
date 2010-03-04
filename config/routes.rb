@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :ip_types
 
   map.resources :servers do |server|
-    server.resources :ips, :controller => "ips"
+    server.resources :ips
     server.resources :macs, :controller => "server_macs"
   end
 

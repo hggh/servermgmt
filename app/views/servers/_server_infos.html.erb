@@ -112,7 +112,7 @@
      <td><% if i.is_primary %><span style="color:red"><%=h i.ip %></span><% else %><%=h i.ip %><% end %></td>
      <td><%=h i.ip_type.name %></td>
      <td><%= link_to 'Net', i.network %></td>
-     <td><%= link_to 'Delete', i, :confirm => 'Are you sure?', :method => :delete %></td>
+     <td><%= link_to 'Delete', server_ip_path(@server,i), :confirm => 'Are you sure?', :method => :delete %></td>
      <td><% if !i.is_primary %>
      Make PRI
      <% end %></td> 

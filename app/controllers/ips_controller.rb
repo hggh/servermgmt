@@ -15,5 +15,28 @@ class IpsController < ApplicationController
       end
     end
   end
-  
+
+  def new
+    @ip = Ip.new
+    @networks = Network.find(:all)
+    @server = Server.find(params[:server_id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create
+    @ip = Ip.new(params[:ip])
+    
+    respond_to do |format|
+      if @ip.save
+        flash[:notice] = 'IP address was successfully created.'
+        format.html { redirect_to(:controller => 'servers', :action => "show", :id=> @ip.server_id ) }
+      else
+        @server = Server.find(@ip.server_id)
+        format.html { render :action => "new" }
+      end
+    end
+  end
+
 end
