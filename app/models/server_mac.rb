@@ -3,5 +3,5 @@ class ServerMac < ActiveRecord::Base
   validates_length_of :mac, :is => 17
   validates_uniqueness_of :mac
 
-  has_one :server
+  belongs_to :server
 end

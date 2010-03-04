@@ -50,7 +50,7 @@
 <br/>
 
 <%# Puppet Begin %>
-<% if @server.getPuppet %>
+<% if Setting.get('puppet') == "true" and  @server.getPuppet %>
 <%= link_to_function("Display Puppet Facts", nil, :id => "puppet_fact_link") do |page|
     page[:puppet_facts].toggle()
     page[:puppet_fact_link].replace_html "Hide Puppet Facts"
@@ -137,7 +137,8 @@
 	<% @server.server_macs.each do |i| %>
 	<tr>
 		<td><%=h i.mac%></td>
-		<td><%= link_to 'Delete', i, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= slink_to 'server_mac', 'server_show', 'Edit', edit_server_mac_path(@server,i) %></td>
+		<td><%= slink_to 'server_mac', 'server_show', 'Delete', server_mac_path(@server,i), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>
 </table>

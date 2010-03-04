@@ -1,24 +1,18 @@
-<h1>Listing servermacs</h1>
+<h1>Server Macs</h1>
 
 <table>
   <tr>
-    <th>Comment</th>
     <th>Mac</th>
     <th>Server</th>
   </tr>
 
 <% for servermac in @servermacs %>
   <tr>
-    <td><%=h servermac.comment %></td>
     <td><%=h servermac.mac %></td>
-    <td><%=h servermac.Server %></td>
-    <td><%= link_to 'Show', servermac %></td>
-    <td><%= link_to 'Edit', edit_servermac_path(servermac) %></td>
-    <td><%= link_to 'Destroy', servermac, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to servermac.server.fqdn, servermac.server %></td>
+    <td><%= slink_to 'server_mac', 'macs_show', 'Edit', edit_server_mac_path(servermac.server_id,servermac) %></td>
+    <td><%= slink_to 'server_mac', 'macs_show', 'Destroy', server_mac_path(servermac.server_id,servermac), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New servermac', new_servermac_path %>

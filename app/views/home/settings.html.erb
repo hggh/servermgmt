@@ -5,6 +5,7 @@
 			<li><%= link_to "Domain Nameservers", nameservers_path %></li>
 	    <li><%= link_to "User Manager", users_path %></li>
       <li><%= link_to "Server Types", servertypes_path %></li>
+			<li><%= link_to "Server MAC Adresses", '/server_macs' %></li>
       <li><%= link_to "IP Types", ip_types_path %></li>
       <li><%= link_to "Server Operation Systems", server_operation_systems_path %></li>
 			<% if Setting.get('puppet') == 'true' %>

@@ -9,13 +9,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :server_operation_systems
 
-  map.resources :server_macs
-
   map.resources :customers
 
   map.resources :servertypes
 
   map.resources :domains
+
+  map.connect '/server_macs', :controller => 'server_macs', :action => 'index'
 
   map.resources :domains do |domain|
     domain.resources :records, :controller => "domain_records"
@@ -24,9 +24,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :ip_types
 
-  map.resources :servers
-
-  map.resources :ips
+  map.resources :servers do |server|
+    server.resources :ips, :controller => "ips"
+    server.resources :macs, :controller => "server_macs"
+  end
 
   map.resources :home
   
