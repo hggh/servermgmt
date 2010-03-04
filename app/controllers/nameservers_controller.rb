@@ -1,10 +1,34 @@
 class NameserversController < ApplicationController
+  # FIXME: We want to filter via IP
+  skip_before_filter :login_required, :only => [ 'getconfig' ] 
   def index
     @nameservers = Nameserver.find(:all)
 
     respond_to do |format|
       format.html
     end
+  end
+
+  def getconfig
+    @config = Hash.new
+    @nameserver = Nameserver.find(:first, :conditions => [ "name = ?", params[:nameserver_name] ])
+    if @nameserver == nil
+      raise "Nameserver not found."
+    end
+
+    case params[:server_system]
+      when 'bind'
+        @config["server_system"] = 'bind'
+      else
+        @config['server_system'] = 'bind'
+    end
+    case params[:nameserver_config]
+      when 'zone'
+        @config['server_config'] = 'zone'
+      else
+        @config['server_config'] = 'config'
+    end
+    render :action => @config['server_system'] + '_' + @config['server_config'], :layout => "nameserver-layout"
   end
 
   def show

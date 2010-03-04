@@ -11,6 +11,14 @@ class DomainNameserver < ActiveRecord::Base
   belongs_to :nameserver
   belongs_to :domain
 
+  def nstype
+    if "#{primary_ns}" == "true"
+      "master"
+    else
+      "slave"
+    end
+  end
+
   def update_domain_serial
     @domains = Domain.find(:all, :include => [ "domain_nameservers" ], :conditions => "domain_nameservers.id=#{id}")
     @domains.each do |dd|

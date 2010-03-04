@@ -1,0 +1,25 @@
+# Bind Configuration
+# Server System: <%=h @config['server_system'] %>
+# Nameserver Name: <%=h @nameserver.name %>/<%=h @nameserver.id %>
+# Nameserver Config: <%=h @config['server_config'] %>
+# END
+
+<% @nameserver.domain_nameservers.each do |zone| %>
+# Zone: <%= zone.domain.name %> ; Type: <%= zone.nstype %>
+zone "<%= zone.domain.name %>" IN {
+    type <%= zone.nstype %>;
+    file "/etc/bind/zones/<%= zone.nstype %>/<%= zone.domain.name %>";
+		<% if zone.nstype == "master" %>
+    notify yes;
+    allow-transfer {
+        127.0.0.1;
+        <% zone.domain.domain_nameservers.each do |ns| %>
+        # Nameserver: <%= ns.nameserver.name %>
+        <%= ns.nameserver.ip %>;<% end %>
+    };
+		<% else %>
+    # <%= zone.domain.getMaster.nameserver.name %>
+    masters { <%= zone.domain.getMaster.nameserver.ip %>; };
+		<% end %>
+};
+<% end %>

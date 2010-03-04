@@ -22,7 +22,11 @@ class Domain < ActiveRecord::Base
     end
     false
   end
-  
+
+  def getMaster
+    DomainNameserver.find(:first, :conditions => "domain_id = #{id} AND primary_ns = 'true'")
+  end
+
   def idn
     Idna.toASCII(self.name)
   end

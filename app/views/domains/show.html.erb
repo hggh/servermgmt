@@ -27,7 +27,7 @@
 	<tr>
 		<td><%= link_to dns.nameserver.name, dns.nameserver %></td>
 		<td><%=h dns.nameserver.ip %></td>
-		<td><%=h dns.primary_ns %></td>
+		<td><%=h dns.nstype %></td>
 		<td><%= link_to "Delete", domain_nameserver_path(@domain,dns), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>

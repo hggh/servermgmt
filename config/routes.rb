@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :configkey_values
 
-  map.connect '/home/settings', :controller => 'static', :action => 'page', :id => 'settings'
+  map.connect 'home/settings', :controller => 'static', :action => 'page', :id => 'settings'
   
   map.resources :server_operation_systems
 
@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :domains
 
-  map.connect '/server_macs', :controller => 'server_macs', :action => 'index'
+  map.connect 'server_macs', :controller => 'server_macs', :action => 'index'
 
   map.resources :domains do |domain|
     domain.resources :records, :controller => "domain_records"
@@ -38,6 +38,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.resources :settings
+
+  map.connect 'nameserver/getconfig/:nameserver_name/:server_system/:nameserver_config/',
+      :controller => 'nameservers',
+      :action => 'getconfig',
+      :requirements => {
+      :nameserver_name => /[\w\.\-_]+/,
+      :server_system => /\w+/,
+      :nameserver_config => /\w+/
+      }
 
   map.resources :nameservers
   
