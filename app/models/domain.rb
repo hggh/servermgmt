@@ -34,6 +34,10 @@ class Domain < ActiveRecord::Base
     false
   end
 
+  def self.getAllwithoutRDNS
+    Domain.find(:all, :conditions => "name NOT LIKE '%.ip6.arpa' AND name NOT LIKE '%.in-addr.arpa'")
+  end
+
   def idn
     Idna.toASCII(self.name)
   end
