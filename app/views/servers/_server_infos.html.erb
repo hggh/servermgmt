@@ -51,10 +51,18 @@
 
 <%# Puppet Begin %>
 <% if Setting.get('puppet') == "true" and  @server.getPuppet %>
-<%= link_to_function("Display Puppet Facts", nil, :id => "puppet_fact_link") do |page|
-    page[:puppet_facts].toggle()
-    page[:puppet_fact_link].replace_html "Hide Puppet Facts"
-  end %>
+      <%= link_to_function ("Show Puppet Facts", nil, :id => "puppet_more_info_show" ) do |page|
+page["puppet_facts"].toggle()
+page["puppet_more_info_hide"].toggle()
+page["puppet_more_info_show"].toggle()
+end %>
+
+<%= link_to_function ("Hide Puppet Facts", nil, :id => "puppet_more_info_hide", :style => "display:none;") do |page|
+page["puppet_facts"].toggle()
+page["puppet_more_info_hide"].toggle()
+page["puppet_more_info_show"].toggle()
+end%>
+
 </br/>
 <table style="display:none" id="puppet_facts">
 	<tr>
@@ -163,16 +171,26 @@
 	<tr>
 		<td><%=h ckv.configkey.name %></td>
 		<td><%=h ckv.configkey.default %></td>
-		<td><%=h ckv.value %></td>
-		<td><a onclick="document.getElementById('ckv<%= ckv.id %>').style.display='inline';" >Edit</a></td>
+		<td id="puppet_cfg_server_value_<%=h ckv.id.to_s %>"><%=h ckv.value %></td>
+		<td>
+			<%= link_to_function ("Show", nil, :id => "more_info_show#{ckv.id.to_s}" ) do |page|
+page["ckv#{ckv.id.to_s}"].toggle()
+page["more_info_hide#{ckv.id.to_s}"].toggle()
+page["more_info_show#{ckv.id.to_s}"].toggle()
+end %>
+
+<%= link_to_function ("Hide", nil, :id => "more_info_hide#{ckv.id.to_s}", :style => "display:none;") do |page|
+page["ckv#{ckv.id.to_s}"].toggle()
+page["more_info_hide#{ckv.id.to_s}"].toggle()
+page["more_info_show#{ckv.id.to_s}"].toggle()
+end%>
+			</td>
 		<td><%= link_to 'Delete', ckv,:confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
-	 <% form_for(ckv) do |f| %>
+	 <% form_for ckv, :update => "puppet_cfg_server_value_#{ckv.id.to_s}" do |f| %>
 	<tr style="display:none;" id="ckv<%=h ckv.id %>">
 		<td><%= f.text_field :value %></td>
-		<td><%= hidden_field(:configkey_value, :server_id , :value => @server.id ) %>
-		<%= hidden_field(:configkey_value, :configkey_id , :value => ckv.configkey.id ) %>
-		<%= f.submit "Update" %></td>
+		<td><%= f.submit "Update" %></td>
 	</tr>
 	<% end %>
 	<% end %>
