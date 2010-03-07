@@ -3,14 +3,12 @@
 # Nameserver Name: <%=h @nameserver.name %>/<%=h @nameserver.id %>
 # Nameserver Config: <%=h @config['server_config'] %>
 # END
-
 <% @nameserver.domain_nameservers.each do |zone| %>
-
 <% if zone.nstype == "master" %>
 # Zone: <%= zone.domain.name %> ; Type: <%= zone.nstype %>
 zone "<%= zone.domain.name %>" IN {
     type <%= zone.nstype %>;
-    file "/etc/bind/zones/<%= zone.nstype %>/<%= zone.domain.name %>";
+    file "<%= zone.dnszonestorefilename %>";
     notify yes;
     allow-transfer {
        127.0.0.1;
@@ -21,13 +19,13 @@ zone "<%= zone.domain.name %>" IN {
     };
 };
 <% end %>
-
 <% if zone.nstype == "slave" and zone.domain.getMaster %>
+# Zone: <%= zone.domain.name %> ; Type: <%= zone.nstype %>
 zone "<%= zone.domain.name %>" IN {
     type <%= zone.nstype %>;
+    file "<%= zone.dnszonestorefilename %>";
     # <%= zone.domain.getMaster.nameserver.name %>
     masters { <%= zone.domain.getMaster.nameserver.ip %>; };
 };
 <% end %>
-
 <% end %> <%# END of WHILE%>

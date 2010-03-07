@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100304215617) do
+ActiveRecord::Schema.define(:version => 20100307213508) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(:version => 20100304215617) do
     t.string   "source"
     t.string   "value"
     t.string   "extra_value"
+  end
+
+  create_table "domain_soas", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "ttl"
+    t.string   "primary_ns"
+    t.string   "mail"
+    t.integer  "refresh"
+    t.integer  "retry"
+    t.integer  "expire"
+    t.integer  "negative_ttl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "domains", :force => true do |t|

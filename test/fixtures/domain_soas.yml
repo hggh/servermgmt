@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ttl: 1
+  primary_ns: MyString
+  mail: MyString
+  refresh: 1
+  retry: 
+  expire: 1
+  negative_ttl: 1
+
+two:
+  ttl: 1
+  primary_ns: MyString
+  mail: MyString
+  refresh: 1
+  retry: 
+  expire: 1
+  negative_ttl: 1

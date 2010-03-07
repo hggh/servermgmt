@@ -19,6 +19,10 @@ class DomainNameserver < ActiveRecord::Base
     end
   end
 
+  def dnszonestorefilename
+    File.join(Setting.get('dns_zone_files_store_path'),nstype,domain.name)
+  end
+
   def update_domain_serial
     @domains = Domain.find(:all, :include => [ "domain_nameservers" ], :conditions => "domain_nameservers.id=#{id}")
     @domains.each do |dd|

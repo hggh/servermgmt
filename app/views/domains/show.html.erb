@@ -70,3 +70,40 @@
 	</tr>
 	<% end %>
 </table>
+
+
+<h2>SOA Record</h2>
+<% if @domain.domain_soa %>
+<table>
+	<tr>
+		<td>TTL:</td>
+		<td><%=h @domain.domain_soa.ttl %></td>
+	</tr>
+  <tr>
+  	<td>Primary NS:</td>
+		<td><%=h @domain.domain_soa.primary_ns %></td>
+  </tr>	
+	<tr>
+		<td>Address:</td>
+		<td><%=h @domain.domain_soa.mail %></td>
+	</tr>
+	<tr>
+		<td>Refresh:</td>
+		<td><%=h @domain.domain_soa.refresh %></td>
+	</tr>
+	<tr>
+		<td>Retry:</td>
+		<td><%=h @domain.domain_soa.retry %></td>
+	</tr>
+	<tr>
+		<td>Expire:</td>
+		<td><%=h @domain.domain_soa.expire %></td>
+	</tr>
+	<tr>
+		<td>Negative TTL:</td>
+		<td><%=h @domain.domain_soa.negative_ttl %></td>
+	</tr>
+</table>
+<% else %>
+-- no Domain Soa set!
+<% end %>

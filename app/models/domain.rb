@@ -7,6 +7,7 @@ class Domain < ActiveRecord::Base
   has_many :servers
   has_many :domain_records, :dependent => :destroy
   has_many :domain_nameservers, :dependent => :destroy
+  has_one :domain_soa, :dependent => :destroy
   belongs_to :customer
   
   before_save [ :make_lowercase, :bump_serial ]

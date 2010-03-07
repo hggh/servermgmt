@@ -9,9 +9,6 @@ ServerOperationSystem.create_or_update(:id => 2, :name => "Debian Etch")
 
 IpType.create_or_update(:id => 1, :name => "Host")
 
-Setting.create_or_update(:id => 1, :key => 'puppet', :boolean => 1)
-Setting.create_or_update(:id => 2, :key => 'dns_default_record_ttl', :boolean => 0)
-
 DomainRecordType.create_or_update(:id => 1, :name => "A")
 DomainRecordType.create_or_update(:id => 2, :name => "AAAA")
 DomainRecordType.create_or_update(:id => 3, :name => "CNAME")

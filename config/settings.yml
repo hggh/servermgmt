@@ -1,0 +1,27 @@
+# Default settings for the server manger
+# Do not change this will. Use the webinterface to modify values
+
+puppet:
+  default: 0
+  boolean: 1
+dns_default_record_ttl:
+  default: 3600
+  boolean: 0
+dns_zone_files_store_path:
+  default: /etc/bind/zones
+  boolean: 0
+dns_soa_ttl:
+  default: 3600
+  boolean: 0
+dns_soa_refresh:
+  default: 86400
+  boolean: 0
+dns_soa_retry:
+  default: 7200
+  boolean: 0
+dns_soa_expire:
+  default: 3600000
+  boolean: 0
+dns_soa_negative_ttl:
+  default: 172800
+  boolean: 0
