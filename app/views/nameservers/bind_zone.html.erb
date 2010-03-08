@@ -1,0 +1,19 @@
+; Nameserver Name: <%=h @nameserver.name %>/<%=h @nameserver.id %>
+<% @nameserver.domain_nameservers.each do |zone| %>
+<% if zone.nstype == "master" and zone.domain.hasSOA? == true %>
+; Zone-BEGIN: <%= zone.domain.name %>::<%= zone.dnszonestorefilename %>
+@ <%= zone.domain.domain_soa.ttl %>   IN    SOA <%= zone.domain.domain_soa.primary_ns %>.   <%= zone.domain.domain_soa.mailaddress %> (
+          <%= zone.domain.serial %> ; serial
+          <%= zone.domain.domain_soa.refresh %> ; refresh
+          <%= zone.domain.domain_soa.retry %> ; retry
+          <%= zone.domain.domain_soa.expire %> ; expire
+          <%= zone.domain.domain_soa.negative_ttl %> ; negative ttl / caching
+          )
+<% zone.domain.domain_records.each do |rr| %>
+<%= rr.source.ljust(20) %>    <%= rr.ttl.to_s.center(6) %> IN <%= rr.domain_record_type.name.center(10) %> <%= rr.extra_value.center(6) %> <%= rr.value %>
+<% end %>					
+; Zone-END: <%= zone.domain.name %>::<%= zone.dnszonestorefilename %>
+<% else %>
+; The Zone: <%= zone.domain.name %> does not have an SOA record
+<% end %>
+<% end %> <%# END of WHILE%>

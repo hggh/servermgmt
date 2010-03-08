@@ -4,7 +4,7 @@
 # Nameserver Config: <%=h @config['server_config'] %>
 # END
 <% @nameserver.domain_nameservers.each do |zone| %>
-<% if zone.nstype == "master" %>
+<% if zone.nstype == "master" and zone.domain.hasSOA? == true %>
 # Zone: <%= zone.domain.name %> ; Type: <%= zone.nstype %>
 zone "<%= zone.domain.name %>" IN {
     type <%= zone.nstype %>;

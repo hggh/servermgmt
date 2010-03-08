@@ -4,6 +4,6 @@ class DomainSoa < ActiveRecord::Base
   def mailaddress
     address = mail.split(/@/)
     address[0].gsub!(/\./, '\.')
-    address[0] + '.' + address[1]
+    address[0] + '.' + address[1] + '.'
   end
 end
