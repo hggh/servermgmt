@@ -1,4 +1,4 @@
-<%= render :partial => "menubar" %>
+<%= render :partial => "domains/menubar" %>
 <h1>Show: <%=h @domain.name %></h1>
 <br/>
 <% if @domain.getMaster == nil %>
@@ -49,12 +49,13 @@
 <h2>Records</h2>
 <table>
 	<tr>
-    <td>Record Name</td>
-		<td>Record Type</td>
-		<td>Record Content</td>
-		<td>Extra Value</td>
-		<td>Edit</td>
-		<td>Delete</td>
+    <th>Record Name</th>
+		<th>Record TTL</th>
+		<th>Record Type</th>
+		<th>Record Content</th>
+		<th>Extra Value</th>
+		<th>Edit</th>
+		<th>Delete</th>
 	</tr>
   <% if @domain.isReverseZone
     order = "CAST(source || 0  AS integer) ASC"
@@ -65,11 +66,33 @@
 
 	<tr>
 		<td style="text-align:center;"><%=h rr.source %></td>
+		<td style="text-align:center;"><%=h rr.ttl %></td>
 		<td style="text-align:center;"><%=h rr.domain_record_type.name %></td>
 		<td style="text-align:center;"><%=h rr.value %></td>
 		<td style="text-align:center;"><%=h rr.extra_value %></td>
-		<td><%= link_to "Edit", edit_domain_record_path(@domain,rr) %></td>
+		<td>
+			      <%= link_to_function ("Edit", nil, :id => "rr_edit_show_#{rr.id}" ) do |page|
+page["domain_record_#{rr.id}"].toggle()
+page["rr_edit_hide_#{rr.id}"].toggle()
+page["rr_edit_show_#{rr.id}"].toggle()
+end %>
+
+<%= link_to_function ("Hide Edit", nil, :id => "rr_edit_hide_#{rr.id}", :style => "display:none;") do |page|
+page["domain_record_#{rr.id}"].toggle()
+page["rr_edit_hide_#{rr.id}"].toggle()
+page["rr_edit_show_#{rr.id}"].toggle()
+end%>
+    </td>
 		<td><%= link_to "Delete", domain_record_path(@domain,rr),:confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<tr style="display:none;border-color:red" id="domain_record_<%= rr.id %>">
+		<td colspan="9">
+			<table>
+			<% form_for rr , :url => domain_record_path(@domain,rr) do |@f| %>
+			<%= render :partial => "domain_records/record_form" %>
+			<% end %>
+			</table>
+		</td>
 	</tr>
 	<% end %>
 </table>
