@@ -14,6 +14,9 @@
     	<% if domain.getMaster == nil %>
 			<img src="<%= image_path('warning.png') %>" title="Warning: Domain has no primary Nameserver"/>
 			<% end %>
+			<% if domain.hasSOA? == false %>
+			<img src="<%= image_path('warning.png') %>" title="Warning: Missing SOA Record for Domain"/>
+			<% end %>
     	<%= link_to domain.name, domain %> <% if domain.DomainIsIdn %> (IDN: <%=h domain.idn %>)<% end %>
 		</td>
 		<td style="text-align:center;"><%=h domain.domain_records.count %></td>

@@ -2,39 +2,7 @@
 <h1>Edit Domain Record: <%=h @domain.name %></h1>
 <br/>
 
-<% form_for @domain_record, :url => domain_record_path do |f| %>
-        <%= f.error_messages %>
+
 <table>
-  <tr>
-    <td>Domain:</td>
-    <td>
-      <%=h @domain.name %>
-      <%= hidden_field(:domain_record, :domain_id , :value => @domain.id ) %>
-    </td>
-  </tr>
-  <tr>
-    <td>TTL:</td>
-    <td><%= f.text_field :ttl %></td>
-  <tr>
-  <tr>
-    <td>Name:</td>
-    <td><%= f.text_field :source %></td>
-  <tr>
-  <tr>
-    <td>Type:</td>
-    <td>
-      <%= f.select :domain_record_type_id, DomainRecordType.find(:all, :order => "name").collect{|d| [d.name,d.id]} %>
-    </td>
-  </tr>
-  <tr>
-    <td>Content:</td>
-    <td><%= f.text_field :value %></td>
-  <tr>
-  <tr>
-    <td>Prio:</td>
-    <td><%= f.text_field :extra_value %></td>
-  <tr>
-    <td colspan="2"><%= f.submit "Update" %></td>
-  </tr>
+  <%= render :partial => "domain_records/record_form" %>
 </table>
-<% end %>

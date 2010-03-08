@@ -1,0 +1,31 @@
+<%
+  url_path = ""
+  begin
+    if domain_record_path
+      url_path = domain_record_path
+    end 
+  rescue
+    url_path = domain_records_path
+  end
+%>
+	<% form_for @domain_record, :url => url_path do |f| %>
+  <tr>
+    <td colspan="8"><%= f.error_messages %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>TTL</th>
+    <th>Content</th>
+    <th>Prio</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= f.text_field :source, :size => 7 %></td>
+    <td><%= f.select :domain_record_type_id, DomainRecordType.find(:all, :order => "name").collect{|d| [d.name,d.id]} %></td>
+    <td><%= f.text_field :ttl, :size => 5 %></td>
+    <td><%= f.text_field :value %></td>
+    <td><%= f.text_field :extra_value, :size => 5 %></td>
+    <td><%= hidden_field(:domain_record, :domain_id , :value => @domain.id ) %><%= f.submit "Update/Create"  %></td>
+  </tr>
+  <% end %>

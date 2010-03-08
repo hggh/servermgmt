@@ -28,6 +28,16 @@ class Domain < ActiveRecord::Base
     DomainNameserver.find(:first, :conditions => "domain_id = #{id} AND primary_ns = 'true'")
   end
 
+  def hasSOA?
+    # return false if domain has got an master but no SOA record
+    if getMaster
+      if domain_soa == nil
+        return false
+      end
+    end
+    return true
+  end
+
   def isReverseZone
     if (name =~ /(\.ip6\.arpa|\.in-addr\.arpa)$/)
       return true

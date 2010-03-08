@@ -6,6 +6,11 @@
   Warning: No Master Nameserver for this Domain configured!
 </div><br/>
 <% end %>
+<% if @domain.hasSOA? == false %>
+<div style="border-color:red;border-style:dotted;font-weight:bold;">
+  Warning: No SOA Record found for this Domain!
+</div><br/>
+<% end %>
 <table>
 	<tr>
 		<td>Domain: </td>
@@ -44,7 +49,6 @@
 <h2>Records</h2>
 <table>
 	<tr>
-		<td>Record Id</td>
     <td>Record Name</td>
 		<td>Record Type</td>
 		<td>Record Content</td>
@@ -60,7 +64,6 @@
 	<% DomainRecord.find(:all, :conditions => "domain_id = #{@domain.id}", :order => "#{order}").each do |rr| %>
 
 	<tr>
-		<td style="text-align:center;"><%=h rr.id %></td>
 		<td style="text-align:center;"><%=h rr.source %></td>
 		<td style="text-align:center;"><%=h rr.domain_record_type.name %></td>
 		<td style="text-align:center;"><%=h rr.value %></td>
