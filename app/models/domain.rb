@@ -4,7 +4,6 @@ class Domain < ActiveRecord::Base
   
   default_scope :order => :name
   
-  has_many :servers
   has_many :domain_records, :dependent => :destroy
   has_many :domain_nameservers, :dependent => :destroy
   has_one :domain_soa, :dependent => :destroy
@@ -16,7 +15,7 @@ class Domain < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_length_of :name, :minimum => 3
-  
+
   def DomainIsIdn
     if self.name != Idna.toASCII(self.name)
       return true

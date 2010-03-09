@@ -28,7 +28,7 @@ class NameserversController < ApplicationController
       else
         @config['server_config'] = 'config'
     end
-    render :action => @config['server_system'] + '_' + @config['server_config'], :layout => "nameserver-layout"
+    render :action => @config['server_system'] + '_' + @config['server_config'], :layout => false, :content_type => 'text/plain'
   end
 
   def show

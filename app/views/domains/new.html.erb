@@ -16,4 +16,28 @@
     <td colspan="2"><%= f.submit "Create" %></td>
   </tr>
 </table>
+<br/>
+
+<h1>Nameserver</h1>
+<table>
+<% prefix = "domain[domain_nameserver_pri_attributes]" %>
+<% fields_for prefix, @domain_nameserver_pri do |ns| %>
+	<tr>
+		<td>Primary Nameserver:</td>
+		<td>
+			<%= ns.select :nameserver_id,  @nameservers.collect{|d| [d.name,d.id]}, { :include_blank => true} , { :onChange => "document.getElementById('domain_domain_soa_attributes_primary_ns').value=document.getElementById('domain_domain_nameserver_attributes__nameserver_id').value" } %>
+		</td>
+	</tr>
 <% end %>
+<% prefix = "domain[domain_nameserver_sec_attributes]" %>
+<% fields_for prefix, @domain_nameserver_sec do |ns| %>
+  <tr>
+    <td>Sec Nameserver:</td>
+    <td>
+      <%= ns.select :nameserver_id,  @nameservers.collect{|d| [d.name,d.id]}, { :include_blank => true} %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<% end %><%# end OF form_for %>

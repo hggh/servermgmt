@@ -12,6 +12,10 @@ class DomainNameserversController < ApplicationController
   def new
     @domain = Domain.find(params[:domain_id])
     @domain_nameserver = DomainNameserver.new
+    # if no primary NS exists, force to true, so user don't have to click :)
+    if ! @domain.getMaster
+      @domain_nameserver.primary_ns = true
+    end
     respond_to do |format|
       format.html
     end

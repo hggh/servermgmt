@@ -31,16 +31,18 @@
 <h2>Nameservers</h2>
 <table>
 	<tr>
-		<td>Nameserver</td>
-		<td>IP</td>
-		<td>Pri/Sec</td>
-		<td></td>
+		<th>Nameserver</th>
+		<th>IP</th>
+		<th>Pri/Sec</th>
+		<th>NS Entry</th>
+		<th></th>
 	</tr>
 	<% @domain.domain_nameservers.each do |dns| %>
 	<tr>
 		<td><%= link_to dns.nameserver.name, dns.nameserver %></td>
 		<td><%=h dns.nameserver.ip %></td>
 		<td><%=h dns.nstype %></td>
+		<td style="text-align:center;"><% if dns.ns_entry.to_i == 1 %>YES<% else %>NO<% end %></td>
 		<td><%= link_to "Delete", domain_nameserver_path(@domain,dns), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>

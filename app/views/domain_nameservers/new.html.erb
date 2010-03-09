@@ -20,8 +20,20 @@
 	</tr>
 	<tr>
 		<td>Primary:</td>
-		<td><%= f.select :primary_ns, [ 'false', 'true'].collect{|d| [d]} %></td>
+		<td>
+			<% if @domain_nameserver.primary_ns == true %>
+			<%= f.select :primary_ns, [ 'true', 'false'].collect{|d| [d]} %>
+			<% else %>
+			<%= f.select :primary_ns, [ 'false', 'true'].collect{|d| [d]} %>
+			<% end %>
+		</td>
+	</tr>
 	<tr>
+		<td>NS Entry on Zone:</td>
+		<td><%= check_box_tag("domain_nameserver[ns_entry]",1,true) %></td>
+	</tr>
+
+  <tr>
 		<td colspan="2"><%= f.submit "Create" %></td>
 	</tr>
 </table>
