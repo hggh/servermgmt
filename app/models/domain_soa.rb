@@ -1,6 +1,10 @@
 class DomainSoa < ActiveRecord::Base
   belongs_to :domain
-    
+
+  validates_presence_of :domain_id
+  validates_presence_of :mail
+  validates_presence_of :primary_ns
+
   def mailaddress
     address = mail.split(/@/)
     address[0].gsub!(/\./, '\.')

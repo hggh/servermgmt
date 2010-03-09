@@ -7,7 +7,7 @@
 <% @nameserver.domain_nameservers.each do |zone| %>
 <% if zone.nstype == "master" and zone.domain.hasSOA? == true %>
 # Zone: <%= zone.domain.name %> ; Type: <%= zone.nstype %>
-zone "<%= zone.domain.name %>" IN {
+zone "<%= zone.domain.idn %>" IN {
     type <%= zone.nstype %>;
     file "<%= zone.dnszonestorefilename %>";
     notify yes;
@@ -22,7 +22,7 @@ zone "<%= zone.domain.name %>" IN {
 <% end %>
 <% if zone.nstype == "slave" and zone.domain.getMaster %>
 # Zone: <%= zone.domain.name %> ; Type: <%= zone.nstype %>
-zone "<%= zone.domain.name %>" IN {
+zone "<%= zone.domain.idn %>" IN {
     type <%= zone.nstype %>;
     file "<%= zone.dnszonestorefilename %>";
     # <%= zone.domain.getMaster.nameserver.name %>

@@ -2,6 +2,11 @@ Nameserver: <%= link_to "Index", domains_path %> |
 <%= link_to "New", new_domain_path %> 
 <% if @domain and @domain.id != nil %> |
 <%= link_to 'Show', @domain %> | 
+<% if @domain.domain_soa %>
+<%= link_to "Edit SOA", edit_domain_soa_path(@domain,@domain.domain_soa) %> | 
+<% else %>
+<%= link_to "New SOA", new_domain_soa_path(@domain) %> | 
+<% end %>
 <%= link_to "Add Nameserver", new_domain_nameserver_path(@domain) %> |
 <%= link_to "Add Record", new_domain_record_path(@domain) %> |
 <%= link_to 'Edit', edit_domain_path(@domain) %> |  
