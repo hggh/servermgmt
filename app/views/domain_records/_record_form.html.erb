@@ -1,3 +1,5 @@
+<% form_for [@domain, @domain_record] do |@f| %>
+<table>
   <tr>
     <td colspan="8"><%= @f.error_messages %></td>
   </tr>
@@ -17,4 +19,5 @@
     <td><%= @f.text_field :extra_value, :size => 5 %></td>
     <td><%= hidden_field(:domain_record, :domain_id , :value => @domain.id ) %><%= @f.submit "Update/Create"  %></td>
   </tr>
-  
+ <% end %>
+</table>

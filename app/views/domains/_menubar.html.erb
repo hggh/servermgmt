@@ -8,7 +8,7 @@ Nameserver: <%= link_to "Index", domains_path %> |
 <%= link_to "New SOA", new_domain_domain_soa_path(@domain) %> | 
 <% end %>
 <%= link_to "Add Nameserver", new_domain_nameserver_path(@domain) %> |
-<%= link_to "Add Record", new_domain_record_path(@domain) %> |
+<%= link_to "Add Record", new_domain_domain_record_path(@domain) %> |
 <%= link_to 'Edit', edit_domain_path(@domain) %> |  
 <% if @domain.domain_soa %>
 <%= link_to 'Delete SOA', [@domain,@domain.domain_soa], :confirm => 'Are you sure?', :method => :delete %> |

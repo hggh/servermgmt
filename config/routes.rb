@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'server_macs', :controller => 'server_macs', :action => 'index'
 
   map.resources :domains do |domain|
-    domain.resources :records, :controller => "domain_records"
+    domain.resources :domain_records, :controller => "domain_records"
     domain.resources :nameservers, :controller => "domain_nameservers"
     domain.resources :domain_soas, :controller => "domain_soas"
   end 

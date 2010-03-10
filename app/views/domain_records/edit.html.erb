@@ -2,8 +2,4 @@
 <h1>Edit Domain Record: <%=h @domain.name %></h1>
 <br/>
 
-<% form_for @domain_record, :url => domain_record_path do |@f| %>
-<table>
-  <%= render :partial => "domain_records/record_form" %>
-</table>
-<% end %>
+<%= render :partial => "domain_records/record_form" %>

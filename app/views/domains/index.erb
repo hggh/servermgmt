@@ -21,7 +21,7 @@
 		</td>
 		<td style="text-align:center;"><%=h domain.domain_records.count %></td>
 		<td><%=h domain.customer.name %></td>
-    <td><%= link_to 'Add Record ', new_domain_record_path(domain) %></td>
+    <td><%= link_to 'Add Record ', new_domain_domain_record_path(domain) %></td>
     <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
     <td><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

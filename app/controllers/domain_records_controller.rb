@@ -12,6 +12,13 @@ class DomainRecordsController < ApplicationController
   def edit
     @domain = Domain.find(params[:domain_id])
     @domain_record = DomainRecord.find(params[:id])
+    respond_to do |format|
+      if request.xhr?
+        format.html { render :partial => "record_form" }
+      else
+        format.html { render }
+      end
+    end
   end
 
   def new
