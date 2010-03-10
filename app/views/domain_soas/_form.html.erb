@@ -1,0 +1,26 @@
+<% form_for([@domain, @domain_soa ]) do |f| %>
+<%= f.error_messages %>
+<table>
+	<tr>
+		<th>TTL</th>
+		<th>Primary NS</th>
+		<th>Address</th>
+		<th>Refresh</th>
+		<th>Retry</th>
+		<th>Expire</th>
+		<th>Negative TTL</th>
+	</tr>
+	<tr>
+		<td><%= f.text_field :ttl, :size => 5 %></td>
+		<td><%= f.text_field :primary_ns, :size => 15 %></td>
+		<td><%= f.text_field :mail, :size => 15 %></td>
+		<td><%= f.text_field :refresh, :size => 5 %></td>
+		<td><%= f.text_field :retry, :size => 5 %></td>
+		<td><%= f.text_field :expire, :size => 7 %></td>
+		<td><%= f.text_field :negative_ttl, :size => 5 %></td>
+	</tr>
+	<tr>
+		<td colspan="8"><%= f.submit "Create/Update" %></td>
+	</tr>
+</table>
+<% end %>

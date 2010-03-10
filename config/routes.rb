@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :domains do |domain|
     domain.resources :records, :controller => "domain_records"
     domain.resources :nameservers, :controller => "domain_nameservers"
-    domain.resources :soa, :controller => "domain_soas"
+    domain.resources :domain_soas, :controller => "domain_soas"
   end 
 
   map.resources :ip_types
