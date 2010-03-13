@@ -52,9 +52,11 @@
 <div id="domain_records">
 </div>
 
+<% form_tag multiaction_domain_domain_records_path(@domain), :method => :put do  %>
 <h2>Records</h2>
 <table>
 	<tr>
+		<th></th>
     <th>Record Name</th>
 		<th>Record TTL</th>
 		<th>Record Type</th>
@@ -71,6 +73,7 @@
 	<% DomainRecord.find(:all, :conditions => "domain_id = #{@domain.id}", :order => "#{order}").each do |rr| %>
 
 	<tr>
+		<td><%= check_box_tag "domain_records_ids[]", rr.id %></td>
 		<td style="text-align:center;"><%=h rr.source %></td>
 		<td style="text-align:center;"><%=h rr.ttl %></td>
 		<td style="text-align:center;"><%=h rr.domain_record_type.name %></td>
@@ -91,8 +94,13 @@ page["domain_records"].replace_html('')
 		<td><%= link_to "Delete", domain_domain_record_path(@domain,rr),:confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 	<% end %>
+	<tr>
+		<td colspan="6"></td>
+		<td><%= select_tag "multiaction_method", "<option>delete</option>" %>
+		<td><%= submit_tag "Do It!" %></td>
+	</tr>
 </table>
-
+<% end %><%# END of form_tag domain_records multi action %>
 
 <h2>SOA Record</h2>
 <% if @domain.domain_soa %>

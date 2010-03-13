@@ -9,6 +9,20 @@ class DomainRecordsController < ApplicationController
     end
   end
 
+  def multiaction
+    @domain = Domain.find(params[:domain_id])
+    if params[:domain_records_ids] and params[:multiaction_method] and params[:multiaction_method]=='delete' 
+      params[:domain_records_ids].each do |rr|
+        @domain_record = DomainRecord.find(rr)
+        @domain_record.destroy
+        flash[:notice] = 'Domain Records was successully destroyed!'
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to(@domain ) }
+    end
+  end
+
   def edit
     @domain = Domain.find(params[:domain_id])
     @domain_record = DomainRecord.find(params[:id])
