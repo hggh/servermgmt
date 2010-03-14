@@ -133,6 +133,27 @@ end%>
 <% end %>
 
 <br/><br/>
+<h2>Network Interfaces</h2>
+<table>
+	<tr>
+		<th>Interface</th>
+    <th>IP</th>
+		<th>Vlan</th>
+		<th>default GW</th>
+		<th>alias Int</th>
+	</tr>
+	<% @server.server_interfaces.each do |si| %>
+	<tr>
+		<td><%= link_to si.interface.name, server_server_interface_path(@server,si) %></td>
+		<td><%=h si.ip.ip %></td>
+    <td><%=h si.vlan.name %></td>
+		<td style="text-align:center;" ><%=h si.alias %></td>
+		<td style="text-align:center;" ><%=h si.default_gw %></td>
+	</tr>
+	<% end %>
+</table>
+
+<br/><br/>
 <h2>MAC Addresses:</h2>
 <% if @server.server_macs.count > 0 %>
 

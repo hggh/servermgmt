@@ -29,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :servers do |server|
     server.resources :ips
     server.resources :macs, :controller => "server_macs"
+    server.resources :server_interfaces
   end
 
   map.resources :home

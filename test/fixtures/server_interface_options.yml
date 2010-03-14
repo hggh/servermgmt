@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  interface_option_id: 1
+  server_interface_id: 1
+  value: MyString
+
+two:
+  interface_option_id: 1
+  server_interface_id: 1
+  value: MyString

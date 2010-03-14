@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100309184844) do
+ActiveRecord::Schema.define(:version => 20100314230342) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -81,6 +81,18 @@ ActiveRecord::Schema.define(:version => 20100309184844) do
     t.integer  "customer_id"
   end
 
+  create_table "interface_options", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "interfaces", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ip_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -122,6 +134,25 @@ ActiveRecord::Schema.define(:version => 20100309184844) do
 
   create_table "server_groups", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "server_interface_options", :force => true do |t|
+    t.integer  "interface_option_id"
+    t.integer  "server_interface_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "server_interfaces", :force => true do |t|
+    t.integer  "server_id"
+    t.integer  "interface_id"
+    t.integer  "vlan_id"
+    t.integer  "ip_id"
+    t.boolean  "alias"
+    t.boolean  "default_gw"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

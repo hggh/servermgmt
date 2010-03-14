@@ -15,7 +15,16 @@ class Puppet::Host < ActiveRecord::Base
     fact_values.find(:all, :include => :fact_name, :order => "fact_names.name")
     
   end
-  
+
+  def getInterfaces
+    interfaces = Array.new
+    if fv = self.fact_values.find(:all, :include => :fact_name,
+                                     :conditions => "fact_names.name = 'interfaces'")
+      interfaces = fv[0].value.split(',')
+    end
+    interfaces
+  end
+
   def getIps
     ipaddresses = Array.new
     if fv = self.fact_values.find(:all, :include => :fact_name,

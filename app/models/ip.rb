@@ -4,6 +4,7 @@ class Ip < ActiveRecord::Base
   belongs_to :network
   belongs_to :server
   belongs_to :ip_type
+  has_one :server_interface, :dependent => :destroy
   
   validates_presence_of :ip
   validates_presence_of :network_id
