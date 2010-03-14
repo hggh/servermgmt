@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Customer</th>
+    <th>OS</th>
+  </tr>
+
+<% for server in @servers %>
+  <tr>
+    <td><%= link_to "#{server.name}.#{server.domain.name}", server %></td>
+    <td>
+      <%=h server.servertype.server_type_hardware.name %>
+      <% if server.getVirtualServers.count > 0 %>
+      (<%=h server.getVirtualServers.count %>)
+      <% end %>
+    </td>
+    <td><%=h server.customer.name %></td>
+    <td><%=h server.server_operation_system.name %></td>
+    <td><%= link_to 'Show', server %></td>
+    <td><%= link_to 'Edit', edit_server_path(server) %></td>
+    <td><%= link_to 'Add IP', new_server_ip_path(server) %></td>
+    <td><%= link_to 'Add MAC', new_server_mac_path(server) %></td>
+    <%  if Setting.get('puppet') == "true" %>
+       <td><%= link_to 'Add PCfg', :controller => "servers", :action => "addpuppetcfgvalue", :id => server %></td>
+    <% end %>
+    <td><%= link_to 'Delete', server, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

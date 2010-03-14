@@ -137,3 +137,7 @@ page["domain_records"].replace_html('')
 <% else %>
 -- no Domain Soa set!
 <% end %>
+
+<h2>Servers in Domain</h2>
+<% @servers = @domain.servers %>
+<%= render :partial => "servers/server_index" %>
