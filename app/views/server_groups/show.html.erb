@@ -22,6 +22,7 @@
 
 </table>
 
+<% if Setting.get('puppet') == 'true' %>
 <h2>Puppet Configuration</h2>
 <% if @server_group.configkey_values.count > 0 %>
 <table>
@@ -56,3 +57,6 @@
 <% end %>
 <br/>
 <%= link_to 'Add Puppet Configuration Value', :controller => "server_groups", :action => "addpuppetcfgvalue", :id => @server_group %>
+
+<% end %>
+
