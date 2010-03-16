@@ -10,6 +10,7 @@ class DomainRecord < ActiveRecord::Base
 
   before_destroy :update_serial
   after_save :update_serial
+  before_validation :make_lowercase
 
   def value=(content)
     clean = content
@@ -31,6 +32,11 @@ class DomainRecord < ActiveRecord::Base
   def update_serial
     domain = Domain.find(domain_id)
     domain.touch
+  end
+
+  def make_lowercase
+    self.source.downcase!
+    self.value.downcase!
   end
 
   def check_value_record

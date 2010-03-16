@@ -1,4 +1,5 @@
 class ActiveRecord::Base
+  before_validation :_clean_strip
   def self.create_or_update(options = {})
     id = options.delete(:id)
     record = find_by_id(id) || new
@@ -17,5 +18,11 @@ class ActiveRecord::Base
     record.save!
 
     record
+  end
+
+  def _clean_strip
+    self.attributes.each_pair do |key, value|
+      self[key] = value.strip if value.respond_to?('strip')
+    end
   end
 end

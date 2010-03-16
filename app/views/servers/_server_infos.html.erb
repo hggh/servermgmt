@@ -51,13 +51,13 @@
 
 <%# Puppet Begin %>
 <% if Setting.get('puppet') == "true" and  @server.getPuppet %>
-      <%= link_to_function ("Show Puppet Facts", nil, :id => "puppet_more_info_show" ) do |page|
+      <%= link_to_function("Show Puppet Facts", nil, :id => "puppet_more_info_show" ) do |page|
 page["puppet_facts"].toggle()
 page["puppet_more_info_hide"].toggle()
 page["puppet_more_info_show"].toggle()
 end %>
 
-<%= link_to_function ("Hide Puppet Facts", nil, :id => "puppet_more_info_hide", :style => "display:none;") do |page|
+<%= link_to_function("Hide Puppet Facts", nil, :id => "puppet_more_info_hide", :style => "display:none;") do |page|
 page["puppet_facts"].toggle()
 page["puppet_more_info_hide"].toggle()
 page["puppet_more_info_show"].toggle()
@@ -204,13 +204,13 @@ end%>
 		<td><%=h ckv.configkey.default %></td>
 		<td id="puppet_cfg_server_value_<%=h ckv.id.to_s %>"><%=h ckv.value %></td>
 		<td>
-			<%= link_to_function ("Show", nil, :id => "more_info_show#{ckv.id.to_s}" ) do |page|
+			<%= link_to_function("Show", nil, :id => "more_info_show#{ckv.id.to_s}" ) do |page|
 page["ckv#{ckv.id.to_s}"].toggle()
 page["more_info_hide#{ckv.id.to_s}"].toggle()
 page["more_info_show#{ckv.id.to_s}"].toggle()
 end %>
 
-<%= link_to_function ("Hide", nil, :id => "more_info_hide#{ckv.id.to_s}", :style => "display:none;") do |page|
+<%= link_to_function("Hide", nil, :id => "more_info_hide#{ckv.id.to_s}", :style => "display:none;") do |page|
 page["ckv#{ckv.id.to_s}"].toggle()
 page["more_info_hide#{ckv.id.to_s}"].toggle()
 page["more_info_show#{ckv.id.to_s}"].toggle()
