@@ -1,3 +1,4 @@
 log/*
 .settings
 !.gitignore
+config/database.yml
