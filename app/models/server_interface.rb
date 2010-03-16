@@ -3,8 +3,8 @@ class ServerInterface < ActiveRecord::Base
   validates_presence_of :interface_id
   validates_presence_of :vlan_id
   validates_presence_of :ip_id
-  validates_presence_of :alias
-  validates_presence_of :default_gw
+  validates_format_of :default_gw, :with => /^(true|false)$/
+  validates_format_of :alias, :with => /^(true|false)$/
 
   belongs_to :server
   belongs_to :vlan

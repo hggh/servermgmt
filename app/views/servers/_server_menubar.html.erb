@@ -7,6 +7,7 @@ Server: <%= link_to "Index", servers_path %>
 <% if Setting.get('puppet') == 'true' %> 
   <%= link_to 'Add PCfg', :controller => "servers", :action => "addpuppetcfgvalue", :id => @server.id %> |
 <% end %> 
+<%= link_to 'Add Interface', new_server_server_interface_path(@server) %> |
 <%= link_to 'Delete', @server, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>
 <hr/>

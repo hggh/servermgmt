@@ -150,8 +150,8 @@ end%>
 		<td valign="top"><%= link_to si.interface.name, server_server_interface_path(@server,si) %></td>
 		<td valign="top"><%=h si.ip.ip %></td>
     <td valign="top"><%=h si.vlan.name %></td>
-		<td style="text-align:center;" valign="top"><%=h si.alias %></td>
 		<td style="text-align:center;" valign="top"><%=h si.default_gw %></td>
+		<td style="text-align:center;" valign="top"><%=h si.alias %></td>
 		<td valign="top">
       <% si.server_interface_options.each do |sio| %>
 			<%=h sio.interface_option.name %> <%=h sio.value %><br/>

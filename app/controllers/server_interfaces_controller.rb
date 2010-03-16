@@ -23,12 +23,31 @@ class ServerInterfacesController < ApplicationController
     end
   end
 
+  def new
+    @server = Server.find(params[:server_id])
+    @server_interface = ServerInterface.new
+  end
+
   def edit
     @server = Server.find(params[:server_id])
     @server_interface = ServerInterface.find(params[:id])
 
     respond_to do |format|
       format.html
+    end
+  end
+
+  def create
+    @server = Server.find(params[:server_id])
+    @server_interface = ServerInterface.new(params[:server_interface])
+    
+    respond_to do |format|
+      if @server_interface.save
+        flash[:notice] = 'Interface was successfully created.'
+        format.html { redirect_to(@server) }
+      else
+        format.html { render :action => "new" }
+      end
     end
   end
 
