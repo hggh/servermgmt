@@ -3,7 +3,7 @@ class DomainsController < ApplicationController
     @domains = Domain.find(:all)
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
   
@@ -12,8 +12,6 @@ class DomainsController < ApplicationController
     respond_to do |format|
       format.html
     end
-    rescue ActiveRecord::RecordNotFound
-      render_404
   end
   
   def new
