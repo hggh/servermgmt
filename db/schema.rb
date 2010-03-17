@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100314230342) do
+ActiveRecord::Schema.define(:version => 20100317171458) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(:version => 20100314230342) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ns_entry",      :limit => 2, :default => 0, :null => false
+  end
+
+  create_table "domain_option_values", :force => true do |t|
+    t.integer  "domain_id"
+    t.integer  "domain_option_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "domain_options", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "domain_record_types", :force => true do |t|

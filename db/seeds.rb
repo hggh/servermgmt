@@ -7,6 +7,9 @@ User.create_or_update(:id => 1, :username => 'admin', :password => 'admin', :pas
 ServerOperationSystem.create_or_update_byname(:name => "Debian Lenny")
 ServerOperationSystem.create_or_update_byname(:name => "Debian Etch")
 
+DomainOption.create_or_update_byname(:name => "allow-notify")
+DomainOption.create_or_update_byname(:name => "allow-transfer")
+
 IpType.create_or_update_byname(:name => "Host")
 
 DomainRecordType.create_or_update(:id => 1, :name => "A")

@@ -138,6 +138,26 @@ page["domain_records"].replace_html('')
 -- no Domain Soa set!
 <% end %>
 
+<br/><br/>
+<h2>Domain Options</h2>
+
+<% if @domain.domain_option_values.count > 0 %>
+
+<% @domain.domain_options.each do |dos| %>
+<h3>Domain Option: <%=h dos.name %></h3>
+<ul>
+	 <% dos.domain_option_values.each do |dov| %>
+	 <li><%=h dov.value %> [<%= link_to "X", domain_domain_option_value_path(@domain,dov),:confirm => 'Are you sure?', :method => :delete %>]</li>
+	 <% end %>
+</ul>
+<% end %>
+
+
+<% else %><%# End of @domain.domain_option_values.count > 0 %>
+This domain has got no options!
+<% end %>
+
+<br/><br/>
 <h2>Servers in Domain</h2>
 <% @servers = @domain.servers %>
 <%= render :partial => "servers/server_index" %>

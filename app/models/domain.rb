@@ -6,6 +6,8 @@ class Domain < ActiveRecord::Base
   
   has_many :domain_records, :dependent => :destroy
   has_many :domain_nameservers, :dependent => :destroy
+  has_many :domain_option_values, :dependent => :destroy
+  has_many :domain_options, :through => :domain_option_values
   has_one :domain_soa, :dependent => :destroy
   has_many :servers
   belongs_to :customer
