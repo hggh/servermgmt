@@ -3,17 +3,27 @@
 require 'socket'
 require 'net/http'
 require 'uri'
+require 'yaml'
 
-SERVERMGMT_HOST="http://localhost:3000/nameserver/getconfig/"
-SERVERMGMT_NSSERVER=Socket.gethostbyname(Socket.gethostname).first
-SERVERMGMT_NSTYPE='bind'
-SERVERMGMT_CONFIGPATH="/etc/bind/servermgmt.conf"
+configfile = ARGV[0] ? ARGV[0] : "/etc/servermgmt.yml"
+
+if !File.readable?(configfile)
+	$stderr.puts "Warning: Could not open config file: #{configfile}"
+	exit 1
+end
+
+settings = YAML::load(File.open(configfile))
+SERVERMGMT_HOST= settings['getnsconfig']['sm_host']
+SERVERMGMT_NSSERVER= (settings['getnsconfig']['nameserver_name'] != nil) ? settings['getnsconfig']['nameserver_name'] : Socket.gethostbyname(Socket.gethostname).first
+SERVERMGMT_NSTYPE=settings['getnsconfig']['nameserver_type']
+SERVERMGMT_CONFIGPATH=settings['getnsconfig']['nameserver_config']
 
 servermgmt_url = SERVERMGMT_HOST + SERVERMGMT_NSSERVER + "/" + SERVERMGMT_NSTYPE + "/"
 
 
 ['config', 'zone'].each do |cfg|
 
+	begin
 	Net::HTTP.start( URI.parse(servermgmt_url).host.to_s, URI.parse(servermgmt_url).port ) { |http|
 
 		req = Net::HTTP::Get.new(URI.parse(servermgmt_url).path + cfg)
@@ -38,4 +48,8 @@ servermgmt_url = SERVERMGMT_HOST + SERVERMGMT_NSSERVER + "/" + SERVERMGMT_NSTYPE
 			end
 		end
 	}
+	rescue
+		$stderr.puts "Could not connect to #{URI.parse(servermgmt_url).host.to_s}:#{URI.parse(servermgmt_url).port}"
+		exit 1
+	end
 end

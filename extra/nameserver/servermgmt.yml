@@ -1,0 +1,6 @@
+getnsconfig:
+   sm_host: "http://localhost:3000/nameserver/getconfig/"
+# if nameserver_name is empty, fqdn from server is used
+   nameserver_name: 
+   nameserver_type: bind
+   nameserver_config: /etc/bind/servermgmt.conf
