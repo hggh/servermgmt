@@ -1,0 +1,145 @@
+<table>
+<tr>
+<td>Domain: </td>
+<td>
+<%=h @domain.name %>
+<% if @domain.isReverseZone %> (IP-Reverse Zone)<% end %>
+</td>
+</tr>
+<tr>
+<td>Customer:</td>
+<td><%=h @domain.customer.name %></td>
+<tr>
+<td>Serial:</td>
+<td><%=h @domain.serial %></td>
+</tr>
+</table>
+ 
+<h2>Nameservers</h2>
+<table>
+<tr>
+<th>Nameserver</th>
+<th>IP</th>
+<th>Pri/Sec</th>
+<th>NS Entry</th>
+<th></th>
+</tr>
+<% @domain.domain_nameservers.each do |dns| %>
+<tr>
+<td><%= link_to dns.nameserver.name, dns.nameserver %></td>
+<td><%=h dns.nameserver.ip %></td>
+<td><%=h dns.nstype %></td>
+<td style="text-align:center;"><% if dns.ns_entry.to_i == 1 %>YES<% else %>NO<% end %></td>
+<td><%= link_to "Delete", domain_nameserver_path(@domain,dns), :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>
+<% end %>
+</table>
+ 
+<br/>
+<div id="domain_records">
+</div>
+ 
+<% form_tag multiaction_domain_domain_records_path(@domain), :method => :put do %>
+<h2>Records</h2>
+<table>
+<tr>
+<th></th>
+    <th>Record Name</th>
+<th>Record TTL</th>
+<th>Record Type</th>
+<th>Record Content</th>
+<th>Extra Value</th>
+<th>Edit</th>
+<th>Delete</th>
+</tr>
+  <% if @domain.isReverseZone
+    order = "CAST(source || 0 AS integer) ASC"
+  else
+    order = "source ASC"
+  end %>
+<% DomainRecord.find(:all, :conditions => "domain_id = #{@domain.id}", :order => "#{order}").each do |rr| %>
+ 
+<tr>
+<td><%= check_box_tag "domain_records_ids[]", rr.id %></td>
+<td style="text-align:center;"><%=h rr.source %></td>
+<td style="text-align:center;"><%=h rr.ttl %></td>
+<td style="text-align:center;"><%=h rr.domain_record_type.name %></td>
+<td style="text-align:center;"><%=h rr.value %></td>
+<td style="text-align:center;"><%=h rr.extra_value %></td>
+<td>
+<%= link_to_remote "Edit",{ :update => "domain_records",
+    :url => edit_domain_domain_record_path(@domain,rr), :method => :get,
+    :after => [ "new Effect.toggle('rr_edit_show_#{rr.id}');", "new Effect.toggle('rr_edit_hide_#{rr.id}');"] } ,
+    :id => "rr_edit_show_#{rr.id}" %>
+ 
+<%= link_to_function ("Hide Edit", nil, :id => "rr_edit_hide_#{rr.id}", :style => "display:none;") do |page|
+page["rr_edit_hide_#{rr.id}"].toggle()
+page["rr_edit_show_#{rr.id}"].toggle()
+page["domain_records"].replace_html('')
+ end %>
+    </td>
+<td><%= link_to "Delete", domain_domain_record_path(@domain,rr),:confirm => 'Are you sure?', :method => :delete %></td>
+</tr>
+<% end %>
+<tr>
+<td colspan="6"></td>
+<td><%= select_tag "multiaction_method", "<option>delete</option>" %>
+<td><%= submit_tag "Do It!" %></td>
+</tr>
+</table>
+<% end %><%# END of form_tag domain_records multi action %>
+ 
+<h2>SOA Record</h2>
+<% if @domain.domain_soa %>
+<table>
+<tr>
+<td>TTL:</td>
+<td><%=h @domain.domain_soa.ttl %></td>
+</tr>
+  <tr>
+   <td>Primary NS:</td>
+<td><%=h @domain.domain_soa.primary_ns %></td>
+  </tr>
+<tr>
+<td>Address:</td>
+<td><%=h @domain.domain_soa.mail %></td>
+</tr>
+<tr>
+<td>Refresh:</td>
+<td><%=h @domain.domain_soa.refresh %></td>
+</tr>
+<tr>
+<td>Retry:</td>
+<td><%=h @domain.domain_soa.retry %></td>
+</tr>
+<tr>
+<td>Expire:</td>
+<td><%=h @domain.domain_soa.expire %></td>
+</tr>
+<tr>
+<td>Negative TTL:</td>
+<td><%=h @domain.domain_soa.negative_ttl %></td>
+</tr>
+</table>
+<% else %>
+-- no Domain Soa set!
+<% end %>
+ 
+<br/><br/>
+<h2>Domain Options</h2>
+ 
+<% if @domain.domain_option_values.count > 0 %>
+ 
+<% @domain.domain_options.each do |dos| %>
+<h3>Domain Option: <%=h dos.name %></h3>
+<ul>
+<% dos.domain_option_values.each do |dov| %>
+<li><%=h dov.value %> [<%= link_to "X", domain_domain_option_value_path(@domain,dov),:confirm => 'Are you sure?', :method => :delete %>]</li>
+<% end %>
+</ul>
+<% end %>
+ 
+ 
+<% else %><%# End of @domain.domain_option_values.count > 0 %>
+This domain has got no options!
+<% end %>
