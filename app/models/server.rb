@@ -38,7 +38,13 @@ class Server < ActiveRecord::Base
   def getVirtualServers
     ServerVirtual.find(:all, :conditions => "hardware_id = #{id}")
   end
-  
+
+  def getfreeIps(ipid = nil)
+    sql_where = "server_interfaces.id IS NULL"
+    sql_where = "(server_interfaces.id IS NULL OR ips.id=#{ipid} )" if ipid
+    Ip.find(:all, :include => :server_interface, :conditions => "ips.server_id=#{id} and #{sql_where}")
+  end
+
   def getPuppet
     hostid = Puppet::Host.find(:first, :conditions => "name = '#{fqdn}'")
     if hostid and Setting.get('puppet') == "true"

@@ -19,8 +19,7 @@
   </tr>
   <tr>
     <td>IP:</td>
-    <td><%# FIXME: only IPs not used by an interface %>
-      <%= f.select :ip_id , @server.ips.collect{|d| [d.ip,d.id]} %></td>
+    <td><%= f.select :ip_id , @server.getfreeIps(@server_interface.ip_id).collect{|d| [d.ip,d.id]} %></td>
   </tr>
   <tr>
     <td>Alias Interface:</td>

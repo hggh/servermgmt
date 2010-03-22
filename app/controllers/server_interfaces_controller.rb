@@ -26,6 +26,18 @@ class ServerInterfacesController < ApplicationController
   def new
     @server = Server.find(params[:server_id])
     @server_interface = ServerInterface.new
+    server_routes = ServerInterface.find(:all, :conditions => "server_id=#{@server.id}")
+    if server_routes and server_routes.count > 0
+      @server_interface.alias = 'true'
+    else
+      @server_interface.alias = 'false'
+    end
+    server_aliases = ServerInterface.find(:all, :conditions => "server_id=#{@server.id} AND default_gw=true")
+    if server_aliases and server_aliases.count > 0
+      @server_interface.default_gw = 'false'
+    else
+      @server_interface.default_gw = 'true'
+    end
   end
 
   def edit
