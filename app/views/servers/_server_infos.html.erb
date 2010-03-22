@@ -79,6 +79,7 @@ end%>
 <br/><br/>
 <% end %>
 <%# Puppet END %>
+
 <% if @server.servertype.server_type_hardware.id == 3 and defined?@server_virtual %>
 <h2>Domain0 System:</h2>
   <% if ServerVirtual.getVirtuals(@server.id).count > 0 %>

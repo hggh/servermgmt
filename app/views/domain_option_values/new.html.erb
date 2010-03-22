@@ -1,0 +1,24 @@
+<%= render :partial => "domains/menubar" %>
+<h1>New Domain Option: <%=h @domain.name %></h1>
+<br/>
+
+<% form_for [@domain, @domain_option_value] do |@f| %>
+<table>
+  <tr>
+    <td colspan="8"><%= @f.error_messages %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td><%= @f.select :domain_option_id, DomainOption.find(:all, :order => "name").collect{|d| [d.name,d.id]} %></td>
+    <td><%= @f.text_field :value %></td>
+    <td><%= hidden_field(:domain_option_value, :domain_id , :value => @domain.id ) %><%= @f.submit "Update/Create"  %></td>
+  </tr>
+</table>
+<% end %>
+
+<br/><hr/><br/>
+
+<%= render :partial => "domains/domain_infos" %>
