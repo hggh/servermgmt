@@ -9,6 +9,21 @@ class ServerInterfacesController < ApplicationController
     end
   end
 
+  def selectinterface
+    @interface_selected = Interface.find(:first, :conditions =>[ "name=?" , params[:facter_interface] ] )
+    if @interface_selected
+      interfaceId =  @interface_selected.id
+    else
+      # No Interface found, we will add it into interfaces table
+      @interface = Interface.new({:name => params[:facter_interface]})
+      @interface.save
+      interfaceId = @interface.id
+    end
+    @server_interface = ServerInterface.new
+    @server_interface.interface_id = interfaceId
+    render( :partial => 'interface_list',:layout => false)
+  end
+
   def update
     @server = Server.find(params[:server_id])
     @server_interface = ServerInterface.find(params[:id])

@@ -3,12 +3,15 @@
 <table>
   <tr>
     <td valign="top">Interface: </td>
-    <td valign="top"><%= f.select :interface_id , Interface.find(:all).collect{|d| [d.name,d.id]} %></td>
+    <td valign="top" id="interface_list"><%= render :partial => 'server_interfaces/interface_list' %></td>
     <td>
       <% if Setting.get('puppet') == "true" and  @server.getPuppet %>
       Interfaces from Puppet facts:<br/>
       <% @server.getPuppet.getInterfaces.each do |int| %>
-      <%= int %><br/>
+			<%= link_to_remote int, { :update => "interface_list",
+       :url => { :action => "selectinterface", :facter_interface => int },
+       :method => :post } %>
+      <br/>
       <% end %>
       <% end %>
     </td>
@@ -16,6 +19,14 @@
   <tr>
     <td>Vlan:</td>
     <td><%= f.select :vlan_id , Vlan.find(:all).collect{|d| [d.name,d.id]} %></td>
+		<td>
+			<% if Setting.get('puppet') == "true" and  @server.getPuppet %>
+			Vlans from Puppet facts:<br/>
+			<% @server.getPuppet.getFactValue('vlans').each do |vlan| %>
+			<%= link_to_function vlan, "selectBoxOption(document.getElementById('server_interface_vlan_id'),'text','#{vlan}')" %><br/>
+			<% end %>
+			<% end %>
+		</td>
   </tr>
   <tr>
     <td>IP:</td>
@@ -33,7 +44,7 @@
     <td></td>
     <td colspan="2" style="text-align:right;">
 		<%= hidden_field(:server_interface, :server_id , :value => @server.id ) %>
-		<%= f.submit "Create/Update" %></td>
+		<%= f.submit @server_interface.new_record? ? "Create" : "Update" %></td>
   </tr>
 </table>
 <% end %>
