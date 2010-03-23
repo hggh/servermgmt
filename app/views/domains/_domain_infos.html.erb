@@ -131,10 +131,11 @@ page["domain_records"].replace_html('')
 <% if @domain.domain_option_values.count > 0 %>
  
 <% DomainOption.find(:all).each do |dos| %>
-<% if DomainOptionValue.find(:all, :conditions => "domain_id = #{@domain.id} AND domain_option_id=#{dos.id}").count > 0 %>
+<% domain_options = DomainOptionValue.find(:all, :conditions => "domain_id = #{@domain.id} AND domain_option_id=#{dos.id}") %>
+<% if domain_options.count > 0 %>
   <h3>Domain Option: <%=h dos.name %></h3>
   <ul>
-  <% DomainOptionValue.find(:all, :conditions => "domain_id = #{@domain.id} AND domain_option_id=#{dos.id}").each do |dov| %>
+  <% domain_options.each do |dov| %>
   <li><%=h dov.value %> [<%= link_to "X", domain_domain_option_value_path(@domain,dov),:confirm => 'Are you sure?', :method => :delete %>]</li>
   <% end %>
   </ul>

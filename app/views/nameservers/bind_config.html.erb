@@ -17,6 +17,8 @@ zone "<%= zone.domain.idn %>" IN {
        <% zone.domain.domain_nameservers.each do |ns| %>
        # Nameserver: <%= ns.nameserver.name %>
        <%= ns.nameserver.ip %>;<% end %>
+       <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-transfer" %>
+       <%= dov.value %>;<% end %><% end %>
     };
 };
 <% end %>
@@ -27,6 +29,15 @@ zone "<%= zone.domain.idn %>" IN {
     file "<%= zone.dnszonestorefilename %>";
     # <%= zone.domain.getMaster.nameserver.name %>
     masters { <%= zone.domain.getMaster.nameserver.ip %>; };
+    allow-notify {
+      127.0.0.1;
+      ::1;
+      <% zone.domain.domain_nameservers.each do |ns| %>
+      # Nameserver: <%= ns.nameserver.name %>
+      <%= ns.nameserver.ip %>;<% end %>
+      <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-notify" %>
+      <%= dov.value %>;<% end %><% end %>
+    };
 };
 <% end %>
 <% end %> <%# END of WHILE%>
