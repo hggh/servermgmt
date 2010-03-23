@@ -133,7 +133,7 @@ page["domain_records"].replace_html('')
 <% @domain.domain_options.each do |dos| %>
 <h3>Domain Option: <%=h dos.name %></h3>
 <ul>
-<% dos.domain_option_values.each do |dov| %>
+<% DomainOptionValue.find(:all, :conditions => "domain_id = #{@domain.id} AND domain_option_id=#{dos.id}").each do |dov| %>
 <li><%=h dov.value %> [<%= link_to "X", domain_domain_option_value_path(@domain,dov),:confirm => 'Are you sure?', :method => :delete %>]</li>
 <% end %>
 </ul>
