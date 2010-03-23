@@ -24,13 +24,14 @@
 <th>NS Entry</th>
 <th></th>
 </tr>
-<% @domain.domain_nameservers.each do |dns| %>
+<% DomainNameserver.find(:all, :conditions => "domain_id=#{@domain.id}", :include => :nameserver, :order => "nameservers.name").each do |dns| %>
+<% bgcolor = dns.nstype == "master" ? '#9FCF9F' : '' %>
 <tr>
-<td><%= link_to dns.nameserver.name, dns.nameserver %></td>
-<td><%=h dns.nameserver.ip %></td>
-<td><%=h dns.nstype %></td>
-<td style="text-align:center;"><% if dns.ns_entry.to_i == 1 %>YES<% else %>NO<% end %></td>
-<td><%= link_to "Delete", domain_nameserver_path(@domain,dns), :confirm => 'Are you sure?', :method => :delete %></td>
+<td style="background-color:<%= bgcolor %>;"><%= link_to dns.nameserver.name, dns.nameserver %></td>
+<td style="background-color:<%= bgcolor %>;"><%=h dns.nameserver.ip %></td>
+<td style="background-color:<%= bgcolor %>;"><%=h dns.nstype %></td>
+<td style="text-align:center;background-color:<%= bgcolor %>;"><% if dns.ns_entry.to_i == 1 %>YES<% else %>NO<% end %></td>
+<td style="background-color:<%= bgcolor %>;"><%= link_to "Delete", domain_nameserver_path(@domain,dns), :confirm => 'Are you sure?', :method => :delete %></td>
 </tr>
 <% end %>
 </table>

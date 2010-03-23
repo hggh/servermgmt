@@ -49,14 +49,7 @@ class DomainsController < ApplicationController
             ns_pri['primary_ns'] = 'true'
             ns_pri['ns_entry'] = 1
             ns_pri_save = DomainNameserver.new(ns_pri)
-            if ns_pri_save.save
-              # OK Save was successful, we create an SOA Record
-              domain_soa = DomainSoa.new()
-              domain_soa.domain_id = @domain.id
-              domain_soa.primary_ns = ns_pri_save.nameserver.name
-              domain_soa.mail = 'root@' + @domain.idn
-              domain_soa.save
-            end
+            ns_pri_save.save
           end
         end
         if @domain_nameserver_sec.nameserver_id and @domain_nameserver_sec.nameserver_id.to_s =~ /^[0-9]+$/
