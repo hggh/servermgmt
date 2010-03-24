@@ -69,7 +69,13 @@ class DomainRecordsController < ApplicationController
     respond_to do |format|
       if @domain_record.save
         flash[:notice] = 'Record was successfully created.'
-        format.html { redirect_to(@domain) }
+        format.html {
+          if params[:continue]
+            redirect_to new_domain_domain_record_path(@domain)
+          else
+            redirect_to(@domain)
+          end
+        }
       else
         format.html { render :action => "new" }
       end

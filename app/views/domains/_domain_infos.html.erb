@@ -45,7 +45,7 @@
 <table>
 <tr>
 <th></th>
-    <th>Record Name</th>
+<th>Record Name</th>
 <th>Record TTL</th>
 <th>Record Type</th>
 <th>Record Content</th>
@@ -62,7 +62,7 @@
  
 <tr>
 <td><%= check_box_tag "domain_records_ids[]", rr.id %></td>
-<td style="text-align:center;"><%=h rr.source %></td>
+<td style="text-align:left;"><%=h rr.source %></td>
 <td style="text-align:center;"><%=h rr.ttl %></td>
 <td style="text-align:center;"><%=h rr.domain_record_type.name %></td>
 <td style="text-align:center;"><%=h rr.value %></td>
@@ -83,7 +83,9 @@ page["domain_records"].replace_html('')
 </tr>
 <% end %>
 <tr>
-<td colspan="6"></td>
+<td></td>
+<td><%= button_to_function "Select all" %></td>
+<td colspan="4"></td>
 <td><%= select_tag "multiaction_method", "<option>delete</option>" %>
 <td><%= submit_tag "Do It!" %></td>
 </tr>

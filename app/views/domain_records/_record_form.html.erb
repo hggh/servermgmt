@@ -17,7 +17,14 @@
     <td><%= @f.text_field :ttl, :size => 5 %></td>
     <td><%= @f.text_field :value %></td>
     <td><%= @f.text_field :extra_value, :size => 5 %></td>
-    <td><%= hidden_field(:domain_record, :domain_id , :value => @domain.id ) %><%= @f.submit "Update/Create"  %></td>
+    <td><%= hidden_field(:domain_record, :domain_id , :value => @domain.id ) %>
+		<% if @domain_record.new_record? %>
+		<%= @f.submit "Create" %><br/>
+    <%= submit_tag "Create & Continue", :name => 'continue' %>
+		<% else %>
+		  <%= @f.submit "Update" %>
+		<% end %>
+		</td>
   </tr>
 </table>
 <% end %>
