@@ -5,9 +5,15 @@ require 'active_record'
 
 namespace :servermgmt do
   task :puppetmergehosts => :environment do
-    customerId = 1
-    ostype_default = 1
-    servertype_default = 1
+    sm_customerDB = Customer.find(:first)
+    raise "Could not find any customer at Server Manager. Frist add one customer!" unless sm_customerDB
+    customerId = sm_customerDB.id
+    sm_ostypeDB = ServerOperationSystem.find(:first)
+    raise "Could not find any Server Operation System at Server Manager. First add one OS!" unless sm_ostypeDB
+    ostype_default = sm_ostypeDB.id
+    sm_servertypeDB = Servertype.find(:first)
+    raise "Could not find any Server Type at Server Manager. First add one Server Type!" unless sm_servertypeDB 
+    servertype_default = sm_servertypeDB.id
     pp_hosts = Puppet::Host.find(:all)
     pp_hosts.each do |pp_host|
       fqdn = pp_host.name.to_s.split(/\./,2)
@@ -34,7 +40,7 @@ namespace :servermgmt do
           end
         end
         # fall back
-        sm_ostype = ostype_default if sm_ostype == nil
+        sm_ostype = ostype_default unless sm_ostype
         
         sm_servertype = nil
         if @servertype = pp_host.getFactValue('virtual')
@@ -57,7 +63,7 @@ namespace :servermgmt do
           end
         end
         # fall back
-        sm_servertype = servertype_default if sm_servertype == nil
+        sm_servertype = servertype_default unless sm_servertype
 
         # Create Server at Database
         sm_server = Server.new(:name => fqdn[0], :domain_id => sm_domain_id, :servertype_id => sm_servertype, :server_operation_system_id => sm_ostype, :customer_id => customerId)

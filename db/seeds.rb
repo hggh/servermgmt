@@ -2,6 +2,12 @@ ServerTypeHardware.create_or_update_byname(:name => "Hardware")
 ServerTypeHardware.create_or_update_byname(:name => "Virtual")
 ServerTypeHardware.create_or_update_byname(:name => "Domain0")
 
+if smtype = ServerTypeHardware.find_by_name('Hardware')
+   if ! Servertype.find(:first, :conditions => "server_type_hardware_id = #{smtype.id} AND name='Server'")
+      type = Servertype.create_or_update_byname(:name => 'Server', :server_type_hardware_id => smtype.id)
+   end
+end
+
 User.create_or_update(:id => 1, :username => 'admin', :password => 'admin', :password_confirmation => 'admin', :active => 1)
 
 ServerOperationSystem.create_or_update_byname(:name => "Debian Lenny")
