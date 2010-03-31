@@ -1,4 +1,4 @@
-class Puppet::FactValue < ActiveRecord::Base
+class FactValue < ActiveRecord::Base
   establish_connection "#{RAILS_ENV}_puppet"
   belongs_to :fact_name
   belongs_to :host

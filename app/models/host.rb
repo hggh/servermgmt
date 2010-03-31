@@ -1,4 +1,4 @@
-class Puppet::Host < ActiveRecord::Base
+class Host < ActiveRecord::Base
   establish_connection "#{RAILS_ENV}_puppet"
   has_many :fact_values, :dependent => :destroy
   has_many :fact_names, :through => :fact_values

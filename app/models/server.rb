@@ -46,7 +46,7 @@ class Server < ActiveRecord::Base
   end
 
   def getPuppet
-    hostid = Puppet::Host.find(:first, :conditions => "name = '#{fqdn}'")
+    hostid = Host.find(:first, :conditions => "name = '#{fqdn}'")
     if hostid and Setting.get('puppet') == "true"
       return hostid
     end
@@ -55,8 +55,8 @@ class Server < ActiveRecord::Base
   
   def listIPsNotDocumented
     ips_not_found = Array.new
-    if Setting.get('puppet') == "true" and self.getPuppet
-      self.getPuppet.getIps.each do |ip|
+    if Setting.get('puppet') == "true" and getPuppet
+      getPuppet.getIps.each do |ip|
         sip = Ip.find(:all, :conditions => "server_id = #{id} AND ip = '#{ip}'")
         if sip.count == 0
           ips_not_found.insert(-1,ip)
