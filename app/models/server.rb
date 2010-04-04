@@ -1,6 +1,6 @@
 class Server < ActiveRecord::Base
   
-  before_destroy :clean_server_virtuals
+  before_destroy [ :clean_server_virtuals, :clean_puppet ]
   before_save :make_lowercase
   
   validates_presence_of :customer_id
@@ -73,7 +73,13 @@ class Server < ActiveRecord::Base
         s.destroy  
       end
     end
-    
+
+    def clean_puppet
+      if Setting.get('puppet') == "true" and getPuppet
+        getPuppet.destroy
+      end
+    end
+
     def make_lowercase
       self.name.downcase!
     end

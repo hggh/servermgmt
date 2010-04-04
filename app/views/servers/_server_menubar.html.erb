@@ -1,4 +1,5 @@
-Server: <%= link_to "Index", servers_path %> 
+Server: <%= link_to "Index", servers_path %>  |
+<%= link_to 'New', new_server_path %>
 <% if @server %> |
 <%= link_to 'Show', @server %> | 
 <%= link_to 'Edit', edit_server_path(@server) %> |  

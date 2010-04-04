@@ -2,6 +2,8 @@ class Host < ActiveRecord::Base
   establish_connection "#{RAILS_ENV}_puppet"
   has_many :fact_values, :dependent => :destroy
   has_many :fact_names, :through => :fact_values
+  has_many :resources, :include => :param_values, :dependent => :destroy
+
   def fact(name)
     if fv = self.fact_values.find(:all, :include => :fact_name,
                                       :conditions => "fact_names.name = '#{name}'")
