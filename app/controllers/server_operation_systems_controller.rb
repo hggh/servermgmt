@@ -19,7 +19,7 @@ class ServerOperationSystemsController < ApplicationController
   
   def di
     @serveroperationsystem = ServerOperationSystem.find(params[:id])
-       render :action => "di", :layout => "di-layout"
+       render :action => "di", :layout => false
   end
 
   def new

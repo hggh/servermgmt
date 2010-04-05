@@ -48,5 +48,14 @@ class Host < ActiveRecord::Base
     end
     ipaddresses
   end
-  
+
+  def get_smserver
+    hostname = name.split(/\./, 2)
+    server = Server.find(:first, :include => :domain, :conditions => "servers.name = '#{hostname[0]}' AND domains.name = '#{hostname[1]}'")
+    if server
+      return server
+    end
+    nil
+  end
+
 end

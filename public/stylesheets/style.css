@@ -491,3 +491,9 @@ h2, .wiki h1 {
 h4 {
     border-bottom: dotted 1px #c0c0c0;
 }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}

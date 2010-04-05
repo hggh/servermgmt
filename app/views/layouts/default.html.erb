@@ -13,7 +13,7 @@
 <div id="top-menu">
 	<ul>
 		<li><%= link_to "Home", :controller => "home" %></li>
-		<li><%= link_to "Settings", :controller => "home", :action => "settings" %>
+		<li><%= link_to "Settings", :controller => "home", :action => "settings" %></li>
 		<% if @current_user %>
 		<li><%= link_to "Logout", logout_path %></li>
 		<% end %>
@@ -31,6 +31,9 @@
     <div id="quick-search">
         <% form_tag({:controller => 'search', :action => 'index'}, :method => :get ) do %>
         <%= link_to 'Search', {:controller => 'search', :action => 'index'} %>:<%= text_field_tag 'q', @question, :size => 20, :class => 'small' %>
+        <% if Setting.get('puppet') == "true" %>
+        <%= select_tag(:question_type, options_for_select([['Server/IPs', ''], ['Puppet Facts', 'facts'], ['Puppet Fact Values', 'fact_values']], @question_type)) %>
+        <% end %> <%# End of Puppet %>
         <% end %>
     </div>
 	

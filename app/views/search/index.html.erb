@@ -4,6 +4,51 @@
 <% if @servers && @servers.count > 0 %>
 <%= render :partial => 'servers/server_index' %>
 
+<% elsif @fact_values and @fact_values.count > 0 %>
+
+<table>
+	<tr>
+		<th>Server</th>
+		<th>Fact</th>
+		<th>Value</th>
+	</tr>
+<% @fact_values.each do |fact| %>
+  <tr>
+  	<td>
+  		<% if fact.host.get_smserver %>
+			<%= link_to fact.host.name, fact.host.get_smserver %>
+			<% else %> 
+  		<%=h fact.host.name %>
+			<% end %>
+		</td>
+		<td><%=h fact.fact_name.name %></td>
+		<td><%=h fact.value %></td>
+  </tr>
+<% end %>
+</table>
+
+<% elsif @facts and @facts.count > 0 %>
+
+<table>
+	<tr>
+		<th>Fact</th>
+	</tr>
+	<% @facts.each do |fact| %>
+	<tr>
+		<td valign="top"><%=h fact.name %></td>
+		<td>
+			<% fact.fact_values.each do |value| %>
+			<%=h value.value %> -      <% if value.host.get_smserver %>
+      <%= link_to value.host.name, value.host.get_smserver %>
+      <% else %> 
+      <%=h value.host.name %>
+      <% end %><br/>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
 <% else %>
 
 Nothing found for: <%=h @question %>
