@@ -1,103 +1,56 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :server_groups
-
-  map.resources :configkeys
+Servermgmt::Application.routes.draw do
+  resources :server_groups
+  resources :configkeys
+  resources :configkey_values
+  match 'home/settings' => 'static#page', :id => 'settings'
+  resources :server_operation_systems
+  resources :customers
+  resources :servertypes
+  resources :domains
+  match 'server_macs' => 'server_macs#index'
+  resources :domains do
   
-  map.resources :configkey_values
-
-  map.connect 'home/settings', :controller => 'static', :action => 'page', :id => 'settings'
   
-  map.resources :server_operation_systems
+      resources :domain_records do
+        collection do
+    put :multiaction
+    end
+    
+    
+    end
 
-  map.resources :customers
-
-  map.resources :servertypes
-
-  map.resources :domains
-
-  map.connect 'server_macs', :controller => 'server_macs', :action => 'index'
-
-  map.resources :domains do |domain|
-    domain.resources :domain_records, :controller => "domain_records", :collection => { :multiaction => :put }
-
-    domain.resources :nameservers, :controller => "domain_nameservers"
-    domain.resources :domain_soas, :controller => "domain_soas"
-    domain.resources :domain_option_values
-  end 
-
-  map.resources :ip_types
-
-  map.resources :servers do |server|
-    server.resources :ips
-    server.resources :macs, :controller => "server_macs"
-    server.resources :server_interfaces, :controller => "server_interfaces", :collection => { :selectinterface => :post }
-    server.resources :server_key_values, :controller => "server_key_values"
+    resources :nameservers
+    resources :domain_soas
+    resources :domain_option_values
   end
 
-  map.resources :home
-  
-  map.resources :search
-
-  map.resources :networks
-  
-  map.resources :users
-
-  map.resources :settings
-
-  map.connect 'nameserver/getconfig/:nameserver_name/:server_system/:nameserver_config/',
-      :controller => 'nameservers',
-      :action => 'getconfig',
-      :requirements => {
-      :nameserver_name => /[\w\.\-_]+/,
-      :server_system => /\w+/,
-      :nameserver_config => /\w+/
-      }
-
-  map.resources :nameservers
-  
-  map.login 'login', :controller => 'user_login', :action => 'login'
-  
-  map.logout 'logout', :controller => 'user_login', :action => 'logout'
+  resources :ip_types
+  resources :servers do
   
   
-  # The priority is based upon order of creation: first created -> highest priority.
+      resources :ips
+    resources :macs
+    resources :server_interfaces do
+        collection do
+    post :selectinterface
+    end
+    
+    
+    end
 
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
+    resources :server_key_values
+  end
 
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-  map.root :controller => "home"
-
-  # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  resources :home
+  resources :search
+  resources :networks
+  resources :users
+  resources :settings
+  match 'nameserver/getconfig/:nameserver_name/:server_system/:nameserver_config/' => 'nameservers#getconfig', :constraints => { :nameserver_name => /[\w\.\-_]+/, :server_system => /\w+/, :nameserver_config => /\w+/ }
+  resources :nameservers
+  match 'login' => 'user_login#login', :as => :login
+  match 'logout' => 'user_login#logout', :as => :logout
+  match '/' => 'home#index'
+  match '/:controller(/:action(/:id))'
 end
+

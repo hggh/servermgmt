@@ -18,8 +18,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :session_expiry
   before_filter :login_required
-  
-  filter_parameter_logging :passwd, :password, :password_confirmation
+
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
   def render_404

@@ -1,0 +1,1 @@
+Servermgmt::Application.config.secret_token = "dsfjkldasfasfdjkl435jo543901790fjdsklafjdosfu9032913odagdsggdffd"
