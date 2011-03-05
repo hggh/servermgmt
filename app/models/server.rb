@@ -64,7 +64,7 @@ class Server < ActiveRecord::Base
   end
   
   private
-    def clean_server_virtuals    
+    def clean_server_virtuals
       @server_virts_hw = ServerVirtual.find(:all, :conditions => "hardware_id = #{id} OR virtual_id = #{id}")
       @server_virts_hw.each do |s|
         s.destroy  

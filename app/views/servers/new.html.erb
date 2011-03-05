@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td>Server Type:</td>
-    <td><%= f.select :servertype_id, Servertype.find(:all).collect{|d| ["#{d.name} (#{d.server_type_hardware.name})",d.id]} %></td>
+    <td><%= f.select :servertype_id, Servertype.find(:all).collect{|d| ["#{d.name}",d.id]} %></td>
   <tr>
     <td>Operation System:</td>
     <td><%= f.select :server_operation_system_id, ServerOperationSystem.find(:all).collect{|d| [d.name,d.id]} %></td>

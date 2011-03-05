@@ -11,7 +11,6 @@
 <% for servertype in @servertypes %>
   <tr>
     <td><%=h servertype.name %></td>
-		<td><%=h servertype.server_type_hardware.name %></td>
     <td><%= link_to 'Show', servertype %></td>
     <td><%= link_to 'Edit', edit_servertype_path(servertype) %></td>
     <td><%= link_to 'Destroy', servertype, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -12,12 +12,14 @@
     <td><%=h @server.comment %></td>
   </tr>
   <tr>
-    <td>Server Type:</td>
-    <td><%=h @server.servertype.name %> ( <%=h @server.servertype.server_type_hardware.name %> )</td>
+    <td>Type:</td>
+    <td><%=h @server.servertype.name %></td>
   <tr>
     <td>Operation System:</td>
     <td><%=h @server.server_operation_system.name %></td>
   </tr>
+
+<% if false %>
 	<% if @server.servertype.server_type_hardware.id == 2 %>
 	<tr>
 		<td>Hardware Platform:</td>
@@ -30,6 +32,8 @@
 		</td>
 	</tr>
 	<% end %>
+
+<% end %>
   <tr>
     <td>Server Groups</td>
     <td>
@@ -76,6 +80,7 @@ end%>
 <% end %>
 <%# Puppet END %>
 
+<% if false %>
 <% if @server.servertype.server_type_hardware.id == 3 and defined?@server_virtual %>
 <h2>Domain0 System:</h2>
   <% if ServerVirtual.getVirtuals(@server.id).count > 0 %>
@@ -98,7 +103,7 @@ end%>
 	 - no more virtual Servers found -
 	 <% end %>
 <% end %>
- 
+<% end %>
 
 <h2>IP Addresses:</h2>
 <% if @server.ips.count > 0 %>

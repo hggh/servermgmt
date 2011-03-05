@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305122811) do
+ActiveRecord::Schema.define(:version => 20110305131134) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -194,12 +194,6 @@ ActiveRecord::Schema.define(:version => 20110305122811) do
     t.text     "config_preseed"
   end
 
-  create_table "server_type_hardwares", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "server_virtuals", :force => true do |t|
     t.integer  "hardware_id"
     t.integer  "virtual_id"
@@ -221,7 +215,6 @@ ActiveRecord::Schema.define(:version => 20110305122811) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "server_type_hardware_id"
   end
 
   create_table "settings", :force => true do |t|

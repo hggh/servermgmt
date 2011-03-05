@@ -9,7 +9,7 @@
   <tr>
     <td><%= link_to "#{server.name}.#{server.domain.name}", server %></td>
     <td>
-      <%=h server.servertype.server_type_hardware.name %>
+      <%=h server.servertype.name %>
       <% if server.getVirtualServers.count > 0 %>
       (<%=h server.getVirtualServers.count %>)
       <% end %>

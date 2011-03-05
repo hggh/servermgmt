@@ -65,16 +65,7 @@
 <td style="text-align:center;"><%=h rr.value %></td>
 <td style="text-align:center;"><%=h rr.extra_value %></td>
 <td>
-<%= link_to_remote "Edit",{ :update => "domain_records",
-    :url => edit_domain_domain_record_path(@domain,rr), :method => :get,
-    :after => [ "new Effect.toggle('rr_edit_show_#{rr.id}');", "new Effect.toggle('rr_edit_hide_#{rr.id}');"] } ,
-    :id => "rr_edit_show_#{rr.id}" %>
- 
-<%= link_to_function ("Hide Edit", nil, :id => "rr_edit_hide_#{rr.id}", :style => "display:none;") do |page|
-page["rr_edit_hide_#{rr.id}"].toggle()
-page["rr_edit_show_#{rr.id}"].toggle()
-page["domain_records"].replace_html('')
- end %>
+Edit
     </td>
 <td><%= link_to "Delete", domain_domain_record_path(@domain,rr),:confirm => 'Are you sure?', :method => :delete %></td>
 </tr>

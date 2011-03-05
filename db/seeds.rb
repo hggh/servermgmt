@@ -1,17 +1,14 @@
-ServerTypeHardware.create_or_update_byname(:name => "Hardware")
-ServerTypeHardware.create_or_update_byname(:name => "Virtual")
-ServerTypeHardware.create_or_update_byname(:name => "Domain0")
-
-if smtype = ServerTypeHardware.find_by_name('Hardware')
-   if ! Servertype.find(:first, :conditions => "server_type_hardware_id = #{smtype.id} AND name='Server'")
-      type = Servertype.create_or_update_byname(:name => 'Server', :server_type_hardware_id => smtype.id)
-   end
-end
+Servertype.create_or_update_byname(:name => 'Server / Hardware')
+Servertype.create_or_update_byname(:name => 'Server / Virtual')
+Servertype.create_or_update_byname(:name => 'Printer / Hardware')
 
 User.create_or_update(:id => 1, :username => 'admin', :password => 'admin', :password_confirmation => 'admin', :active => 1)
 
 ServerOperationSystem.create_or_update_byname(:name => "Debian Lenny")
 ServerOperationSystem.create_or_update_byname(:name => "Debian Etch")
+ServerOperationSystem.create_or_update_byname(:name => "Debian Squeeze")
+ServerOperationSystem.create_or_update_byname(:name => "- unknown -")
+
 
 DomainOption.create_or_update_byname(:name => "allow-notify")
 DomainOption.create_or_update_byname(:name => "allow-transfer")
