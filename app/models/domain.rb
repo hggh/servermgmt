@@ -12,7 +12,7 @@ class Domain < ActiveRecord::Base
   has_many :servers
 
 
-  before_save [ :make_lowercase, :bump_serial ]
+  before_save :make_lowercase, :bump_serial
 
   validates_presence_of :name
   validates_uniqueness_of :name

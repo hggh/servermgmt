@@ -4,7 +4,7 @@ class Nameserver < ActiveRecord::Base
   validates_presence_of :ip
   validates_presence_of :name
   validate :checkip
-  
+
   has_many :domain_nameservers, :dependent => :destroy
 
   after_update :update_domain_serial
@@ -16,7 +16,7 @@ class Nameserver < ActiveRecord::Base
       dd.touch
     end
   end
-  
+
   def checkip
     if ServerManager.new.is_ipaddress(ip)
       return true

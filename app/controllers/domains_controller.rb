@@ -40,7 +40,7 @@ class DomainsController < ApplicationController
 
     respond_to do |format|
       if @domain.save
-        if @domain_nameserver_pri.nameserver_id and @domain_nameserver_pri.nameserver_id.to_s =~ /^[0-9]+$/
+        if @domain_nameserver_pri and @domain_nameserver_pri.nameserver_id and @domain_nameserver_pri.nameserver_id.to_s =~ /^[0-9]+$/
           @nameserver = Nameserver.find(@domain_nameserver_pri.nameserver_id.to_i)
           if @nameserver
             ns_pri = Hash.new
@@ -52,7 +52,7 @@ class DomainsController < ApplicationController
             ns_pri_save.save
           end
         end
-        if @domain_nameserver_sec.nameserver_id and @domain_nameserver_sec.nameserver_id.to_s =~ /^[0-9]+$/
+        if @domain_nameserver_sec and @domain_nameserver_sec.nameserver_id and @domain_nameserver_sec.nameserver_id.to_s =~ /^[0-9]+$/
           @nameserver = Nameserver.find(@domain_nameserver_sec.nameserver_id.to_i)
           if @nameserver
             ns_sec = Hash.new
@@ -64,7 +64,8 @@ class DomainsController < ApplicationController
             ns_sec_save.save
           end
         end
-
+        # Bump up serial first time - so NS get's notified
+        @domain.touch
         flash[:notice] = 'Domain was successfully created.'
         format.html { redirect_to(@domain ) }
       else

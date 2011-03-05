@@ -5,13 +5,19 @@
   <tr>
     <th>Name</th>
     <th>IP</th>
-		<th>Domains</th>
+    <th>Domains</th>
+    <% if Setting.get('mcollective_nameserver') == "true" %>
+      <th>Mcollective Host</th>
+    <% end %>
   </tr>
 <% @nameservers.each do |ns| %>
   <tr>
   	<td><%= link_to "#{ns.name}", nameserver_path(ns) %></td>
 		<td><%=h ns.ip %></td>
 		<td style="text-align:center;"><%=h ns.domain_nameservers.count %></td>
+                <% if Setting.get('mcollective_nameserver') == "true" %>
+                  <td style="text-align:center;"><%= ns.mcollective_host %></td>
+                <% end %>
 		<td><%= link_to "Edit", edit_nameserver_path(ns) %></td>
 		<td><%= link_to 'Delete', ns, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

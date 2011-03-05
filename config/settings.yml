@@ -25,6 +25,6 @@ dns_soa_expire:
 dns_soa_negative_ttl:
   default: 172800
   boolean: 0
-mcollective:
+mcollective_nameserver:
   default: 0
   boolean: 1

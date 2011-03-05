@@ -67,6 +67,10 @@ class NameserversController < ApplicationController
   def update
     @nameserver = Nameserver.find(params[:id])
 
+    if Setting.get("mcollective_nameserver") != "true"
+      @nameserver.mcollective_host = nil
+    end
+
     respond_to do |format|
       if @nameserver.update_attributes(params[:nameserver])
         flash[:notice] = 'Nameserver was successfully updated.'

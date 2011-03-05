@@ -5,9 +5,15 @@
         <%= f.error_messages %>
 <table>
   <tr>
-  	<td>Name:</td>
-		<td><%= f.text_field :name %></td>
+    <td>Name:</td>
+    <td><%= f.text_field :name %></td>
   </tr>
+<% if Setting.get('mcollective_nameserver') == "true" %>
+  <tr>
+    <td>MCollective Host:</td>
+    <td><%= f.text_field :mcollective_host %></td>
+  </tr>
+<% end %>
   <tr>
     <td>IP Address:</td>
     <td><%= f.text_field :ip %></td>

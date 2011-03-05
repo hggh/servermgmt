@@ -6,6 +6,12 @@
     <td>Name:</td>
     <td><%=h @nameserver.name %></td>
   </tr>
+<% if Setting.get('mcollective_nameserver') == "true" %>
+  <tr>
+    <td>MCollective Host:</td>
+    <td><%= @nameserver.mcollective_host %></td>
+  </tr>
+<% end %>
   <tr>
     <td>IP Address:</td>
     <td><%=h @nameserver.ip %></td>

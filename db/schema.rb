@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305131134) do
+ActiveRecord::Schema.define(:version => 20110305174619) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -119,10 +119,10 @@ ActiveRecord::Schema.define(:version => 20110305131134) do
 
   create_table "nameservers", :force => true do |t|
     t.string   "name"
-    t.string   "ip",          :limit => nil
+    t.string   "ip",               :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "mcollective",                :default => true
+    t.string   "mcollective_host", :limit => 100
   end
 
   create_table "networks", :force => true do |t|

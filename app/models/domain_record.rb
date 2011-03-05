@@ -5,7 +5,7 @@ class DomainRecord < ActiveRecord::Base
   validate :check_value_record
   validates_numericality_of :ttl
 
-	belongs_to :domain
+  belongs_to :domain
   belongs_to :domain_record_type
 
   before_destroy :update_serial
