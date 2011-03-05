@@ -2,7 +2,6 @@
   <tr>
     <th>Name</th>
     <th>Type</th>
-    <th>Customer</th>
     <th>OS</th>
   </tr>
 
@@ -15,7 +14,6 @@
       (<%=h server.getVirtualServers.count %>)
       <% end %>
     </td>
-    <td><%=h server.customer.name %></td>
     <td><%=h server.server_operation_system.name %></td>
     <td><%= link_to 'Show', server %></td>
     <td><%= link_to 'Edit', edit_server_path(server) %></td>

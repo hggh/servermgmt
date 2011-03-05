@@ -4,10 +4,6 @@
   <%= f.error_messages %>
 <table>
   <tr>
-    <td>Customer:</td>
-    <td><%= f.select :customer_id,Customer.find(:all).collect{|d| [d.name,d.id]} %></td>
-  </tr>
-  <tr>
     <td>Network:</td>
     <td><%=f.text_field :network %></td>
   </tr>

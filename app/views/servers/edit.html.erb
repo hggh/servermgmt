@@ -4,17 +4,13 @@
 <%= form_for(@server) do |f| %>
         <%= f.error_messages %>
 <table>
-  <tr>
-    <td>Customer:</td>
-    <td><%= f.select :customer_id,Customer.find(:all).collect{|d| [d.name,d.id]} %></td>
-  </tr>
    <tr>
     <td>Server:</td>
     <td><%= f.text_field :name %></td>
   </tr>
   <tr>
     <td>Domain:</td>
-    <td><%= f.select :domain_id, Domain.DomainbyCust(@server.customer_id).collect{|d| [d.name,d.id]} %></td>
+    <td><%= f.select :domain_id, Domain.find(:all).collect{|d| [d.name,d.id]} %></td>
   </tr>
   <tr>
     <td valign="top">Comment:</td>

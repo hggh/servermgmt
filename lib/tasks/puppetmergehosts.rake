@@ -5,9 +5,6 @@ require 'active_record'
 
 namespace :servermgmt do
   task :puppetmergehosts => :environment do
-    sm_customerDB = Customer.find(:first)
-    raise "Could not find any customer at Server Manager. Frist add one customer!" unless sm_customerDB
-    customerId = sm_customerDB.id
     sm_ostypeDB = ServerOperationSystem.find(:first)
     raise "Could not find any Server Operation System at Server Manager. First add one OS!" unless sm_ostypeDB
     ostype_default = sm_ostypeDB.id
@@ -24,7 +21,7 @@ namespace :servermgmt do
         if @domain = Domain.find_by_name(fqdn[1])
           sm_domain_id = @domain.id
         else
-          @domain = Domain.new(:customer_id => customerId, :name => fqdn[1])
+          @domain = Domain.new(:name => fqdn[1])
           @domain.save
           sm_domain_id = @domain.id
         end
@@ -66,7 +63,7 @@ namespace :servermgmt do
         sm_servertype = servertype_default unless sm_servertype
 
         # Create Server at Database
-        sm_server = Server.new(:name => fqdn[0], :domain_id => sm_domain_id, :servertype_id => sm_servertype, :server_operation_system_id => sm_ostype, :customer_id => customerId)
+        sm_server = Server.new(:name => fqdn[0], :domain_id => sm_domain_id, :servertype_id => sm_servertype, :server_operation_system_id => sm_ostype )
         if sm_server.save
           puts " Saved: #{pp_host.name}"
         else

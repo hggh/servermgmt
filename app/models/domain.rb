@@ -1,20 +1,19 @@
 class Domain < ActiveRecord::Base
   require 'idn'
   include IDN
-  
+
   default_scope :order => :name
-  
+
   has_many :domain_records, :dependent => :destroy
   has_many :domain_nameservers, :dependent => :destroy
   has_many :domain_option_values, :dependent => :destroy
   has_many :domain_options, :through => :domain_option_values
   has_one :domain_soa, :dependent => :destroy
   has_many :servers
-  belongs_to :customer
-  
+
+
   before_save [ :make_lowercase, :bump_serial ]
 
-  validates_presence_of :customer_id
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_length_of :name, :minimum => 3
@@ -58,11 +57,6 @@ class Domain < ActiveRecord::Base
   def idn
     Idna.toASCII(self.name)
   end
-  
-  def self.DomainbyCust(customerid)
-    Domain.find(:all, :conditions => "customer_id = #{customerid}")
-  end
-
 
   private
     def make_lowercase

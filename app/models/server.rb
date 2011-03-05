@@ -2,8 +2,7 @@ class Server < ActiveRecord::Base
   
   before_destroy [ :clean_server_virtuals, :clean_puppet ]
   before_save :make_lowercase
-  
-  validates_presence_of :customer_id
+
   validates_presence_of :name
   validates_presence_of :servertype_id
   validates_presence_of :server_operation_system_id
@@ -13,10 +12,6 @@ class Server < ActiveRecord::Base
   validates_format_of :name, :with => /^[0-9A-Za-z\-]+$/
 
 
-  
-  
-  
-  belongs_to :customer
   belongs_to :servertype
   belongs_to :server_operation_system
   belongs_to :domain

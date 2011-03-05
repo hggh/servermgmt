@@ -4,17 +4,15 @@
 <table>
   <tr>
     <th>Network</th>
-		<th>Customer</th>
     <th>Comment</th>
-		<th>Usage</th>
+    <th>Usage</th>
   </tr>
 
 <% for network in @networks %>
   <tr>
     <td><%= link_to network.network, network  %></td>
-		<td><%=h network.customer.name %></td>
     <td><%=h network.comment %></td>
-		<td><%=h network.ips.count %><% if network.ipversion == 4%>/<%=h network.size %><% end %></td>
+    <td><%=h network.ips.count %><% if network.ipversion == 4%>/<%=h network.size %><% end %></td>
     <td><%= link_to 'Show', network %></td>
     <td><%= link_to 'Edit', edit_network_path(network) %></td>
     <td><%= link_to 'Delete', network, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -4,7 +4,6 @@ Servermgmt::Application.routes.draw do
   resources :configkey_values
   match 'home/settings' => 'static#page', :id => 'settings'
   resources :server_operation_systems
-  resources :customers
   resources :servertypes
   resources :domains
   match 'server_macs' => 'server_macs#index'

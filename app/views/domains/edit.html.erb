@@ -4,10 +4,6 @@
 <%= form_for(@domain) do |f| %>
         <%= f.error_messages %>
 <table>
-  <tr>
-    <td>Customer:</td>
-    <td><%= f.select :customer_id,Customer.find(:all).collect{|d| [d.name,d.id]} %></td>
-  </tr>
    <tr>
     <td>Name:</td>
     <td><%= f.text_field :name %></td>

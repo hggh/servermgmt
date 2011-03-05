@@ -1,20 +1,16 @@
 class Network < ActiveRecord::Base
   default_scope :order => :network
-  
-	validate :check_network
-	validates_presence_of :comment
-	validates_length_of :comment, :minimum => 4
-  validates_presence_of :customer
-  
-  validates_uniqueness_of :network, :scope => :customer_id, :if => :check_network
+
+  validate :check_network
+  validates_presence_of :comment
+  validates_length_of :comment, :minimum => 4
+
+
+  validates_uniqueness_of :network, :if => :check_network
   #FIXME: We should check if Gateway is in the network range!
-  
-  belongs_to :customer
-	has_many :ips, :dependent => :destroy
-  
-  def self.NetworkbyCust(customerid)
-    Network.find(:all, :conditions => "customer_id = #{customerid}")
-  end
+
+
+  has_many :ips, :dependent => :destroy
 
   def hostmask
     @hostmask = Network.find_by_sql("SELECT hostmask(network) AS hostmask FROM networks WHERE id=#{id}")

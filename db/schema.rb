@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110226224430) do
+ActiveRecord::Schema.define(:version => 20110305122811) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -23,12 +24,6 @@ ActiveRecord::Schema.define(:version => 20110226224430) do
   create_table "configkeys", :force => true do |t|
     t.string   "name"
     t.string   "default"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "customers", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,7 +87,6 @@ ActiveRecord::Schema.define(:version => 20110226224430) do
     t.integer  "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id"
   end
 
   create_table "interface_options", :force => true do |t|
@@ -120,24 +114,23 @@ ActiveRecord::Schema.define(:version => 20110226224430) do
     t.integer  "ip_type_id"
     t.integer  "server_id"
     t.integer  "is_primary"
-    t.inet     "ip"
+    t.string   "ip",         :limit => nil
   end
 
   create_table "nameservers", :force => true do |t|
     t.string   "name"
-    t.inet     "ip"
+    t.string   "ip",          :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "mcollective", :default => true
+    t.boolean  "mcollective",                :default => true
   end
 
   create_table "networks", :force => true do |t|
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id"
-    t.inet     "gw"
-    t.cidr     "network"
+    t.string   "gw",         :limit => nil
+    t.string   "network",    :limit => nil
   end
 
   create_table "server_group_members", :force => true do |t|
@@ -220,7 +213,6 @@ ActiveRecord::Schema.define(:version => 20110226224430) do
     t.integer  "servertype_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "customer_id"
     t.integer  "server_operation_system_id"
     t.integer  "domain_id"
   end
