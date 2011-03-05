@@ -56,8 +56,10 @@ class DomainRecordsController < ApplicationController
       if @domain_record.update_attributes(params[:domain_record])
         flash[:notice] = 'Domain Record was successfully updated.'
         format.html { redirect_to(@domain) }
+        format.xml {}
       else
         format.html { render :action => "edit" }
+        format.xml {}
       end
     end
   end

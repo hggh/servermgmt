@@ -30,6 +30,12 @@ class ApplicationController < ActionController::Base
 
 
   def login_required
+    if params[:secret_key] and params[:secret_key].size > 10
+      u = User.find_by_secret_key(params[:secret_key])
+      if u and u.active == 1 and u.secret_key.size > 10
+        return true
+      end
+    end
     if session[:user] and User.cookie_checkauth(session[:user])
       @current_user = User.cookie_checkauth(session[:user])
       return true

@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
     server.resources :ips
     server.resources :macs, :controller => "server_macs"
     server.resources :server_interfaces, :controller => "server_interfaces", :collection => { :selectinterface => :post }
+    server.resources :server_key_values, :controller => "server_key_values"
   end
 
   map.resources :home

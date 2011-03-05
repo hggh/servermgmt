@@ -15,8 +15,13 @@ ServerOperationSystem.create_or_update_byname(:name => "Debian Etch")
 
 DomainOption.create_or_update_byname(:name => "allow-notify")
 DomainOption.create_or_update_byname(:name => "allow-transfer")
+DomainOption.create_or_update_byname(:name => "allow-update")
 
 IpType.create_or_update_byname(:name => "Host")
+
+ServerKey.create_or_update(:id => 1, :ktype => "Puppet PEM Key")
+ServerKey.create_or_update(:id => 2, :ktype => "OpenSSH RSA Key")
+ServerKey.create_or_update(:id => 3, :ktype => "OpenSSH RSA Public Key")
 
 DomainRecordType.create_or_update(:id => 1, :name => "A")
 DomainRecordType.create_or_update(:id => 2, :name => "AAAA")

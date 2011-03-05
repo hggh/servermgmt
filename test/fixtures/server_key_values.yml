@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  server_id: 1
+  server_key_id: 1
+  kvalue: MyText
+
+two:
+  server_id: 1
+  server_key_id: 1
+  kvalue: MyText

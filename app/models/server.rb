@@ -26,6 +26,8 @@ class Server < ActiveRecord::Base
   has_many :configkey_values, :dependent => :destroy
   has_many :server_group_members, :dependent => :destroy
   has_many :server_interfaces, :dependent => :destroy
+  has_many :server_key_values, :dependent => :destroy
+  has_many :server_keys, :through => :server_key_values
   
   def self.getFreeVirtualServers
     servers_free = Server.find(:all, :joins => " LEFT JOIN servertypes ON servertypes.id = servers.servertype_id LEFT JOIN server_virtuals ON server_virtuals.virtual_id = servers.id " , :conditions => "servertypes.server_type_hardware_id = 2 AND server_virtuals.virtual_id IS NULL")

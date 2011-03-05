@@ -20,6 +20,11 @@ zone "<%= zone.domain.idn %>" IN {
        <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-transfer" %>
        <%= dov.value %>;<% end %><% end %>
     };
+    
+    allow-update {
+       <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-update" %>
+       <%= dov.value %>;<% end %><% end %>
+    };
 };
 <% end %>
 <% if zone.nstype == "slave" and zone.domain.getMaster %>

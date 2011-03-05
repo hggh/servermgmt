@@ -1,0 +1,24 @@
+<%= render :partial => "servers/server_menubar" %>
+<h1>Server - Show: <%=h @server.name %></h1>
+<br/>
+<h2>Add Key to Server</h2>
+<% form_for  ([@server, @key])  do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <tr>
+      <td>Key Type</td>
+      <td><%= f.select :server_key_id, ServerKey.find(:all).collect{|d| [d.ktype, d.id]} %> </td>
+    </tr>
+    <tr>
+      <td><%= f.label :kvalue %></td>
+      <td><%= f.text_area :kvalue %></td>
+    </tr>
+    <tr>
+      <td colspan="2"> <%= hidden_field(:server_key_value, :server_id , :value => @server.id ) %><%= f.submit "Create" %></td>
+    </tr>
+  </table>
+<% end %>
+<hr/>
+<br/>
+<h2>Server: <%=h @server.name %></h2>
+<%= render :partial => "servers/server_infos" %>

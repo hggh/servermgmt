@@ -57,6 +57,7 @@ class ServersController < ApplicationController
     @server_virtual = ServerVirtual.new
     respond_to do |format|
       format.html # show.html.erb
+      format.xml
     end
   end
   
@@ -76,8 +77,10 @@ class ServersController < ApplicationController
       if @server.save
         flash[:notice] = 'Server was successfully created.'
         format.html { redirect_to(@server) }
+        format.xml  { render :xml => @server, :status => :created, :location => @server }
       else
         format.html { render :action => "new" }
+        format.xml  { render :xml => @server.errors, :status => :unprocessable_entity }
       end
     end
   end

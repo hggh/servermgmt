@@ -231,3 +231,21 @@ end%>
  - no puppet configuration keys found
 <% end %>
 <% end %>
+
+ <br/><br/>
+
+ <hr/>
+ <h2>
+   Server Keys
+ </h2>
+
+ <% if @server.server_key_values.count > 0  %>
+ <table border="0">
+  <% @server.server_key_values.each do |skv| %>
+   <tr>
+     <td><%= skv.server_key.ktype %> </td>
+     <td><%= skv.kvalue %></td>
+   </tr>
+  <% end  %>
+ </table>
+ <%  end %>

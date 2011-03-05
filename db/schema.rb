@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100317171458) do
+ActiveRecord::Schema.define(:version => 20110226224430) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20100317171458) do
     t.inet     "ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "mcollective", :default => true
   end
 
   create_table "networks", :force => true do |t|
@@ -167,6 +168,20 @@ ActiveRecord::Schema.define(:version => 20100317171458) do
     t.integer  "ip_id"
     t.boolean  "alias"
     t.boolean  "default_gw"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "server_key_values", :force => true do |t|
+    t.integer  "server_id"
+    t.integer  "server_key_id"
+    t.text     "kvalue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "server_keys", :force => true do |t|
+    t.string   "ktype"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -231,6 +246,7 @@ ActiveRecord::Schema.define(:version => 20100317171458) do
     t.integer  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "secret_key"
   end
 
   create_table "vlans", :force => true do |t|
