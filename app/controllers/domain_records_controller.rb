@@ -29,6 +29,7 @@ class DomainRecordsController < ApplicationController
     respond_to do |format|
       if request.xhr?
         format.html { render :partial => "record_form" }
+        format.js { render :layout => false }
       else
         format.html { render }
       end

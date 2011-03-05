@@ -497,3 +497,16 @@ h4 {
   background-color: red;
   display: table;
 }
+
+
+#overlay_display {
+   margin-left:30px;
+   background-color: #c0c0c0;
+   padding-top:40px;
+   display: none;
+   z-index:300;
+   position: fixed;
+   width: 95%;
+   top: 100px;
+}
+
