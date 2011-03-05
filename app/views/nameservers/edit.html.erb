@@ -1,7 +1,7 @@
 <%= render :partial => "menubar" %>
 <h1>Nameserver - Edit: <%= @nameserver.name %></h1>
 
-<% form_for(@nameserver) do |f| %>
+<%= form_for(@nameserver) do |f| %>
         <%= f.error_messages %>
 <table>
   <tr>

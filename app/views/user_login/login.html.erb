@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<% form_for @user, :url => { :action => "trylogin" } do |f| %>
+<%= form_for @user, :url => { :action => "trylogin" } do |f| %>
   <%= f.error_messages %>
 <table>
 	<tr>

@@ -1,7 +1,7 @@
 <%= render :partial => "menubar" %>
 <h1>Server Group - New Member: <%=h @server_group.name %></h1>
 <br/>
-<% form_for @server_group_member, :url => { :action => "addmember" } do |f| %>
+<%= form_for @server_group_member, :url => { :action => "addmember" } do |f| %>
 <table>
   <tr>
     <td>Name:</td>

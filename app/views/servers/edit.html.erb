@@ -1,7 +1,7 @@
 <%= render :partial => "server_menubar" %>
 <h1>Server - Edit: <%=h @server.name %></h1>
 
-<% form_for(@server) do |f| %>
+<%= form_for(@server) do |f| %>
         <%= f.error_messages %>
 <table>
   <tr>

@@ -2,7 +2,7 @@
 <h1>Server - Show: <%=h @server.name %></h1>
 <br/>
 <h2>Add MAC Address to Server</h2>
-<% form_for @server_mac do |f| %>
+<%= form_for @server_mac do |f| %>
   <%= f.error_messages %>
   <table>
       <td><%= f.label :mac %></td>

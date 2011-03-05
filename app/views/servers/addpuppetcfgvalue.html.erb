@@ -2,7 +2,7 @@
 <h1>Server - Show: <%=h @server.name %></h1>
 <br/>
 <h2>Add Puppet Configuration Key Value to Server</h2>
-<% form_for @configkey_value, :url => { :action => "createpuppetcfgvalue" } do |f| %>
+<%= form_for @configkey_value, :url => { :action => "createpuppetcfgvalue" } do |f| %>
   <%= f.error_messages %>
   <table>
 
