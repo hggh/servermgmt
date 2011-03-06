@@ -13,7 +13,7 @@ class Nameserver < ActiveRecord::Base
   def update_domain_serial
     @domains = Domain.find(:all, :include => [ "domain_nameservers" ], :conditions => "domain_nameservers.nameserver_id=#{id}")
     @domains.each do |dd|
-      dd.touch
+      dd.bump!
     end
   end
 

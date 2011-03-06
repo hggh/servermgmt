@@ -31,7 +31,7 @@ class DomainRecord < ActiveRecord::Base
   private
   def update_serial
     domain = Domain.find(domain_id)
-    domain.touch
+    domain.bump!
   end
 
   def make_lowercase

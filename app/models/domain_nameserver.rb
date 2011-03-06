@@ -50,7 +50,7 @@ class DomainNameserver < ActiveRecord::Base
   def update_domain_serial
     @domains = Domain.find(:all, :include => [ "domain_nameservers" ], :conditions => "domain_nameservers.id=#{id}")
     @domains.each do |dd|
-      dd.touch
+      dd.bump!
     end
   end
 end

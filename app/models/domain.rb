@@ -58,6 +58,10 @@ class Domain < ActiveRecord::Base
     Idna.toASCII(self.name)
   end
 
+  def bump!
+    self.save
+  end
+
   private
     def make_lowercase
       self.name.downcase!

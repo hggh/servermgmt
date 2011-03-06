@@ -18,7 +18,7 @@ Servermgmt::Application.routes.draw do
     
     end
 
-    resources :nameservers
+    resources :nameservers, :controller => "domain_nameservers"
     resources :domain_soas
     resources :domain_option_values
   end

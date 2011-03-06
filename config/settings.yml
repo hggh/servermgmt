@@ -28,3 +28,6 @@ dns_soa_negative_ttl:
 mcollective_nameserver:
   default: 0
   boolean: 1
+mcollective_binary:
+  default: sudo /usr/sbin/mc-rpc
+  boolean: 0

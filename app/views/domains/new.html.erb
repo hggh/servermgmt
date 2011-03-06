@@ -17,7 +17,7 @@
 <h1>Nameserver</h1>
 <table>
 <% prefix = "domain[domain_nameserver_pri_attributes]" %>
-<% fields_for prefix, @domain_nameserver_pri do |ns| %>
+<%= fields_for prefix, @domain_nameserver_pri do |ns| %>
 	<tr>
 		<td>Primary Nameserver:</td>
 		<td>
@@ -26,7 +26,7 @@
 	</tr>
 <% end %>
 <% prefix = "domain[domain_nameserver_sec_attributes]" %>
-<% fields_for prefix, @domain_nameserver_sec do |ns| %>
+<%= fields_for prefix, @domain_nameserver_sec do |ns| %>
   <tr>
     <td>Sec Nameserver:</td>
     <td>
