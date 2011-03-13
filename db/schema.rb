@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305174619) do
+ActiveRecord::Schema.define(:version => 20110313145458) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -223,6 +223,42 @@ ActiveRecord::Schema.define(:version => 20110305174619) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "boolean",    :default => 0
+  end
+
+  create_table "sshkey_group_mbrs", :force => true do |t|
+    t.integer  "sshkey_id"
+    t.integer  "sshkey_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sshkey_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sshkeys", :force => true do |t|
+    t.string   "name"
+    t.text     "key_public"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sshuser_mbrs", :force => true do |t|
+    t.integer  "sshuser_id"
+    t.integer  "sshkey_id"
+    t.integer  "sshkey_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sshusers", :force => true do |t|
+    t.string   "username"
+    t.integer  "server_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

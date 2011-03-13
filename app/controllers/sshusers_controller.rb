@@ -1,44 +1,35 @@
 class SshusersController < ApplicationController
-  # GET /sshusers
-  # GET /sshusers.xml
   def index
     @sshusers = Sshuser.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @sshusers }
     end
   end
 
-  # GET /sshusers/1
-  # GET /sshusers/1.xml
   def show
     @sshuser = Sshuser.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.xml  { render :xml => @sshuser }
     end
   end
 
-  # GET /sshusers/new
-  # GET /sshusers/new.xml
   def new
     @sshuser = Sshuser.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @sshuser }
     end
   end
 
-  # GET /sshusers/1/edit
   def edit
     @sshuser = Sshuser.find(params[:id])
   end
 
-  # POST /sshusers
-  # POST /sshusers.xml
   def create
     @sshuser = Sshuser.new(params[:sshuser])
 
@@ -53,8 +44,6 @@ class SshusersController < ApplicationController
     end
   end
 
-  # PUT /sshusers/1
-  # PUT /sshusers/1.xml
   def update
     @sshuser = Sshuser.find(params[:id])
 
@@ -69,8 +58,6 @@ class SshusersController < ApplicationController
     end
   end
 
-  # DELETE /sshusers/1
-  # DELETE /sshusers/1.xml
   def destroy
     @sshuser = Sshuser.find(params[:id])
     @sshuser.destroy

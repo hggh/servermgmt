@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sshuser_id: 1
+  sshkey_id: 1
+  sshkey_group_id: 1
+
+two:
+  sshuser_id: 1
+  sshkey_id: 1
+  sshkey_group_id: 1

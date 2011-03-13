@@ -1,4 +1,10 @@
 Servermgmt::Application.routes.draw do
+  resources :sshusers
+
+  resources :sshkey_groups
+
+  resources :sshkeys
+
   resources :server_groups
   resources :configkeys
   resources :configkey_values

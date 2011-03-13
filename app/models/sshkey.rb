@@ -4,6 +4,7 @@ class Sshkey < ActiveRecord::Base
 
   has_many :sshkey_group_mbrs, :dependent => :destroy
   has_many :sshkey_groups, :through => :sshkey_group_mbrs
+  has_many :sshuser_mbrs, :dependent => :destroy
 
 
   def group_names
