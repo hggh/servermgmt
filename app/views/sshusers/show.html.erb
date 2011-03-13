@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Username:</b>
+  <%= @sshuser.username %>
+</p>
+
+<p>
+  <b>Server:</b>
+  <%= @sshuser.server_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sshuser_path(@sshuser) %> |
+<%= link_to 'Back', sshusers_path %>

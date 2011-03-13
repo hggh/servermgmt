@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  username: MyString
+  server_id: 1
+
+two:
+  username: MyString
+  server_id: 1

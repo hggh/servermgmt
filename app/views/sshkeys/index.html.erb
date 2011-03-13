@@ -1,0 +1,27 @@
+<h1>Listing sshkeys</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Comment</th>
+    <th>Groups</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sshkeys.each do |sshkey| %>
+  <tr>
+    <td><%= sshkey.name %></td>
+    <td><%= sshkey.comment %></td>
+    <td><% sshkey.group_names.each do |group| %><%= group %><% end %></td>
+    <td><%= link_to 'Show', sshkey %></td>
+    <td><%= link_to 'Edit', edit_sshkey_path(sshkey) %></td>
+    <td><%= link_to 'Destroy', sshkey, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sshkey', new_sshkey_path %>
