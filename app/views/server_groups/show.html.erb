@@ -4,8 +4,13 @@
 <table>
 	<tr>
 		<td>Name:</td>
-		<td><%=h @server_group.name %></td>
+		<td><%= @server_group.name %></td>
 	</tr>
+  <tr>
+    <td>Regex (Adding new Servers to Group):</td>
+    <td><%= @server_group.group_regex %></td>
+  </tr>
+
 	
 	<tr>
 		<td valign="top">Members:</td>

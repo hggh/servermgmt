@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313145458) do
+ActiveRecord::Schema.define(:version => 20110406205000) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(:version => 20110313145458) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "group_regex"
   end
 
   create_table "server_interface_options", :force => true do |t|
