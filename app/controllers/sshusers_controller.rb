@@ -1,6 +1,6 @@
 class SshusersController < ApplicationController
   def index
-    @sshusers = Sshuser.all
+    @sshusers = Sshuser.allByServerByUser
 
     respond_to do |format|
       format.html
@@ -10,6 +10,7 @@ class SshusersController < ApplicationController
 
   def show
     @sshuser = Sshuser.find(params[:id])
+    @sshuser_mbr = SshuserMbr.new('sshuser_id' => @sshuser.id)
 
     respond_to do |format|
       format.html

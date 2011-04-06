@@ -7,9 +7,57 @@
 
 <p>
   <b>Server:</b>
-  <%= @sshuser.server_id %>
+  <%= @sshuser.server.fqdn %>
 </p>
 
+<hr/>
+<h3>Add SSH Key</h3>
+<%= form_for([@sshuser,@sshuser_mbr]) do |f| %>
+<%= f.hidden_field :sshuser_id, {} %>
+SSH Key: <%= f.select :sshkey_id, Sshkey.includes(:sshuser_mbrs).collect{ |d| [d.name, d.id] }%><br/>
+<%= f.submit "Speichern" %>
+<% end %>
+
+
+<hr/>
+<h3>Add SSH Group Key</h3>
+<%= form_for([@sshuser,@sshuser_mbr]) do |f| %>
+<%= f.hidden_field :sshuser_id, {} %>
+SSH Group Key: <%= f.select :sshkey_group_id, SshkeyGroup.all.collect{ |d| [d.name, d.id] }%><br/>
+<%= f.submit "Speichern" %>
+<% end %>
+
+
+<hr/>
+
+
+<h3>SSH Keys Members</h3>
+
+<table border="0">
+  <tr>
+    <td>Key</td>
+  </tr>
+  <% @sshuser.getSSHMemberKeys.each do |sk| %>
+  <tr>
+    <td><%= sk.sshkey.name%></td>
+    <td>[<%= link_to 'X', [@sshuser, sk], :confirm => 'Are you sure?', :method => :delete %>]</td>
+  </tr>
+  <% end %>
+</table>
+
+<h3>SSH Groups</h3>
+
+<table border="0">
+  <tr>
+    <td>Key</td>
+  </tr>
+  <% @sshuser.getSSHGroupMemberKeys.each do |sk| %>
+  <tr>
+    <td><%= sk.sshkey_group.name %></td>
+    <td>[<%= link_to 'X', [@sshuser, sk], :confirm => 'Are you sure?', :method => :delete %>]</td>
+  </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_sshuser_path(@sshuser) %> |
 <%= link_to 'Back', sshusers_path %>

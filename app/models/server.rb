@@ -1,6 +1,7 @@
 class Server < ActiveRecord::Base
   
-  before_destroy [ :clean_server_virtuals, :clean_puppet ]
+  #FIXME
+  #before_destroy [ :clean_server_virtuals, :clean_puppet ]
   before_save :make_lowercase
 
   validates_presence_of :name
@@ -27,6 +28,10 @@ class Server < ActiveRecord::Base
   
   def self.getFreeVirtualServers
     servers_free = Server.find(:all, :joins => " LEFT JOIN servertypes ON servertypes.id = servers.servertype_id LEFT JOIN server_virtuals ON server_virtuals.virtual_id = servers.id " , :conditions => "servertypes.server_type_hardware_id = 2 AND server_virtuals.virtual_id IS NULL")
+  end
+
+  def self.allbyFqdn
+    Server.order('domains.name ASC, servers.name ASC').includes(:domain)
   end
 
   def fqdn

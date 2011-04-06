@@ -76,7 +76,7 @@ class DomainRecordsController < ApplicationController
           if params[:continue]
             redirect_to new_domain_domain_record_path(@domain)
           else
-            redirect_to(@domain)
+            redirect_to @domain
           end
         }
       else

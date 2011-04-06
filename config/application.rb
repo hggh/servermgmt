@@ -48,10 +48,11 @@ module Servermgmt
     # If you change this key, all old sessions will become invalid!
     # Make sure the secret is at least 30 characters and all random, 
     # no regular words or you'll be exposed to dictionary attacks.
-    config.action_controller.session = {
-      :session_key => '_servermgmt_session',
-      :secret      => '1c967f3a5305d6c753972faf501f35ebfd22eecd68a30828242e7203db5377e36508fae07688b0fb519fbf37deb3cb4b61758484940dc52d2acaff83b569e5e9'
-    }
+    #config.action_controller.session = {
+    #  :session_key => '_servermgmt_session',
+    #  :secret      => '1c967f3a5305d6c753972faf501f35ebfd22eecd68a30828242e7203db5377e36508fae07688b0fb519fbf37deb3cb4b61758484940dc52d2acaff83b569e5e9'
+    #}
+    
   
     # Use the database for sessions instead of the cookie-based default,
     # which shouldn't be used to store highly confidential information

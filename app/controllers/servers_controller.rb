@@ -12,6 +12,17 @@ class ServersController < ApplicationController
     end
   end
   
+  def puppet_userlist
+    @server = Server.find(params[:id])
+    @users = nil
+    if Setting.get('puppet') == "true" and  @server.getPuppet
+        @users = @server.getPuppet.getFactValue('users')
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
   def addpuppetcfgvalue
     @configkey_value = ConfigkeyValue.new
     @server = Server.find(params[:id])

@@ -1,0 +1,1 @@
+Servermgmt::Application.config.session_store :cookie_store, :key => '_servermgmt_session'

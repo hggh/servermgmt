@@ -9,7 +9,7 @@ class Domain < ActiveRecord::Base
   has_many :domain_option_values, :dependent => :destroy
   has_many :domain_options, :through => :domain_option_values
   has_one :domain_soa, :dependent => :destroy
-  has_many :servers
+  has_many :servers, :order => 'name ASC'
 
 
   before_save :make_lowercase, :bump_serial

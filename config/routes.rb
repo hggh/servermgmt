@@ -1,5 +1,8 @@
 Servermgmt::Application.routes.draw do
-  resources :sshusers
+  
+  resources :sshusers do
+    resources :sshuser_mbrs
+  end
 
   resources :sshkey_groups
 
@@ -30,20 +33,23 @@ Servermgmt::Application.routes.draw do
   end
 
   resources :ip_types
+  
   resources :servers do
-  
-  
-      resources :ips
-    resources :macs
-    resources :server_interfaces do
-        collection do
-    post :selectinterface
-    end
-    
-    
+
+    member do
+      post 'puppet_userlist'
     end
 
+    resources :ips
+    resources :macs
     resources :server_key_values
+
+    resources :server_interfaces do
+        collection do
+          post :selectinterface
+        end
+    end
+
   end
 
   resources :home

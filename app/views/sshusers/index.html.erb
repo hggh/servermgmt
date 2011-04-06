@@ -4,6 +4,8 @@
   <tr>
     <th>Username</th>
     <th>Server</th>
+    <th>Anz. SSH Keys</th>
+    <th>Anz. SSH Groups</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +14,9 @@
 <% @sshusers.each do |sshuser| %>
   <tr>
     <td><%= sshuser.username %></td>
-    <td><%= sshuser.server_id %></td>
+    <td><%= sshuser.server.fqdn %></td>
+    <td><%= sshuser.getSSHMemberKeys.count %></td>
+    <td><%= sshuser.getSSHGroupMemberKeys.count %></td>
     <td><%= link_to 'Show', sshuser %></td>
     <td><%= link_to 'Edit', edit_sshuser_path(sshuser) %></td>
     <td><%= link_to 'Destroy', sshuser, :confirm => 'Are you sure?', :method => :delete %></td>

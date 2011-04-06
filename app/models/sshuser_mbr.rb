@@ -3,5 +3,5 @@ class SshuserMbr < ActiveRecord::Base
 
   belongs_to :sshuser
   belongs_to :sshkey
-  belongs_to :ssh_group
+  belongs_to :sshkey_group
 end

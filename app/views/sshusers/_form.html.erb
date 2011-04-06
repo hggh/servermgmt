@@ -1,25 +1,28 @@
 <%= form_for(@sshuser) do |f| %>
-  <% if @sshuser.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sshuser.errors.count, "error") %> prohibited this sshuser from being saved:</h2>
+<% if @sshuser.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@sshuser.errors.count, "error") %> prohibited this sshuser from being saved:</h2>
+  <ul>
+    <% @sshuser.errors.full_messages.each do |msg| %>
+    <li>
+      <%= msg %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-      <ul>
-      <% @sshuser.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :server_id %><br />
-    <%= f.text_field :server_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="field">
+  <%= f.label :server_id %>
+  <br />
+  <%= f.grouped_collection_select  :server_id, Domain.all, :servers, :name, :id, :fqdn %>
+</div>
+<div class="field">
+  <%= f.label :username %>
+  <br />
+  <%= f.text_field :username %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

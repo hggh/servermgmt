@@ -3,6 +3,7 @@
     <th>Name</th>
     <th>Type</th>
     <th>OS</th>
+    <th>SSH Users</th>
   </tr>
 
 <% for server in @servers %>
@@ -15,6 +16,7 @@
       <% end %>
     </td>
     <td><%=h server.server_operation_system.name %></td>
+    <td><%= server.sshusers.count %></td>
     <td><%= link_to 'Show', server %></td>
     <td><%= link_to 'Edit', edit_server_path(server) %></td>
     <td><%= link_to 'Add IP', new_server_ip_path(server) %></td>
