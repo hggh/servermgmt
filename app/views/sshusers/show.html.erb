@@ -6,8 +6,12 @@
 </p>
 
 <p>
-  <b>Server:</b>
+  <b>Server / Grouppe:</b>
+  <%if @sshuser.server %>
   <%= @sshuser.server.fqdn %>
+  <% else %>
+  <%= @sshuser.server_group.name %>
+  <% end %>
 </p>
 
 <hr/>

@@ -15,7 +15,12 @@
 <div class="field">
   <%= f.label :server_id %>
   <br />
-  <%= f.grouped_collection_select  :server_id, Domain.all, :servers, :name, :id, :fqdn %>
+  <%= f.grouped_collection_select  :server_id, Domain.all, :servers, :name, :id, :fqdn, { :include_blank => true } %>
+</div>
+<div class="field">
+  <%= f.label :server_group_id %>
+  <br />
+  <%= f.select  :server_group_id, ServerGroup.all.collect{ |d| [d.name, d.id] }, { :include_blank => true } %>
 </div>
 <div class="field">
   <%= f.label :username %>

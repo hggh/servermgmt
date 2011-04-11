@@ -14,7 +14,7 @@
   <tr>
     <td><%= sshkey.name %></td>
     <td><%= sshkey.comment %></td>
-    <td><% sshkey.group_names.each do |group| %><%= group %><% end %></td>
+    <td><%= sshkey.group_names.join(", ")%></td>
     <td><%= link_to 'Show', sshkey %></td>
     <td><%= link_to 'Edit', edit_sshkey_path(sshkey) %></td>
     <td><%= link_to 'Destroy', sshkey, :confirm => 'Are you sure?', :method => :delete %></td>

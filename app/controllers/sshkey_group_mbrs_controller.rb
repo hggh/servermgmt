@@ -4,7 +4,7 @@ class SshkeyGroupMbrsController < ApplicationController
     @sshkey_group = SshkeyGroup.find(params[:sshkey_group_id])
     @sshkey_group_mbr = SshkeyGroupMbr.find(params[:id])
     
-    @sshkey_group_mbr.delete
+    @sshkey_group_mbr.destroy
 
     respond_to do |format|
       format.html { redirect_to(sshkey_group_url(@sshkey_group) ) }

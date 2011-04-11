@@ -4,6 +4,7 @@
   <tr>
     <th>Username</th>
     <th>Server</th>
+    <th>Server Group</th>
     <th>Anz. SSH Keys</th>
     <th>Anz. SSH Groups</th>
     <th></th>
@@ -14,7 +15,8 @@
 <% @sshusers.each do |sshuser| %>
   <tr>
     <td><%= sshuser.username %></td>
-    <td><%= sshuser.server.fqdn %></td>
+    <td><% if sshuser.server %><%= sshuser.server.fqdn %><% end %></td>
+    <td><% if sshuser.server_group %><%= sshuser.server_group.name %><% end %></td>
     <td><%= sshuser.getSSHMemberKeys.count %></td>
     <td><%= sshuser.getSSHGroupMemberKeys.count %></td>
     <td><%= link_to 'Show', sshuser %></td>
