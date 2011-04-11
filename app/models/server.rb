@@ -30,8 +30,22 @@ class Server < ActiveRecord::Base
     servers_free = Server.find(:all, :joins => " LEFT JOIN servertypes ON servertypes.id = servers.servertype_id LEFT JOIN server_virtuals ON server_virtuals.virtual_id = servers.id " , :conditions => "servertypes.server_type_hardware_id = 2 AND server_virtuals.virtual_id IS NULL")
   end
 
+  def self.find_by_fqdn(sfqdn)
+    host,dns = sfqdn.split(/\./, 2)
+    s = Server.includes(:domain).where('servers.name = ?', host).where('domains.name = ?', dns)
+    s[0]
+  end
+
   def self.allbyFqdn
     Server.order('domains.name ASC, servers.name ASC').includes(:domain)
+  end
+
+  def getServerGroupIds
+    groups = Array.new
+    server_group_members.each do |s|
+      groups  << s.server_group_id
+    end
+    groups
   end
 
   def fqdn

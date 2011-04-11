@@ -15,7 +15,11 @@ class Sshkey < ActiveRecord::Base
     end
     users
   end
-  
+
+  def key_public_auth
+    "ssh-rsa #{key_public} #{name}"
+  end
+
   def inGroup?(sid)
     return true if sshkey_group_mbrs.where(:sshkey_group_id => sid).count > 0
     false

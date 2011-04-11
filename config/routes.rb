@@ -60,6 +60,7 @@ Servermgmt::Application.routes.draw do
   resources :users
   resources :settings
   match 'nameserver/getconfig/:nameserver_name/:server_system/:nameserver_config/' => 'nameservers#getconfig', :constraints => { :nameserver_name => /[\w\.\-_]+/, :server_system => /\w+/, :nameserver_config => /\w+/ }
+  match 'puppetsshkeys/:fqdn' => 'ssh_public_keys#getKeys', :constraints => { :fqdn => /[\w\.\-_]+/ }
   resources :nameservers
   match 'login' => 'user_login#login', :as => :login
   match 'logout' => 'user_login#logout', :as => :logout

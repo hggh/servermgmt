@@ -31,3 +31,6 @@ mcollective_nameserver:
 mcollective_binary:
   default: sudo /usr/sbin/mc-rpc
   boolean: 0
+puppet_secret_sshkeys:
+  default:
+  boolean: 0
