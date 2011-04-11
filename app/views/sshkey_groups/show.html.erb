@@ -5,6 +5,29 @@
   <%= @sshkey_group.name %>
 </p>
 
+<hr/>
+<h3>Add new Member</h3>
+<%= form_for([@sshkey_group, @sshkey_group_mbr] ) do |f| %>
+<%= f.select :sshkey_id, Sshkey.allNotInGroup(@sshkey_group.id ).collect { |d| [ d.name,d.id] }%>
+<%= f.submit "Speichern" %>
+<% end %>
+
+<hr/>
+<h3>Members</h3>
+
+<table border="0">
+  <tr>
+    <td>Member</td>
+  </tr>
+
+<% @sshkey_group.sshkey_group_mbrs.each do |sgm| %>
+<tr>
+  <td><%= sgm.sshkey.name %></td>
+  <td>[<%= link_to 'X', [@sshkey_group, sgm], :confirm => 'Are you sure?', :method => :delete %>]</td>  
+</tr>
+<% end %>
+</table>
+
 
 <%= link_to 'Edit', edit_sshkey_group_path(@sshkey_group) %> |
 <%= link_to 'Back', sshkey_groups_path %>

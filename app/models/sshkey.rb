@@ -6,6 +6,20 @@ class Sshkey < ActiveRecord::Base
   has_many :sshkey_groups, :through => :sshkey_group_mbrs
   has_many :sshuser_mbrs, :dependent => :destroy
 
+  def self.allNotInGroup(group_id)
+    users = Array.new
+    Sshkey.all.each do |u|
+      if u.inGroup?(group_id) == false
+        users << u
+      end
+    end
+    users
+  end
+  
+  def inGroup?(sid)
+    return true if sshkey_group_mbrs.where(:sshkey_group_id => sid).count > 0
+    false
+  end
 
   def group_names
     groups = Array.new

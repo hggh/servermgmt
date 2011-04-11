@@ -14,6 +14,7 @@ class SshkeyGroupsController < ApplicationController
   # GET /sshkey_groups/1.xml
   def show
     @sshkey_group = SshkeyGroup.find(params[:id])
+    @sshkey_group_mbr = SshkeyGroupMbr.new
 
     respond_to do |format|
       format.html # show.html.erb
