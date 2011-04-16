@@ -1,5 +1,6 @@
 require 'rexml/document'
 
+
 class SshPublicKeysController < ApplicationController
   skip_before_filter :login_required, :only => [ 'getKeys' ]
   before_filter :access, :on => 'getKeys'
@@ -8,9 +9,9 @@ class SshPublicKeysController < ApplicationController
     server = Server.find_by_fqdn(params[:fqdn])
     xml = REXML::Document.new("<?xml version='1.0'?>")
     sshusers = Sshuser.includes(:server, :server_group).where('server_id = ? OR server_group_id IN (?)', server.id, server.getServerGroupIds)
-    
+    server_xml = xml.add_element "server", { "name" => server.fqdn }
     sshusers.each do|shu|
-      user_xml = xml.add_element "username", { 'user' => shu.username }
+      user_xml = server_xml.add_element "username", { "name" => shu.username }
       public_keys = Array.new
       shu.sshuser_mbrs.each do |member|
         if member.sshkey_id

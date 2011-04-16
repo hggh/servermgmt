@@ -6,7 +6,7 @@ Copyright (C) 2010 Jonas Genannt <jonas@brachium-system.net>
 
 == Requirements
 
-* Ruby on Rails 2.3.5
+* Ruby on Rails 3.0.5
 * A database:
   * PostgreSQL (tested with PostgreSQL 8.3.4)
 * Ruby idn library (tested with idn 0.0.2)
