@@ -44,7 +44,7 @@ class SshkeysController < ApplicationController
 
     respond_to do |format|
       if @sshkey.save
-        format.html { redirect_to(@sshkey, :notice => 'Sshkey was successfully created.') }
+        format.html { redirect_to(sshkeys_url, :notice => 'Sshkey was successfully created.') }
         format.xml  { render :xml => @sshkey, :status => :created, :location => @sshkey }
       else
         format.html { render :action => "new" }

@@ -7,7 +7,7 @@
 
 <p>
   <b>Key public:</b>
-  <%= @sshkey.key_public %>
+  <%= raw @sshkey.key_public.gsub(/\r/,'<br/>') %>
 </p>
 
 <p>

@@ -28,6 +28,7 @@ class DomainRecord < ActiveRecord::Base
     end
     write_attribute(:value, clean)
   end
+
   private
   def update_serial
     domain = Domain.find(domain_id)
