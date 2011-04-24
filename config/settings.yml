@@ -34,3 +34,9 @@ mcollective_binary:
 puppet_secret_sshkeys:
   default:
   boolean: 0
+server_type_hardware:
+  default: 1
+  boolean: 0
+server_type_virtual:
+  default: 2
+  boolean: 0

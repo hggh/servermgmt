@@ -1,6 +1,6 @@
-Servertype.create_or_update_byname(:name => 'Server / Hardware')
-Servertype.create_or_update_byname(:name => 'Server / Virtual')
-Servertype.create_or_update_byname(:name => 'Printer / Hardware')
+Servertype.create_or_update(:id => 1, :name => 'Server / Hardware')
+Servertype.create_or_update(:id => 2, :name => 'Server / Virtual')
+Servertype.create_or_update(:id => 3, :name => 'Printer / Hardware')
 
 User.create_or_update(:id => 1, :username => 'admin', :password => 'admin', :password_confirmation => 'admin', :active => 1)
 

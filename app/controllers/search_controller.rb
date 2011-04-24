@@ -10,7 +10,6 @@ class SearchController < ApplicationController
       if @question_type == "fact_values"
         @fact_values = FactValue.find(:all, :include => :host, :order => "hosts.name ASC" ,:conditions => ["value LIKE ?", '%' + @question + '%'])
       else
-        puts "WWWWWWWWWWWWWWWWWW"
         @facts = FactName.find(:all, :conditions => ["fact_names.name LIKE ? ", '%' + @question + '%'])
       end
     else  

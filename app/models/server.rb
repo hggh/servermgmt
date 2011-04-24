@@ -1,7 +1,8 @@
 class Server < ActiveRecord::Base
   
-  #FIXME
-  #before_destroy [ :clean_server_virtuals, :clean_puppet ]
+
+  before_destroy :clean_server_virtuals
+  before_destroy :clean_puppet
   before_save :make_lowercase
 
   validates_presence_of :name
@@ -27,7 +28,7 @@ class Server < ActiveRecord::Base
   has_many :sshusers, :dependent => :destroy
   
   def self.getFreeVirtualServers
-    servers_free = Server.find(:all, :joins => " LEFT JOIN servertypes ON servertypes.id = servers.servertype_id LEFT JOIN server_virtuals ON server_virtuals.virtual_id = servers.id " , :conditions => "servertypes.server_type_hardware_id = 2 AND server_virtuals.virtual_id IS NULL")
+    servers_free = Server.where(:servertype_id => Setting.get('server_type_hardware')).joins("LEFT JOIN server_virtuals AS sv ON sv.virtual_id = servers.id").where("sv.virtual_id IS NULL")
   end
 
   def self.find_by_fqdn(sfqdn)
