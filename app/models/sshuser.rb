@@ -11,8 +11,6 @@ class Sshuser < ActiveRecord::Base
 
   def self.allByServerByUser
     @sshusers =  Sshuser.all
-    # FIXME
-    #@sshusers.sort_by { |s| [ s.server.domain.name ,s.server.name,s.username ] }
   end
 
   def getSSHMemberKeys
