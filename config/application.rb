@@ -66,7 +66,7 @@ module Servermgmt
   
     # Activate observers that should always be running
     # config.active_record.observers = :cacher, :garbage_collector
-    config.active_record.observers = :domain_observer
+    #config.active_record.observers = :domain_observer
 
   end
 end
