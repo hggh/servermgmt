@@ -1,0 +1,25 @@
+
+
+<div id="sshkey_box">
+  <div style="font-weight:bold; font-size:14pt;">SSH Keys</div>
+  <input type="text" id="sshkey_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
+   autocomplete="off"
+   />
+  <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_search_box_clear") %> 
+  <div id="sshkey_list" style="width:250px;height:300px;border:1px solid;overflow:auto;">
+    <%= render :partial => 'sshkeys/sshkeys_index'%>
+  </div>
+</div>
+
+<div style="height:30px;"></div>
+
+<div id="sshkey_groups_box">
+  <div style="font-weight:bold; font-size:14pt;">SSH Key Groups</div>
+  <input type="text" id="sshkey_groups_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
+   autocomplete="off"
+   />
+  <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_groups_search_box_clear") %> 
+  <div id="sshkey_groups_list" style="width:250px;height:300px;border:1px solid;overflow:auto;">
+    <%= render :partial => 'sshkey_groups/sshkey_groups_index'%>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 class SshkeyGroupsController < ApplicationController
-  # GET /sshkey_groups
-  # GET /sshkey_groups.xml
   def index
-    @sshkey_groups = SshkeyGroup.all
+    if params[:search]
+      @sshkey_groups = SshkeyGroup.where("name ~* ?", params[:search])
+    else
+      @sshkey_groups = SshkeyGroup.all
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @sshkey_groups }
+      format.html
+      format.js { render :layout => false }
     end
   end
 
@@ -70,15 +72,15 @@ class SshkeyGroupsController < ApplicationController
     end
   end
 
-  # DELETE /sshkey_groups/1
-  # DELETE /sshkey_groups/1.xml
   def destroy
     @sshkey_group = SshkeyGroup.find(params[:id])
     @sshkey_group.destroy
+    @sshkey_groups = SshkeyGroup.all
 
     respond_to do |format|
       format.html { redirect_to(sshkey_groups_url) }
       format.xml  { head :ok }
+      format.js { render :layout => false }
     end
   end
 end

@@ -1,0 +1,9 @@
+<table style="border: 0px solid #FFFFFF;">
+  <% @sshkeys.each do |sshkey| %>
+    <tr>
+      <td style="border: 0px solid #FFFFFF;"><%= sshkey.name %></td>
+      <td style="border: 0px solid #FFFFFF;"><%= image_tag("edit.png") %></td>
+      <td style="border: 0px solid #FFFFFF;"><%= link_to image_tag("cancel.png"), sshkey, :confirm => 'Are you sure?', :method => :delete, :remote => true %></td>
+    </tr>
+  <% end %>
+</table>

@@ -15,3 +15,34 @@ function selectBoxOption(obj, selector, svalue){
     }
   }
 }
+
+$(document).ready( function(){
+  $('#sshkey_search_box_clear').click(function() {
+    $('#sshkey_search_box').val("");
+    $('#sshkey_search_box').keyup();
+  });
+  $('#sshkey_search_box').keyup(function() {
+    dataType = $.ajaxSettings && $.ajaxSettings.dataType;
+    $.ajax({
+      url: "/sshkeys.js",
+      method: "post",
+      dataType: 'script',
+      data: "search=" + $('#sshkey_search_box').val(),
+    });
+  });
+
+  $('#sshkey_groups_search_box_clear').click(function() {
+    $('#sshkey_groups_search_box').val("");
+    $('#sshkey_groups_search_box').keyup();
+  });
+  $('#sshkey_groups_search_box').keyup(function() {
+    dataType = $.ajaxSettings && $.ajaxSettings.dataType;
+    $.ajax({
+      url: "/sshkey_groups.js",
+      method: "post",
+      dataType: 'script',
+      data: "search=" + $('#sshkey_groups_search_box').val(),
+    });
+  });
+});
+

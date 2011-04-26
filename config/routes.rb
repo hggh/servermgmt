@@ -9,6 +9,8 @@ Servermgmt::Application.routes.draw do
   end
 
   resources :sshkeys
+  
+  resources :sshkeymgmts
 
   resources :server_groups
   resources :configkeys

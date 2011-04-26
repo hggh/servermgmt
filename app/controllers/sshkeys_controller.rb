@@ -2,16 +2,20 @@ class SshkeysController < ApplicationController
   # GET /sshkeys
   # GET /sshkeys.xml
   def index
-    @sshkeys = Sshkey.all
+    if params[:search]
+      @sshkeys = Sshkey.where("name ~* ?", params[:search])
+    else
+      @sshkeys = Sshkey.all  
+    end
+    
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @sshkeys }
+      format.js { render :layout => false }
     end
   end
 
-  # GET /sshkeys/1
-  # GET /sshkeys/1.xml
   def show
     @sshkey = Sshkey.find(params[:id])
 
@@ -21,8 +25,6 @@ class SshkeysController < ApplicationController
     end
   end
 
-  # GET /sshkeys/new
-  # GET /sshkeys/new.xml
   def new
     @sshkey = Sshkey.new
 
@@ -32,13 +34,10 @@ class SshkeysController < ApplicationController
     end
   end
 
-  # GET /sshkeys/1/edit
   def edit
     @sshkey = Sshkey.find(params[:id])
   end
 
-  # POST /sshkeys
-  # POST /sshkeys.xml
   def create
     @sshkey = Sshkey.new(params[:sshkey])
 
@@ -69,14 +68,14 @@ class SshkeysController < ApplicationController
     end
   end
 
-  # DELETE /sshkeys/1
-  # DELETE /sshkeys/1.xml
   def destroy
     @sshkey = Sshkey.find(params[:id])
     @sshkey.destroy
+    @sshkeys = Sshkey.all
 
     respond_to do |format|
       format.html { redirect_to(sshkeys_url) }
+      format.js { render :layout => false }
       format.xml  { head :ok }
     end
   end

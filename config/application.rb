@@ -37,7 +37,7 @@ module Servermgmt
 
     config.filter_parameters += [ :passwd, :password, :password_confirmation ]
 
-    config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui-1.8.12.custom rails )
   
     # Make Time.zone default to the specified zone, and make Active Record store time values
     # in the database in UTC, and return them converted to the specified local zone.
