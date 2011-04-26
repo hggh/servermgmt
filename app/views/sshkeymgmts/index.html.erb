@@ -1,25 +1,66 @@
 
+<div style="float:left;padding-left:100px;" id="ssh_mgmt_left">
+  <div style="font-weight:bold; font-size:14pt;">Server SSH Users</div>
 
-<div id="sshkey_box">
-  <div style="font-weight:bold; font-size:14pt;">SSH Keys</div>
-  <input type="text" id="sshkey_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
-   autocomplete="off"
-   />
-  <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_search_box_clear") %> 
-  <div id="sshkey_list" style="width:250px;height:300px;border:1px solid;overflow:auto;">
-    <%= render :partial => 'sshkeys/sshkeys_index'%>
+  <% @sshusers_servers.each do |server| %>
+  <div style="padding-top:5px;" id="sshusers_server_<%= server.id -%>">
+    <div style="font-weight:bold;"><%= server.fqdn %></div>
+    <!-- User for Server <%= server.fqdn %> BEGIN -->
+    <ul>
+    <% server.sshusers.order('username ASC').each do |u| %>
+      <li><%= u.username %></li>
+    <% end %>
+    </ul>
+    <!-- User for Server <%= server.fqdn %> END -->
   </div>
+  <% end %>
+
+  <div style="font-weight:bold; font-size:14pt;">Server Groups SSH Users</div>
+
+  <% @sshusers_servergroups.each do |servergroup| %>
+  <div style="padding-top:5px;" id="sshusers_servergroup_<%= servergroup.id -%>">
+    <div style="font-weight:bold;"><%= servergroup.name %></div>
+    <!-- User for Server Group <%= servergroup.name %> BEGIN -->
+    <ul>
+    <% servergroup.sshusers.order('username ASC').each do |u| %>
+    <li><%= u.username %></li>
+    <% end %>
+    </ul>
+    <!-- User for Server Group <%= servergroup.name %> END -->
+  </div>
+  <% end %>
 </div>
 
-<div style="height:30px;"></div>
-
-<div id="sshkey_groups_box">
-  <div style="font-weight:bold; font-size:14pt;">SSH Key Groups</div>
-  <input type="text" id="sshkey_groups_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
-   autocomplete="off"
-   />
-  <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_groups_search_box_clear") %> 
-  <div id="sshkey_groups_list" style="width:250px;height:300px;border:1px solid;overflow:auto;">
-    <%= render :partial => 'sshkey_groups/sshkey_groups_index'%>
+<div style="float:right;padding-right:100px;" id="ssh_mgmt_right">
+ <div id="sshkey_box">
+    <div style="font-weight:bold; font-size:14pt;">
+      SSH Keys
+    </div>
+    <input type="text" id="sshkey_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
+    autocomplete="off"
+    />
+    <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_search_box_clear") %>
+    <div id="sshkey_list" style="width:300px;height:300px;border:1px solid;overflow:auto;">
+      <%= render :partial => 'sshkeys/sshkeys_index'%>
+    </div>
   </div>
+
+  <div style="height:30px;">
+  </div>
+
+  <div id="sshkey_groups_box">
+    <div style="font-weight:bold; font-size:14pt;">
+      SSH Key Groups
+    </div>
+    <input type="text" id="sshkey_groups_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
+    autocomplete="off"
+    />
+    <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_groups_search_box_clear") %>
+    <div id="sshkey_groups_list" style="width:300px;height:300px;border:1px solid;overflow:auto;">
+      <%= render :partial => 'sshkey_groups/sshkey_groups_index'%>
+    </div>
+  </div>
+
 </div>
+
+<br style="clear:both;"/>

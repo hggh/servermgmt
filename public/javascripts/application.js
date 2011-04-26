@@ -17,6 +17,9 @@ function selectBoxOption(obj, selector, svalue){
 }
 
 $(document).ready( function(){
+
+  $(".sshkey_draggable").draggable();
+
   $('#sshkey_search_box_clear').click(function() {
     $('#sshkey_search_box').val("");
     $('#sshkey_search_box').keyup();
