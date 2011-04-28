@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   MAX_SESSION_PERIOD = 3600
   @current_user = nil
+  @ajax_request = nil
 
 
   # See ActionController::RequestForgeryProtection for details
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :session_expiry
   before_filter :login_required
+  before_filter :ajax_request?
 
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
@@ -27,6 +29,9 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def ajax_request?
+    @ajax_request = true if request.xhr?
+  end
 
   def login_required
     if params[:secret_key] and params[:secret_key].size > 10

@@ -30,12 +30,18 @@ class SshkeysController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.js { render :layout => false }
       format.xml  { render :xml => @sshkey }
     end
   end
 
   def edit
     @sshkey = Sshkey.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+      format.js { render :layout => false }
+    end
   end
 
   def create
@@ -43,26 +49,30 @@ class SshkeysController < ApplicationController
 
     respond_to do |format|
       if @sshkey.save
+        @sshkeys = Sshkey.all
         format.html { redirect_to(sshkeys_url, :notice => 'Sshkey was successfully created.') }
+        format.js { render :layout => false }
         format.xml  { render :xml => @sshkey, :status => :created, :location => @sshkey }
       else
         format.html { render :action => "new" }
+        format.js { render :layout => false }
         format.xml  { render :xml => @sshkey.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /sshkeys/1
-  # PUT /sshkeys/1.xml
   def update
     @sshkey = Sshkey.find(params[:id])
 
     respond_to do |format|
       if @sshkey.update_attributes(params[:sshkey])
+        @sshkeys = Sshkey.all
         format.html { redirect_to(@sshkey, :notice => 'Sshkey was successfully updated.') }
+        format.js { render :layout => false }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.js { render :layout => false }
         format.xml  { render :xml => @sshkey.errors, :status => :unprocessable_entity }
       end
     end

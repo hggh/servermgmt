@@ -17,7 +17,12 @@ function selectBoxOption(obj, selector, svalue){
 }
 
 $(document).ready( function(){
+  
+  $("#servermgmt_overlay_close_btn").click(function() {
+    $("#servermgmt_overlay").hide();
+  });
 
+  
   $(".sshkey_draggable").draggable();
 
   $('#sshkey_search_box_clear').click(function() {

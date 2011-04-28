@@ -2,7 +2,7 @@
   <% @sshkeys.each do |sshkey| %>
     <tr>
       <td style="border: 0px solid #FFFFFF;width:*;"><span style="" class="sshkey_draggable"><%= sshkey.name %></span></td>
-      <td style="border: 0px solid #FFFFFF;width:10px;"><%= link_to image_tag("edit.png"), sshkey, :remote => true %></td>
+      <td style="border: 0px solid #FFFFFF;width:10px;"><%= link_to image_tag("edit.png"), edit_sshkey_path(sshkey), :remote => true %></td>
       <td style="border: 0px solid #FFFFFF;width:10px;"><%= link_to image_tag("cancel.png"), sshkey, :confirm => 'Are you sure?', :method => :delete, :remote => true, :title => "Delete SSH Key" %></td>
     </tr>
   <% end %>

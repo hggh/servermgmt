@@ -1,4 +1,7 @@
-<%= form_for(@sshkey) do |f| %>
+
+
+
+<%= form_for(@sshkey, :remote => @ajax_request ? true : false ) do |f| %>
   <% if @sshkey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@sshkey.errors.count, "error") %> prohibited this sshkey from being saved:</h2>
@@ -11,19 +14,37 @@
     </div>
   <% end %>
 
+<table border="0">
+
+  <tr>
+    <td>Name:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  
+  <tr>
+    <td>Comment:</td>
+    <td><%= f.text_field :comment %></td>
+  </tr>
+  
+  <tr>
+    <td valign="top">Public Key:</td>
+    <td><%= f.text_area :key_public, :cols => 120, :rows => 10 %></td>
+  </tr>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    
   </div>
   <div class="field">
     <%= f.label :key_public %><br />
-    <%= f.text_area :key_public %>
+    
   </div>
   <div class="field">
     <%= f.label :comment %><br />
-    <%= f.text_field :comment %>
+    
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+  
+</table>  
 <% end %>

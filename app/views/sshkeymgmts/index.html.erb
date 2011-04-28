@@ -43,6 +43,9 @@
     <div id="sshkey_list" style="width:300px;height:300px;border:1px solid;overflow:auto;">
       <%= render :partial => 'sshkeys/sshkeys_index'%>
     </div>
+    <div style="" id="sshkey_new">
+      <%= link_to "New SSH Key", new_sshkey_path, :remote => true %>
+    </div>
   </div>
 
   <div style="height:30px;">

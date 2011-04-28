@@ -1,0 +1,6 @@
+<% if @sshkey.errors.any? -%>
+  $('#servermgmt_overlay_container').html("<%= escape_javascript( render(:partial => "sshkeys/new") ) %>");
+<% else %>
+  $('#servermgmt_overlay').hide();
+  $("#sshkey_list").html("<%= escape_javascript( render(:partial => "sshkeys/sshkeys_index") ) %>");
+<% end %>
