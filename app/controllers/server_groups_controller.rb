@@ -97,11 +97,16 @@ class ServerGroupsController < ApplicationController
     @server_group_member = ServerGroupMember.find(params[:id])
     server = Server.find(@server_group_member.server_id)
     server_group = ServerGroup.find(@server_group_member.server_group_id)
-    @server_group_member.destroy
-    
+    if @server_group_member.auto_add == true
+      flash[:error] = 'Server is in Server Group via Group Regexp - Can not removed!'
+    else
+      @server_group_member.destroy
+      flash[:notice] = 'Server was successfully droped from Server Group.'
+    end
+
     respond_to do |format|
       format.html {
-        flash[:notice] = 'Server was successfully droped from Server Group.'
+        
         if params[:from] == "server_group_view" 
           redirect_to(server_group)
         elsif params[:from] == "server_view"
