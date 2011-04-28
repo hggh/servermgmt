@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411190758) do
+ActiveRecord::Schema.define(:version => 20110428190840) do
 
   create_table "configkey_values", :force => true do |t|
     t.integer  "configkey_id"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20110411190758) do
     t.integer  "server_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "auto_add",        :default => false
   end
 
   create_table "server_groups", :force => true do |t|
