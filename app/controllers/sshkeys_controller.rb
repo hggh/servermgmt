@@ -20,7 +20,8 @@ class SshkeysController < ApplicationController
     @sshkey = Sshkey.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
+      format.js { render :layout => false }
       format.xml  { render :xml => @sshkey }
     end
   end

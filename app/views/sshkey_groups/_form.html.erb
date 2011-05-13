@@ -1,4 +1,4 @@
-<%= form_for(@sshkey_group) do |f| %>
+<%= form_for(@sshkey_group, :remote => @ajax_request ? true : false) do |f| %>
   <% if @sshkey_group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@sshkey_group.errors.count, "error") %> prohibited this sshkey_group from being saved:</h2>

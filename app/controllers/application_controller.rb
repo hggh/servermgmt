@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.cookie_checkauth(cookies[:login])
       return true
     end
-    session[:return_to]=request.request_uri
+    session[:return_to]=request.fullpath
     redirect_to :controller => "user_login", :action => 'login'
     return false 
   end

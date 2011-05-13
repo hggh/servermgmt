@@ -4,12 +4,15 @@ Servermgmt::Application.routes.draw do
     resources :sshuser_mbrs
   end
 
+
   resources :sshkey_groups do
     resources :sshkey_group_mbrs
   end
 
-  resources :sshkeys
-  
+  resources :sshkeys do
+    resources :sshkey_group_mbrs
+  end
+
   resources :sshkeymgmts
 
   resources :server_groups

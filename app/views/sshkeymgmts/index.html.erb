@@ -62,6 +62,9 @@
     <div id="sshkey_groups_list" style="width:300px;height:300px;border:1px solid;overflow:auto;">
       <%= render :partial => 'sshkey_groups/sshkey_groups_index'%>
     </div>
+    <div style="" id="sshkey_group_new">
+      <%= link_to "New SSH Key Group", new_sshkey_group_path, :remote => true %>
+    </div>
   </div>
 
 </div>
