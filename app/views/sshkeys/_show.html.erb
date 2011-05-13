@@ -1,0 +1,41 @@
+<h3><%= @sshkey.name %></h3>
+
+<table border="0">
+  <tr>
+    <th>Kommentar:</th>
+    <td><%= @sshkey.comment %></td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="3">SSH Key Groups</th>
+  </tr>
+
+  <% @sshkey.sshkey_group_mbrs.each do |sgm| %>
+  <tr>
+    <td><%= link_to sgm.sshkey_group.name, sshkey_group_path(sgm.sshkey_group), :remote => true %></td>
+    <td><%= link_to image_tag("cancel.png"), sshkey_group_sshkey_group_mbr_path(sgm.sshkey_group,sgm, :ajax_from => 'sshkey_show') , :confirm => 'Are you sure to delete Membership?', :method => :delete, :remote => true, :title => "Delete Membership", :ajax_form =>'foo' %></td>
+  </tr>
+  <% end %>
+
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td colspan="3">Add SSH Key to Group</td>
+  </tr>
+  <tr>
+    <td>
+      <%= form_for(SshkeyGroupMbr.new,  :url => sshkey_sshkey_group_mbrs_path(@sshkey, :ajax_from => 'sshkey_show'), :remote => true  ) do |f| %>
+      <%= f.hidden_field :sshkey_id, :value => @sshkey.id  %>
+      <%= f.select :sshkey_group_id, SshkeyGroup.getGroupsNotKeyMember(@sshkey.id).collect { |d| [ d.name,d.id] }, { :prompt => "SSH Key Group..." } %>
+      <%= f.submit "Hinzufuegen" %>
+      <% end %>
+    </td>
+  </tr>
+
+
+</table>

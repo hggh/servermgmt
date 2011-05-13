@@ -1,0 +1,6 @@
+<% if @sshkey_group.errors.any? -%>
+  $('#servermgmt_overlay_container').html("<%= escape_javascript( render(:partial => "sshkey_groups/new") ) %>");
+<% else %>
+  $('#servermgmt_overlay').hide();
+  $("#sshkey_groups_list").html("<%= escape_javascript( render(:partial => "sshkey_groups/sshkey_groups_index") ) %>");
+<% end %>
