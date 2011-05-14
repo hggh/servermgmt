@@ -82,6 +82,11 @@ h4, .wiki h3 {
     color: #fff;
 }
 
+.drophover {
+    color: red;
+    font-weight: bold;
+}
+
 #header {
     height: 5.3em;
     margin: 0;

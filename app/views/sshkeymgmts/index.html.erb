@@ -8,7 +8,13 @@
     <!-- User for Server <%= server.fqdn %> BEGIN -->
     <ul>
     <% server.sshusers.order('username ASC').each do |u| %>
-      <li><%= u.username %></li>
+      <li>
+        <span class="sshuser_dropable" style="padding-right:40px;" data-divname="sshusers_server_<%= server.id -%>" data-usertype="server" data-id="<%= u.id %>" id="">
+          <%= u.username %></span>
+        <% u.getSSHMemberKeys.each do |sshkeymember| %>
+        <%= sshkeymember.sshkey.name %><br/>
+        <% end %>
+      </li>
     <% end %>
     </ul>
     <!-- User for Server <%= server.fqdn %> END -->
