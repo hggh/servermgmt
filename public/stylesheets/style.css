@@ -7,6 +7,19 @@ body {
     min-width: 900px;
 }
 
+#servermgmt_ajax_error {
+   background-color: red;
+   padding-top:40px;
+   display: none;
+   width:95%;
+   margin-left:30px;
+   height: 200px;
+   position:  fixed;
+   z-index: 400;
+   text-align: center;
+   border:2px solid #a0a0a0;
+}
+
 .wiki {
     margin-left: 10px;
 }

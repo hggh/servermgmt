@@ -1,0 +1,8 @@
+<% if @sshusermbr.errors.any? -%>
+    <% @ajax_errors = @sshusermbr.errors.full_messages %>
+<% else %>
+
+<% end %>
+
+
+<%= render :partial => "common/ajaxcall"%>

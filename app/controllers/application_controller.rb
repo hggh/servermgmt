@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   MAX_SESSION_PERIOD = 3600
   @current_user = nil
   @ajax_request = nil
+  @ajax_from = nil
 
 
   # See ActionController::RequestForgeryProtection for details
@@ -31,6 +32,7 @@ class ApplicationController < ActionController::Base
 
   def ajax_request?
     @ajax_request = true if request.xhr?
+    @ajax_from = params[:ajax_from] if params[:ajax_from]
   end
 
   def login_required
