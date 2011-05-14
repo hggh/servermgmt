@@ -16,7 +16,7 @@
   <% @sshkey.sshkey_group_mbrs.each do |sgm| %>
   <tr>
     <td><%= link_to sgm.sshkey_group.name, sshkey_group_path(sgm.sshkey_group), :remote => true %></td>
-    <td><%= link_to image_tag("cancel.png"), sshkey_group_sshkey_group_mbr_path(sgm.sshkey_group,sgm, :ajax_from => 'sshkey_show') , :confirm => 'Are you sure to delete Membership?', :method => :delete, :remote => true, :title => "Delete Membership", :ajax_form =>'foo' %></td>
+    <td><%= link_to image_tag("cancel.png"), sshkey_group_sshkey_group_mbr_path(sgm.sshkey_group,sgm, :ajax_from => 'sshkey_show') , :confirm => 'Are you sure to delete Membership?', :method => :delete, :remote => true, :title => "Delete Membership" %></td>
   </tr>
   <% end %>
 

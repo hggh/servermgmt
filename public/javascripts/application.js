@@ -16,13 +16,18 @@ function selectBoxOption(obj, selector, svalue){
   }
 }
 
+$(document).keyup(function(e) {
+  if (e.keyCode == 27) {
+      $('#servermgmt_overlay').hide();
+  }
+});
+
 $(document).ready( function(){
   
   $("#servermgmt_overlay_close_btn").click(function() {
     $("#servermgmt_overlay").hide();
   });
 
-  
   $(".sshkey_draggable").draggable();
 
   $('#sshkey_search_box_clear').click(function() {

@@ -12,14 +12,13 @@ class SshkeyGroupsController < ApplicationController
     end
   end
 
-  # GET /sshkey_groups/1
-  # GET /sshkey_groups/1.xml
   def show
     @sshkey_group = SshkeyGroup.find(params[:id])
     @sshkey_group_mbr = SshkeyGroupMbr.new
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
+      format.js { render :layout => false }
       format.xml  { render :xml => @sshkey_group }
     end
   end

@@ -4,12 +4,15 @@ class SshkeyGroupMbrsController < ApplicationController
     @sshkey_group = SshkeyGroup.find(params[:sshkey_group_id])
     @sshkey_group_mbr = SshkeyGroupMbr.find(params[:id])
     sshkey_id = @sshkey_group_mbr.sshkey_id
+    sshkey_group_id = @sshkey_group_mbr.sshkey_group_id
     @sshkey_group_mbr.destroy
 
     @ajax_from = params[:ajax_from] if params[:ajax_from]
 
     if @ajax_from == "sshkey_show"
       @sshkey = Sshkey.find(sshkey_id)
+    elsif @ajax_from == "sshkeygroup_show"
+      @sshkey_group = SshkeyGroup.find(sshkey_group_id)
     end
 
     respond_to do |format|
@@ -22,6 +25,7 @@ class SshkeyGroupMbrsController < ApplicationController
 
     @sshkey_group_mbr = SshkeyGroupMbr.new(params[:sshkey_group_mbr])
 
+    # FIXME!
     #@sshkey_group = SshkeyGroup.find(params[:sshkey_group_id])
     #@sshkey_group_mbr.sshkey_group_id = @sshkey_group.id
 
@@ -29,6 +33,8 @@ class SshkeyGroupMbrsController < ApplicationController
 
     if @ajax_from == "sshkey_show"
       @sshkey = Sshkey.find(@sshkey_group_mbr.sshkey_id)
+    elsif @ajax_from == "sshkeygroup_show"
+      @sshkey_group = SshkeyGroup.find(@sshkey_group_mbr.sshkey_group_id)
     end
 
     respond_to do |format|

@@ -1,0 +1,25 @@
+<p>
+  <b>Name:</b>
+  <%= @sshkey_group.name %>
+</p>
+
+<h3>Members</h3>
+
+<table border="0">
+  <tr>
+    <td>Member</td>
+  </tr>
+
+<% @sshkey_group.sshkey_group_mbrs.each do |sgm| %>
+<tr>
+  <td><%= sgm.sshkey.name %></td>
+  <td><%= link_to image_tag("cancel.png"), sshkey_group_sshkey_group_mbr_path(sgm.sshkey_group,sgm, :ajax_from => 'sshkeygroup_show') , :confirm => 'Are you sure to delete Membership?', :method => :delete, :remote => true, :title => "Delete Membership" %></td>
+</tr>
+<% end %>
+</table>
+
+<%= form_for(SshkeyGroupMbr.new,  :url => sshkey_group_sshkey_group_mbrs_path(@sshkey_group, :ajax_from => 'sshkeygroup_show'), :remote => true  ) do |f| %>
+<%= f.hidden_field :sshkey_group_id, :value => @sshkey_group.id  %>
+<%= f.select :sshkey_id, Sshkey.allNotInGroup(@sshkey_group.id).collect { |d| [ d.name,d.id] }%>
+<%= f.submit "Speichern" %>
+<% end %>

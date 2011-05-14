@@ -1,6 +1,9 @@
 <% if @ajax_from == "sshkey_show" %>
 $('#servermgmt_overlay_container').html("<%= escape_javascript( render(:partial => "sshkeys/show") ) %>");
 $('#servermgmt_overlay').show();
+<% elsif @ajax_from == "sshkeygroup_show" %>
+$('#servermgmt_overlay_container').html("<%= escape_javascript( render(:partial => "sshkey_groups/show") ) %>");
+$('#servermgmt_overlay').show();
 <% end %>
 
 <%= render :partial => "common/ajaxcall"%>
