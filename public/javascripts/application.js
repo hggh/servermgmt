@@ -29,22 +29,30 @@ $(document).ready( function(){
   });
 
   $(".sshkey_draggable").draggable({ revert: true, zIndex: +9999999, cursor: 'crosshair', helper: 'clone'  });
+  $(".sshkeygroup_draggable").draggable({ revert: true, zIndex: +9999999, cursor: 'crosshair', helper: 'clone'  });
 
   $(".sshuser_dropable").droppable({
       hoverClass: 'drophover',
       drop: function( event, ui ) {
-          // FIXME: does not work with sshkeygorups
           console.log("We have an drop from: " + ui.draggable.html() + " with id " + ui.draggable.attr('data-id') + " and name: " + ui.draggable.attr('data-keytype'));
           console.log("We have droped on: " +$(this).html() +  " type " + $(this).attr("data-usertype") + " and ID: " + $(this).attr("data-id"));
           console.log("We had the upper div: " + $(this).attr('data-divname'));
           var sshuser_div = $(this).attr('data-divname');
+          var sshkey_type = ui.draggable.attr('data-keytype');
           var sshuser_id = $(this).attr("data-id");
           var sshkey_id = ui.draggable.attr('data-id');
+          var post_request = "";
+          if (sshkey_type == "sshkeygroup") {
+              post_request = "&sshuser_mbr[sshkey_group_id]=" + sshkey_id
+          }
+          else {
+              post_request = "&sshuser_mbr[sshkey_id]=" + sshkey_id
+          }
           $.ajax({
               url: "/sshusers/" + sshuser_id + "/sshuser_mbrs",
               type: "post",
               dataType: 'script',
-              data:  "ajax_from=sshkeymgmts" + "&sshuser_mbr[sshkey_id]=" + sshkey_id + "&sshuser_mbr[sshuser_id]=" + sshuser_id + "&ajax_div=" + sshuser_div
+              data:  "ajax_from=sshkeymgmts" + post_request + "&sshuser_mbr[sshuser_id]=" + sshuser_id + "&ajax_div=" + sshuser_div
           });
       }
 

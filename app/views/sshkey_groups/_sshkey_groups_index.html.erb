@@ -1,7 +1,7 @@
 <table style="border: 0px solid #FFFFFF;width:100%;">
   <% @sshkey_groups.each do |sshkeygroup| %>
     <tr>
-      <td style="border: 0px solid #FFFFFF;width:*;"><%= sshkeygroup.name %></td>
+      <td style="border: 0px solid #FFFFFF;width:*;"><span style="" data-keytype="sshkeygroup" data-id="<%= sshkeygroup.id %>" class="sshkeygroup_draggable"><%= sshkeygroup.name %></span></td>
       <td style="border: 0px solid #FFFFFF;width:10px;"><%= link_to image_tag("info.png"), sshkey_group_path(sshkeygroup), :remote => true %></td>
       <td style="border: 0px solid #FFFFFF;width:10px;"><%= link_to image_tag("edit.png"), edit_sshkey_group_path(sshkeygroup), :remote => true %></td>
       <td style="border: 0px solid #FFFFFF;width:10px;"><%= link_to image_tag("cancel.png"), sshkeygroup, :confirm => 'Are you sure?', :method => :delete, :remote => true, :title => "Delete SSH Key Group" %></td>

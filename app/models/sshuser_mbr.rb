@@ -9,7 +9,7 @@ class SshuserMbr < ActiveRecord::Base
 
 
   def key?
-    return true if sshkey_id
+    return true if sshkey_id and sshkey
     false
   end
 
