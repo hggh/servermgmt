@@ -1,20 +1,20 @@
-<div style="padding-top:5px;" id="sshusers_server_<%= server.id -%>">
-  <div style="font-weight:bold;padding-left:10px;"><%= server.fqdn %></div>
-  <!-- User for Server <%= server.fqdn %> BEGIN -->
+<div style="padding-top:5px;" id="sshusers_<%= type %>_<%= server.id -%>">
+  <div style="font-weight:bold;padding-left:10px;"><%= type == 'server' ? server.fqdn : server.name %></div>
   <% server.sshusers.order('username ASC').each do |u| %>
-      <div class="sshuser_dropable" style="padding-right:40px;padding-left:20px;font-weight:bold;" data-divname="sshusers_server_<%= u.server.id -%>" data-usertype="server" data-id="<%= u.id %>" id="">
-      <%= u.username %></div>
+      <div class="sshuser_dropable" style="" data-divname="sshusers_<%= type %>_<%= server.id -%>" data-usertype="server" data-id="<%= u.id %>" id="">
+      <div style="font-weight:bold;padding-left:20px;"><%= u.username %></div>
       <div style="padding-left:25px;">
       <% u.sshuser_mbrs.each do |sshkeymember| %>
-          <span style="padding-right:10px;"><%= link_to image_tag('cancel.png', :alt => "Delete Member"), sshuser_sshuser_mbr_path(sshkeymember.sshuser, sshkeymember, :ajax_div => "sshusers_server_" + u.server.id.to_s), :confirm => 'Are you sure?', :method => :delete, :remote => true %></span>
+          <div class="<%= sshkeymember.key? ? 'sshkey_display_' + sshkeymember.sshkey_id.to_s : 'sshkeygroup_display_' + sshkeymember.sshkey_group_id.to_s  %>">
+          <span style="padding-right:10px;"><%= link_to image_tag('cancel.png', :alt => "Delete Member"), sshuser_sshuser_mbr_path(sshkeymember.sshuser, sshkeymember, :ajax_div => "sshusers_"+ type+"_" + server.id.to_s), :confirm => 'Are you sure?', :method => :delete, :remote => true %></span>
           <% if sshkeymember.key? %>
               <%= image_tag("sshkey.png") %><%= sshkeymember.sshkey.name %><br/>
           <% else %>
               <%= sshkeymember.sshkey_group.name %><br/>
           <% end %>
-
+          </div>
       <% end %>
       </div>
+      </div>
   <% end %>
-  <!-- User for Server <%= server.fqdn %> END -->
 </div>

@@ -80,6 +80,7 @@ class SshkeyGroupsController < ApplicationController
 
   def destroy
     @sshkey_group = SshkeyGroup.find(params[:id])
+    @sshkey_group_id = @sshkey_group.id
     @sshkey_group.destroy
     @sshkey_groups = SshkeyGroup.all
 

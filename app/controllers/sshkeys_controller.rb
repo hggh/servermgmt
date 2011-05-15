@@ -81,6 +81,7 @@ class SshkeysController < ApplicationController
 
   def destroy
     @sshkey = Sshkey.find(params[:id])
+    @sshkey_id = @sshkey.id
     @sshkey.destroy
     @sshkeys = Sshkey.all
 

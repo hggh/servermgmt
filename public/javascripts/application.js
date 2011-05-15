@@ -34,9 +34,6 @@ $(document).ready( function(){
   $(".sshuser_dropable").droppable({
       hoverClass: 'drophover',
       drop: function( event, ui ) {
-          console.log("We have an drop from: " + ui.draggable.html() + " with id " + ui.draggable.attr('data-id') + " and name: " + ui.draggable.attr('data-keytype'));
-          console.log("We have droped on: " +$(this).html() +  " type " + $(this).attr("data-usertype") + " and ID: " + $(this).attr("data-id"));
-          console.log("We had the upper div: " + $(this).attr('data-divname'));
           var sshuser_div = $(this).attr('data-divname');
           var sshkey_type = ui.draggable.attr('data-keytype');
           var sshuser_id = $(this).attr("data-id");

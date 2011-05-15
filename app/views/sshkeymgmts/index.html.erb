@@ -3,22 +3,13 @@
   <div style="font-weight:bold; font-size:14pt;">Server SSH Users</div>
 
   <% @sshusers_servers.each do |server| %>
-    <%= render :partial => "sshusers/users_server", :locals => { :server => server } %>
+    <%= render :partial => "sshusers/users_server", :locals => { :server => server, :type => 'server' } %>
   <% end %>
 
   <div style="font-weight:bold; font-size:14pt;">Server Groups SSH Users</div>
 
   <% @sshusers_servergroups.each do |servergroup| %>
-  <div style="padding-top:5px;" id="sshusers_servergroup_<%= servergroup.id -%>">
-    <div style="font-weight:bold;"><%= servergroup.name %></div>
-    <!-- User for Server Group <%= servergroup.name %> BEGIN -->
-    <ul>
-    <% servergroup.sshusers.order('username ASC').each do |u| %>
-    <li><%= u.username %></li>
-    <% end %>
-    </ul>
-    <!-- User for Server Group <%= servergroup.name %> END -->
-  </div>
+      <%= render :partial => "sshusers/users_server", :locals => { :server => servergroup, :type => 'servergroup' } %>
   <% end %>
 </div>
 

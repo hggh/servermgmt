@@ -3,12 +3,14 @@
 <% else %>
     <% if @ajax_div %>
         <% if @server %>
-            $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_server", :locals => { :server => @server }) ) %>");
+            $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_server", :locals => { :server => @server, :type => 'server' }) ) %>");
         <% else %>
-            $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_servergroup", :locals => { :servergroup => @servergroup }) ) %>");
+            $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_server", :locals => { :server => @server_group, :type => 'servergroup' }) ) %>");
         <% end %>
     <% end %>
 <% end %>
 
 
 <%= render :partial => "common/ajaxcall"%>
+
+<%= render :partial => "common/ajax_sshmgmt" %>

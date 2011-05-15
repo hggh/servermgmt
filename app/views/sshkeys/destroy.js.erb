@@ -1,1 +1,5 @@
- $("#sshkey_list").html("<%= escape_javascript( render(:partial => "sshkeys/sshkeys_index") ) %>");
+$("#sshkey_list").html("<%= escape_javascript( render(:partial => "sshkeys/sshkeys_index") ) %>");
+
+$(".sshkey_display_<%= @sshkey_id -%>").delay(10).hide("slow");
+
+<%= render :partial => "common/ajax_sshmgmt" %>

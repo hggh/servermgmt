@@ -4,3 +4,5 @@
   $('#servermgmt_overlay').hide();
   $("#sshkey_groups_list").html("<%= escape_javascript( render(:partial => "sshkey_groups/sshkey_groups_index") ) %>");
 <% end %>
+
+<%= render :partial => "common/ajax_sshmgmt" %>

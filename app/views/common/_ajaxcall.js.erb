@@ -1,7 +1,7 @@
 <% if @ajax_errors and @ajax_errors.count > 0 %>
     $('#servermgmt_ajax_error').html("<%= escape_javascript( render(:partial => "common/ajax_errormsg") ) %>");
     $('#servermgmt_ajax_error').show();
-    $("#servermgmt_ajax_error").delay(5000).hide("fast");
+    $("#servermgmt_ajax_error").delay(3000).hide("fast");
 <% end %>
 
 

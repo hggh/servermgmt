@@ -1,3 +1,5 @@
 $('#servermgmt_overlay_container').html("<%= escape_javascript( render(:partial => "sshkeys/show") ) %>");
 $('#servermgmt_overlay').show();
 <%= render :partial => "common/ajaxcall"%>
+
+<%= render :partial => "common/ajax_sshmgmt" %>
