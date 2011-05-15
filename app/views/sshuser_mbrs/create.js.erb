@@ -1,7 +1,13 @@
 <% if @sshusermbr.errors.any? -%>
     <% @ajax_errors = @sshusermbr.errors.full_messages %>
 <% else %>
-
+    <% if @ajax_div %>
+        <% if @server %>
+            $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_server", :locals => { :server => @server }) ) %>");
+        <% else %>
+            $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_servergroup", :locals => { :servergroup => @servergroup }) ) %>");
+        <% end %>
+    <% end %>
 <% end %>
 
 

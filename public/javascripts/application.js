@@ -37,13 +37,14 @@ $(document).ready( function(){
           console.log("We have an drop from: " + ui.draggable.html() + " with id " + ui.draggable.attr('data-id') + " and name: " + ui.draggable.attr('data-keytype'));
           console.log("We have droped on: " +$(this).html() +  " type " + $(this).attr("data-usertype") + " and ID: " + $(this).attr("data-id"));
           console.log("We had the upper div: " + $(this).attr('data-divname'));
+          var sshuser_div = $(this).attr('data-divname');
           var sshuser_id = $(this).attr("data-id");
           var sshkey_id = ui.draggable.attr('data-id');
           $.ajax({
               url: "/sshusers/" + sshuser_id + "/sshuser_mbrs",
               type: "post",
               dataType: 'script',
-              data:  "ajax_from=sshkeymgmts" + "&sshuser_mbr[sshkey_id]=" + sshkey_id + "&sshuser_mbr[sshuser_id]=" + sshuser_id
+              data:  "ajax_from=sshkeymgmts" + "&sshuser_mbr[sshkey_id]=" + sshkey_id + "&sshuser_mbr[sshuser_id]=" + sshuser_id + "&ajax_div=" + sshuser_div
           });
       }
 

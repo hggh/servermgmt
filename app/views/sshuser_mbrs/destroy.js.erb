@@ -1,0 +1,10 @@
+<% if @ajax_div %>
+    <% if @server %>
+        $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_server", :locals => { :server => @server }) ) %>");
+    <% else %>
+        $("#<%= @ajax_div %>").html("<%= escape_javascript( render(:partial => "sshusers/users_servergroup", :locals => { :servergroup => @servergroup }) ) %>");
+    <% end %>
+<% end %>
+
+
+<%= render :partial => "common/ajaxcall"%>

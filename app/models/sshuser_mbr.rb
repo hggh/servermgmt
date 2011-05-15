@@ -7,4 +7,15 @@ class SshuserMbr < ActiveRecord::Base
   belongs_to :sshkey
   belongs_to :sshkey_group
 
+
+  def key?
+    return true if sshkey_id
+    false
+  end
+
+  def group?
+    return true if sshkey_group_id
+    false
+  end
+
 end
