@@ -5,18 +5,14 @@ require 'active_record'
 
 namespace :servermgmt do
   task :puppetmergehosts => :environment do
-    sm_ostypeDB = ServerOperationSystem.find(:first)
-    raise "Could not find any Server Operation System at Server Manager. First add one OS!" unless sm_ostypeDB
-    ostype_default = sm_ostypeDB.id
-    sm_servertypeDB = Servertype.find(:first)
-    raise "Could not find any Server Type at Server Manager. First add one Server Type!" unless sm_servertypeDB 
-    servertype_default = sm_servertypeDB.id
-    pp_hosts = Puppet::Host.find(:all)
+    raise "Could not find any Server Operation System at Server Manager. First add one OS!" unless ServerOperationSystem.limit(1)
+    raise "Could not find any Server Type at Server Manager. First add one Server Type!" unless Servertype.limit(1)
+    pp_hosts = Host.all
     pp_hosts.each do |pp_host|
       fqdn = pp_host.name.to_s.split(/\./,2)
-      sm_host = Server.find(:first, :include => :domain, :conditions => [ " domains.name=? AND servers.name=?", fqdn[1], fqdn[0] ])
+      sm_host = Server.includes(:domain).where("domains.name = ?", fqdn[1]).where("servers.name = ? ", fqdn[0]).first
       if sm_host == nil
-        puts "Found: #{fqdn[0]} on #{fqdn[1]}"
+        puts "Server not found at DB: #{fqdn[0]} on #{fqdn[1]}"
         sm_domain_id = nil
         if @domain = Domain.find_by_name(fqdn[1])
           sm_domain_id = @domain.id
@@ -25,59 +21,42 @@ namespace :servermgmt do
           @domain.save
           sm_domain_id = @domain.id
         end
-        sm_ostype = nil
-        if @ostype = pp_host.getFactValue('lsbmajdistrelease')
-          case @ostype.to_s
-            when "5"
-            pp_os = ServerOperationSystem.find_by_name("Debian Lenny")
-            sm_ostype = pp_os.id
-            when "4"
-            pp_os = ServerOperationSystem.find_by_name("Debian Etch")
-            sm_ostype = pp_os.id
-          end
-        end
-        # fall back
-        sm_ostype = ostype_default unless sm_ostype
-        
-        sm_servertype = nil
-        if @servertype = pp_host.getFactValue('virtual')
-          case @servertype.to_s
-          when "physical"
-            pp_type = Servertype.find(:first, :include => :server_type_hardware, :conditions => [ "server_type_hardwares.name='Hardware'", ])
-            if pp_type
-              sm_servertype = pp_type.id
-            end
-          when "xen0"
-            pp_type = Servertype.find(:first, :include => :server_type_hardware, :conditions => [ "server_type_hardwares.name='Domain0'", ])
-            if pp_type
-              sm_servertype = pp_type.id
-            end
-          when "xenu"
-            pp_type = Servertype.find(:first, :include => :server_type_hardware, :conditions => [ "server_type_hardwares.name='Virtual'", ])
-            if pp_type
-              sm_servertype = pp_type.id
-            end            
-          end
-        end
-        # fall back
-        sm_servertype = servertype_default unless sm_servertype
 
-        # Create Server at Database
-        sm_server = Server.new(:name => fqdn[0], :domain_id => sm_domain_id, :servertype_id => sm_servertype, :server_operation_system_id => sm_ostype )
-        if sm_server.save
-          puts " Saved: #{pp_host.name}"
-        else
-          puts "Could not save server #{pp_host.name} at Server Manager database:"
-          sm_server.errors.each do |error|
-            puts "  -> " + error[0] + " " + error[1]
+        puppet_ostype = pp_host.getFactValue('lsbdistcodename')
+        sm_os_type_default = ServerOperationSystem.where("name ILIKE ?", '%unknown%').first.id
+        sm_os_type = nil
+        if puppet_ostype
+          sm_os = ServerOperationSystem.where("name ILIKE ?", '%' + puppet_ostype.to_s  + '%').first
+          if sm_os
+            sm_os_type = sm_os.id
           end
         end
-        
+        sm_os_type = sm_os_type_default unless sm_os_type
+
+        if Servertype.where("name ILIKE ?", '%hardware%').first
+          sm_server_type_hardware = Servertype.where("name ILIKE ?", '%hardware%').first.id
+        else
+          raise "Could not find default hardware type: %hardware%"
+        end
+
+        if Servertype.where("name ILIKE ?", '%virtual%').first
+          sm_server_type_virtual = Servertype.where("name ILIKE ?", '%virtual%').first.id
+        else
+          raise "Could not find default virtual type: %virtual%"
+        end
+        sm_server_type = sm_server_type_hardware
+
+        sm_server_type = sm_server_type_virtual if pp_host.getFactValue('is_virtual')
+
+        server = Server.new(:name => fqdn[0], :domain_id => sm_domain_id, :servertype_id => sm_server_type, :server_operation_system_id => sm_os_type)
+        if server.save
+          puts "    Saved as: #{server.fqdn}"
+        else
+          puts "    Error at saving #{pp_host.name}"
+        end
       else
         puts "Already at database: #{pp_host.name}"
       end
-      
-      
     end
   end
 end

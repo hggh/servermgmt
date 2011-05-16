@@ -1,16 +1,6 @@
 
 <div style="float:left;padding-left:100px;" id="ssh_mgmt_left">
-  <div style="font-weight:bold; font-size:14pt;">Server SSH Users</div>
-
-  <% @sshusers_servers.each do |server| %>
-    <%= render :partial => "sshusers/users_server", :locals => { :server => server, :type => 'server' } %>
-  <% end %>
-
-  <div style="font-weight:bold; font-size:14pt;">Server Groups SSH Users</div>
-
-  <% @sshusers_servergroups.each do |servergroup| %>
-      <%= render :partial => "sshusers/users_server", :locals => { :server => servergroup, :type => 'servergroup' } %>
-  <% end %>
+  <%= render :partial => "sshkeymgmts/ssh_mgmt_left" %>
 </div>
 
 <div style="float:right;padding-right:100px;" id="ssh_mgmt_right">
@@ -18,9 +8,7 @@
     <div style="font-weight:bold; font-size:14pt;">
       SSH Keys
     </div>
-    <input type="text" id="sshkey_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
-    autocomplete="off"
-    />
+    <input type="text" id="sshkey_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;" autocomplete="off" />
     <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_search_box_clear") %>
     <div id="sshkey_list" style="width:300px;height:300px;border:1px solid;overflow:auto;">
       <%= render :partial => 'sshkeys/sshkeys_index'%>
@@ -37,9 +25,7 @@
     <div style="font-weight:bold; font-size:14pt;">
       SSH Key Groups
     </div>
-    <input type="text" id="sshkey_groups_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;"
-    autocomplete="off"
-    />
+    <input type="text" id="sshkey_groups_search_box" value="" style="border: solid;border-width: 1px;padding: 5px 7px;width:170px;" autocomplete="off" />
     <%= image_tag("clear_left.png", :alt => "Clear Search Field", :id => "sshkey_groups_search_box_clear") %>
     <div id="sshkey_groups_list" style="width:300px;height:300px;border:1px solid;overflow:auto;">
       <%= render :partial => 'sshkey_groups/sshkey_groups_index'%>

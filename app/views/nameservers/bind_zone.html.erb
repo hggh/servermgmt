@@ -13,7 +13,8 @@
 <% zone.domain.domain_nameservers.each do |ns| %>
 <% next if ns.ns_entry.to_i != 1 %><%= "1D".center(30) %>   IN    NS     <%= ns.nameserver.name %>.<% end %>
 <% DomainRecord.find(:all, :conditions => "domain_id = #{zone.domain.id}", :order => "source ASC").each do |rr| %>
-<%= rr.source.ljust(20) %>    <%= rr.ttl.to_s.center(6) %> IN <%= rr.domain_record_type.name.center(10) %> <%= rr.extra_value.center(6) %> <%= rr.value %><% end %>					
+<%= rr.source.ljust(20) %>    <%= rr.ttl.to_s.center(6) %> IN <%= rr.domain_record_type.name.center(10) %> <%= rr.extra_value.center(6) %> <%= rr.value %>
+<% end %>
 ; Zone-END: <%= zone.dnszonestorefilename %>
 <% end %>
 <% end %> <%# END of WHILE%>

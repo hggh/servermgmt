@@ -18,12 +18,14 @@ zone "<%= zone.domain.idn %>" IN {
        # Nameserver: <%= ns.nameserver.name %>
        <%= ns.nameserver.ip %>;<% end %>
        <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-transfer" %>
-       <%= dov.value %>;<% end %><% end %>
+       <%= dov.value %>;<% end %>
+       <% end %>
     };
     
     allow-update {
        <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-update" %>
-       <%= dov.value %>;<% end %><% end %>
+       <%= dov.value %>;<% end %>
+       <% end %>
     };
 };
 <% end %>
@@ -41,7 +43,8 @@ zone "<%= zone.domain.idn %>" IN {
       # Nameserver: <%= ns.nameserver.name %>
       <%= ns.nameserver.ip %>;<% end %>
       <% zone.domain.domain_option_values.each do |dov| %><% if dov.domain_option.name == "allow-notify" %>
-      <%= dov.value %>;<% end %><% end %>
+      <%= dov.value %>;<% end %>
+      <% end %>
     };
 };
 <% end %>

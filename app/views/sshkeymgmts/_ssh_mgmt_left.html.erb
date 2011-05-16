@@ -1,0 +1,11 @@
+<div style="font-weight:bold; font-size:14pt;">Server SSH Users</div>
+
+<% @sshusers_servers.each do |server| %>
+    <%= render :partial => "sshusers/users_server", :locals => { :server => server, :type => 'server' } %>
+<% end %>
+
+<div style="font-weight:bold; font-size:14pt;">Server Groups SSH Users</div>
+
+<% @sshusers_servergroups.each do |servergroup| %>
+    <%= render :partial => "sshusers/users_server", :locals => { :server => servergroup, :type => 'servergroup' } %>
+<% end %>
