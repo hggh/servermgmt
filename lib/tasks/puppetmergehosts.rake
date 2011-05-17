@@ -33,6 +33,7 @@ namespace :servermgmt do
         end
         sm_os_type = sm_os_type_default unless sm_os_type
 
+        # FIXME: Should use the IDs from settings table
         if Servertype.where("name ILIKE ?", '%hardware%').first
           sm_server_type_hardware = Servertype.where("name ILIKE ?", '%hardware%').first.id
         else
@@ -46,7 +47,9 @@ namespace :servermgmt do
         end
         sm_server_type = sm_server_type_hardware
 
-        sm_server_type = sm_server_type_virtual if pp_host.getFactValue('is_virtual')
+        if pp_host.getFactValue('is_virtual') and pp_host.getFactValue('is_virtual').to_s == "true"
+          sm_server_type = sm_server_type_virtual
+        end
 
         server = Server.new(:name => fqdn[0], :domain_id => sm_domain_id, :servertype_id => sm_server_type, :server_operation_system_id => sm_os_type)
         if server.save

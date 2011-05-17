@@ -20,7 +20,7 @@ class Sshkey < ActiveRecord::Base
   end
 
   def key_public_auth
-    "ssh-rsa #{key_public} #{name}"
+    "#{key_public} #{name}"
   end
 
   def inGroup?(sid)
