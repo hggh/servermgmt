@@ -1,1 +1,5 @@
-var ssh_username_list = <%= array_or_string_for_javascript(@users) %> ;
+<% if @users and @users.count > 0 %>
+  $("#sshuser_username").autocomplete({
+      source: <%= array_or_string_for_javascript(@users) %>
+  });
+<% end %>

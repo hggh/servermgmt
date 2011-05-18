@@ -62,6 +62,10 @@ class Domain < ActiveRecord::Base
     self.save
   end
 
+  def self.withServers
+    Domain.where(:id => Server.select(:domain_id).group(:domain_id).map{|d| d.domain_id})
+  end
+
   private
     def make_lowercase
       self.name.downcase!

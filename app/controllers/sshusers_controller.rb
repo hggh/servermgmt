@@ -36,11 +36,15 @@ class SshusersController < ApplicationController
 
     respond_to do |format|
       if @sshuser.save
+        @sshusers_servers = Sshuser.getUsersByServers
+        @sshusers_servergroups = Sshuser.getUsersByServerGroups
+        @sshuser = Sshuser.new
+
         format.html { redirect_to(@sshuser, :notice => 'Sshuser was successfully created.') }
-        format.xml  { render :xml => @sshuser, :status => :created, :location => @sshuser }
+        format.js { render :layout => false }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @sshuser.errors, :status => :unprocessable_entity }
+        format.js { render :layout => false }
       end
     end
   end

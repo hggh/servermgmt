@@ -5,5 +5,7 @@ class SshkeymgmtsController < ApplicationController
 
     @sshusers_servers = Sshuser.getUsersByServers
     @sshusers_servergroups = Sshuser.getUsersByServerGroups
+
+    @sshuser = Sshuser.new
   end
 end

@@ -44,7 +44,7 @@ Servermgmt::Application.routes.draw do
   resources :servers do
 
     member do
-      post 'puppet_userlist'
+      get 'puppet_userlist'
     end
 
     resources :ips

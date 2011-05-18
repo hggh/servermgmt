@@ -4,6 +4,16 @@
     <%= render :partial => "sshusers/users_server", :locals => { :server => server, :type => 'server' } %>
 <% end %>
 
+<div style="margin-top:20px;margin-bottom:20px;">
+  New SSH User:
+  <%= form_for(@sshuser, :remote => true, :ajax_from => 'foo') do |f|%>
+  <input type="hidden" name="ajax_from" value="sshkeymgmts" />
+  <%= f.grouped_collection_select  :server_id, Domain.withServers, :servers, :name, :id, :fqdn, { :include_blank => true } %>
+  <%= f.text_field :username %>
+  <%= f.submit "Speichern" %>
+  <% end %>
+</div>
+
 <div style="font-weight:bold; font-size:14pt;">Server Groups SSH Users</div>
 
 <% @sshusers_servergroups.each do |servergroup| %>

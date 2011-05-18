@@ -23,6 +23,23 @@ $(document).keyup(function(e) {
 });
 
 $(document).ready( function(){
+
+  $("#sshuser_username").autocomplete({
+      source: [  ]
+  });
+
+  if ($("#sshuser_server_id").length > 0 ) {
+     $("#sshuser_server_id").change(function(){
+         var server_id = $("#sshuser_server_id").val();
+         if (server_id) {
+             $.ajax({
+                 url: '/servers/' + server_id + '/puppet_userlist',
+                 type: 'get',
+                 dataType: 'script'
+             });
+         }
+     });
+  }
   
   $("#servermgmt_overlay_close_btn").click(function() {
     $("#servermgmt_overlay").hide();
