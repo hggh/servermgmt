@@ -25,11 +25,9 @@ class SshkeyGroupMbrsController < ApplicationController
 
     @sshkey_group_mbr = SshkeyGroupMbr.new(params[:sshkey_group_mbr])
 
-    # FIXME!
-    #@sshkey_group = SshkeyGroup.find(params[:sshkey_group_id])
-    #@sshkey_group_mbr.sshkey_group_id = @sshkey_group.id
+    @sshkey_group = SshkeyGroup.find(@sshkey_group_mbr.sshkey_group_id)
 
-    @ajax_from = params[:ajax_from] if params[:ajax_from]
+
 
     if @ajax_from == "sshkey_show"
       @sshkey = Sshkey.find(@sshkey_group_mbr.sshkey_id)
@@ -42,6 +40,8 @@ class SshkeyGroupMbrsController < ApplicationController
         format.html { redirect_to(@sshkey_group, :notice => 'SSH Key Group Member was successfully created.') }
         format.js { render :layout => false }
       else
+        puts "---> IN ERRROR:"
+        puts @sshkey_group_mbr.errors
         format.js { render :layout => false }
         # FIXME
         #format.html { render :con,  :action => "new" }

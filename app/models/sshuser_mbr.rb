@@ -1,5 +1,5 @@
 class SshuserMbr < ActiveRecord::Base
-  validates :sshuser_id, :presence => true
+  validate :sshuser, :presence => true
   validates_uniqueness_of :sshuser_id, :scope =>  [ :sshkey_id, :sshkey_group_id ]
 
 

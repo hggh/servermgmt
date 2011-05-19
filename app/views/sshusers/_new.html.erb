@@ -1,0 +1,9 @@
+<%= form_for(@sshuser, :remote => true, :ajax_from => 'sshkeymgmt') do |f|%>
+  <% if @ajax_for and @ajax_for == "server_group" %>
+    <%= f.select :server_group_id, ServerGroup.all.collect{ |d| [d.name, d.id] }, { :include_blank => true } %>
+  <% else %>
+    <%= f.grouped_collection_select  :server_id, Domain.withServers, :servers, :name, :id, :fqdn, { :include_blank => true } %>
+  <% end %>
+  <%= f.text_field :username %>
+  <%= f.submit "Speichern" %>
+<% end %>

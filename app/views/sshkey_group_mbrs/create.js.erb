@@ -6,6 +6,8 @@ $('#servermgmt_overlay_container').html("<%= escape_javascript( render(:partial 
 $('#servermgmt_overlay').show();
 <% end %>
 
+<% fill_ajax_errors(@sshkey_group_mbr) %>
+
 <%= render :partial => "common/ajaxcall"%>
 
 <%= render :partial => "common/ajax_sshmgmt" %>

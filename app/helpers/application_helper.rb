@@ -6,4 +6,10 @@ module ApplicationHelper
     session[key_name] = key_value
     link_to(name, options, html_options)
   end
+
+  def fill_ajax_errors(object)
+    if object.errors.any?
+      @ajax_errors =object.errors
+    end
+  end
 end

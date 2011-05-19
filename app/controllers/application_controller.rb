@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   @current_user = nil
   @ajax_request = nil
   @ajax_from = nil
+  @ajax_for = nil
 
 
   # See ActionController::RequestForgeryProtection for details
@@ -33,6 +34,7 @@ class ApplicationController < ActionController::Base
   def ajax_request?
     @ajax_request = true if request.xhr?
     @ajax_from = params[:ajax_from] if params[:ajax_from]
+    @ajax_for  = params[:ajax_for] if params[:ajax_for]
   end
 
   def login_required

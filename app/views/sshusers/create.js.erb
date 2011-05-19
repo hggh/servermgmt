@@ -1,8 +1,8 @@
 <% if @sshuser.errors.any? -%>
   <% @ajax_errors = @sshuser.errors %>
 <% else %>
-
-  $("#ssh_mgmt_left").html("<%= escape_javascript( render(:partial => "sshkeymgmts/ssh_mgmt_left") ) %>");
+    $("#ssh_mgmt_left").html("<%= escape_javascript( render(:partial => "sshkeymgmts/ssh_mgmt_left") ) %>");
+    $('#servermgmt_overlay').hide();
 <% end %>
 <%= render :partial => "common/ajax_sshmgmt" %>
 <%= render :partial => "common/ajaxcall"%>

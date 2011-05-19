@@ -24,6 +24,7 @@ class SshusersController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { render :xml => @sshuser }
+      format.js { render :layout => false }
     end
   end
 
