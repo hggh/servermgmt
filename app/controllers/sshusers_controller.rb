@@ -39,7 +39,6 @@ class SshusersController < ApplicationController
       if @sshuser.save
         @sshusers_servers = Sshuser.getUsersByServers
         @sshusers_servergroups = Sshuser.getUsersByServerGroups
-        @sshuser = Sshuser.new
 
         format.html { redirect_to(@sshuser, :notice => 'Sshuser was successfully created.') }
         format.js { render :layout => false }
@@ -67,9 +66,13 @@ class SshusersController < ApplicationController
   def destroy
     @sshuser = Sshuser.find(params[:id])
     @sshuser.destroy
+    @sshusers_servers = Sshuser.getUsersByServers
+    @sshusers_servergroups = Sshuser.getUsersByServerGroups
+
 
     respond_to do |format|
       format.html { redirect_to(sshusers_url) }
+      format.js { render :layout => false }
       format.xml  { head :ok }
     end
   end

@@ -2,11 +2,13 @@
   <div style="font-weight:bold;padding-left:10px;"><%= type == 'server' ? server.fqdn : server.name %></div>
   <% server.sshusers.order('username ASC').each do |u| %>
       <div class="sshuser_dropable" style="" data-divname="sshusers_<%= type %>_<%= server.id -%>" data-usertype="server" data-id="<%= u.id %>" id="">
-      <div style="font-weight:bold;padding-left:20px;"><%= u.username %></div>
+      <div style="font-weight:bold;padding-left:20px;">
+        <%= link_to image_tag('cancel.png', :alt => "Delete SSH User"), u, :remote => true, :confirm => 'Are you sure?', :method => :delete, :title => "Delete SSH User" %>
+        <%= u.username %></div>
       <div style="padding-left:25px;">
       <% u.sshuser_mbrs.each do |sshkeymember| %>
           <div class="<%= sshkeymember.key? ? 'sshkey_display_' + sshkeymember.sshkey_id.to_s : 'sshkeygroup_display_' + sshkeymember.sshkey_group_id.to_s  %>">
-          <span style="padding-right:10px;"><%= link_to image_tag('cancel.png', :alt => "Delete Member"), sshuser_sshuser_mbr_path(sshkeymember.sshuser, sshkeymember, :ajax_div => "sshusers_"+ type+"_" + server.id.to_s), :confirm => 'Are you sure?', :method => :delete, :remote => true %></span>
+          <span style="padding-right:10px;"><%= link_to image_tag('cancel.png', :alt => "Delete Member"), sshuser_sshuser_mbr_path(sshkeymember.sshuser, sshkeymember, :ajax_div => "sshusers_"+ type+"_" + server.id.to_s), :confirm => 'Are you sure?', :method => :delete, :remote => true, :title => "Delete Key/Group" %></span>
           <% if sshkeymember.key? %>
               <%= image_tag("sshkey.png") %><%= sshkeymember.sshkey.name %><br/>
           <% else %>
