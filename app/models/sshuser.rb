@@ -1,8 +1,8 @@
 class Sshuser < ActiveRecord::Base
-  validates :username, :presence => true, :uniqueness => { :scope => [ :server_id, :server_group_id ] }
-  #validates :server_group_id, :presence => true
-  #validates :server_id, :presence => true
-  # FIXME
+  validates :username, :presence => true, :uniqueness => { :scope => [ :server_id, :server_group_id ] }, :length => { :minimum => 2 }
+  validates :server_group_id, :association => true
+  validates :server_id, :association => true
+  # FIXME should be check if ONE is set!
 
   belongs_to :server
   belongs_to :server_group

@@ -1,8 +1,6 @@
 class SshkeyGroupMbr < ActiveRecord::Base
-  validates :sshkey_id, :presence => true, :association => true
+  validates :sshkey_id, :presence => true, :association => true, :uniqueness => { :scope => :sshkey_group_id }
   validates :sshkey_group_id, :presence => true, :association => true
-
-  validates :sshkey_id, :uniqueness => { :scope => :sshkey_group_id }
 
 
   belongs_to :sshkey, :validate => true
