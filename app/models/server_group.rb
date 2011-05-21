@@ -6,7 +6,6 @@ class ServerGroup < ActiveRecord::Base
   # FIXME: Check regex with Regexp
 
 	has_many :server_group_members, :dependent => :destroy
-	has_many :configkey_values, :dependent => :destroy
 	has_many :sshusers, :dependent => :destroy
   
   def getServerNotinGroup

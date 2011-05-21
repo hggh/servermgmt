@@ -187,51 +187,6 @@ end%>
  - no mac addresses for this server -
 <% end %>
 
-<% if Setting.get('puppet') == 'true' %>
-<br/><br/>
-<h2>Puppet Configuration</h2>
-<% if @server.configkey_values.count > 0 %>
-<table>
-	<tr>
-		<td>Name</td>
-		<td>Default</td>
-		<td>Server Value</td>
-		<td></td>
-		<td></td>
-	</tr>
-  <% @server.configkey_values.each do |ckv| %>
-	<tr>
-		<td><%=h ckv.configkey.name %></td>
-		<td><%=h ckv.configkey.default %></td>
-		<td id="puppet_cfg_server_value_<%=h ckv.id.to_s %>"><%=h ckv.value %></td>
-		<td>
-			<%= link_to_function("Show", nil, :id => "more_info_show#{ckv.id.to_s}" ) do |page|
-page["ckv#{ckv.id.to_s}"].toggle()
-page["more_info_hide#{ckv.id.to_s}"].toggle()
-page["more_info_show#{ckv.id.to_s}"].toggle()
-end %>
-
-<%= link_to_function("Hide", nil, :id => "more_info_hide#{ckv.id.to_s}", :style => "display:none;") do |page|
-page["ckv#{ckv.id.to_s}"].toggle()
-page["more_info_hide#{ckv.id.to_s}"].toggle()
-page["more_info_show#{ckv.id.to_s}"].toggle()
-end%>
-			</td>
-		<td><%= link_to 'Delete', ckv,:confirm => 'Are you sure?', :method => :delete %></td>
-	</tr>
-	 <% form_for ckv, :update => "puppet_cfg_server_value_#{ckv.id.to_s}" do |f| %>
-	<tr style="display:none;" id="ckv<%=h ckv.id %>">
-		<td><%= f.text_field :value %></td>
-		<td><%= f.submit "Update" %></td>
-	</tr>
-	<% end %>
-	<% end %>
-</table>
-<% else %>
- - no puppet configuration keys found
-<% end %>
-<% end %>
-
  <br/><br/>
 
  <hr/>

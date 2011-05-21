@@ -21,9 +21,6 @@
     <td><%= link_to 'Edit', edit_server_path(server) %></td>
     <td><%= link_to 'Add IP', new_server_ip_path(server) %></td>
     <td><%= link_to 'Add MAC', new_server_mac_path(server) %></td>
-    <%  if Setting.get('puppet') == "true" %>
-       <td><%= link_to 'Add PCfg', :controller => "servers", :action => "addpuppetcfgvalue", :id => server %></td>
-    <% end %>
     <td><%= link_to 'Delete', server, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

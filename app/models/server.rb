@@ -20,7 +20,6 @@ class Server < ActiveRecord::Base
   
   has_many :ips, :dependent => :destroy
   has_many :server_macs, :dependent => :destroy
-  has_many :configkey_values, :dependent => :destroy
   has_many :server_group_members, :dependent => :destroy
   has_many :server_interfaces, :dependent => :destroy
   has_many :server_key_values, :dependent => :destroy

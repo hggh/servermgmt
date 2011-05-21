@@ -5,9 +5,6 @@ Server: <%= link_to "Index", servers_path %>  |
 <%= link_to 'Edit', edit_server_path(@server) %> |  
 <%= link_to 'Add IP', new_server_ip_path(@server) %> | 
 <%= link_to 'Add MAC', new_server_mac_path(@server) %> |
-<% if Setting.get('puppet') == 'true' %> 
-  <%= link_to 'Add PCfg', :controller => "servers", :action => "addpuppetcfgvalue", :id => @server.id %> |
-<% end %> 
 <%= link_to 'Add Interface', new_server_server_interface_path(@server) %> |
 <%= link_to 'Delete', @server, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>
