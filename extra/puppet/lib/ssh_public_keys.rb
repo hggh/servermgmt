@@ -9,6 +9,49 @@ module Puppet::Parser::Functions
     servermgmt_secret = lookupvar('servermgmt_secret')
     fqdn = lookupvar('fqdn')
     sshkeys = Hash.new
+    cache_path = lookupvar("servermgmt_cache_path")
+
+    if !cache_path or !File.directory?(cache_path)
+      raise Puppet::ParseError, "Please set `servermgmt_cache_path`"
+    end
+
+    def cache_save(cache_path, fqdn, content)
+      begin
+        File.open(File.join(cache_path, fqdn), 'w') { |f|
+          f.write(content)
+        }
+      rescue Exception => e
+        raise Puppet::ParseError, "Could not write cache data to cache at #{File.join(cache_path, fqdn)}"
+      end
+    end
+
+    def cache_read(cache_path, fqdn)
+      begin
+        File.open(File.join(cache_path, fqdn), 'r') { |f|
+          return f.read
+        }
+      rescue
+
+      end
+      false
+    end
+
+    def parse_xml(content)
+
+      sshkeys = Hash.new
+      xml = REXML::Document.new(content)
+      xml.elements.each("//username") { |element|
+        username = element.attributes['name']
+        username_keys = Array.new
+        element.elements.each("key") { |key|
+          username_keys << key.text
+        }
+
+        sshkeys[username] = username_keys.join("\n")
+      }
+      sshkeys
+    end
+
 
     begin
 
@@ -35,36 +78,42 @@ module Puppet::Parser::Functions
           tries += 1
           retry
         else
-          raise "Could not connect to host"
+          cache = cache_read(cache_path, fqdn)
+
+          if cache
+            Puppet.notice "SSH public key webservice not available, used cached version"
+            sshkeys = parse_xml(cache)
+
+          else
+            raise "Could not connect to host"
+          end
         end
       end
 
       if response and response.code == '200'
-        xml = REXML::Document.new(response.body)
-        xml.elements.each("//username") { |element|
-          username = element.attributes['name']
-          username_keys = Array.new
-          element.elements.each("key") { |key|
-            username_keys << key.text
-          }
-
-          sshkeys[username] = username_keys.join("\n")
-        }
-        if hashindex
-          return sshkeys.keys
-        else
-          sshkeys
-        end
-
+        sshkeys = parse_xml(response.body)
+        cache_save(cache_path, fqdn, response.body)
       else
         raise "Response from ServerMGMT was: #{response.code}"
       end
 
     rescue Exception => e
-      # FIXME: add caching of the last request and deliver caching file to puppet
-      raise Puppet::ParseError, "Could not connect to Server Manager: #{e.message}"
+      cache = cache_read(cache_path, fqdn)
+
+      if cache
+        Puppet.notice "SSH public key webservice not available, used cached version"
+        sshkeys = parse_xml(cache)
+
+      else
+        raise Puppet::ParseError, "Could not connect to Server Manager: #{e.message}"
+      end
     end
 
+    if hashindex
+      sshkeys.keys
+    else
+      sshkeys
+    end
 
   end
 end

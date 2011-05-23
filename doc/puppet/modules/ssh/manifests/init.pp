@@ -37,6 +37,9 @@ class ssh {
 	$ssh_keys_public_store_path = "/etc/ssh/keys"
 	$servermgmt_host = "http://localhost:3000/puppetsshkeys/"
 	$servermgmt_secret = "foo"
+  # puppet:puppet 640
+  $servermgmt_cache_path = "/var/lib/puppet/ssh_keys_cache"
+
 
 	include ssh::directories, ssh::publickeys
 }
