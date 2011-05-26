@@ -9,21 +9,30 @@ class SshPublicKeysController < ApplicationController
     server = Server.find_by_fqdn(params[:fqdn])
     xml = REXML::Document.new("<?xml version='1.0'?>")
     if server
-      sshusers = Sshuser.includes(:server, :server_group).where('server_id = ? OR server_group_id IN (?)', server.id, server.getServerGroupIds)
+      sshusers = Sshuser.includes(:server, :server_group).where("server_id = #{server.id} OR server_group_id IN (#{server.getServerGroupIds.join(',')})")
       server_xml = xml.add_element "server", {"name" => server.fqdn}
+
+      mykeys = Hash.new
       sshusers.each do |shu|
-        user_xml = server_xml.add_element "username", {"name" => shu.username}
-        public_keys = Array.new
+        if !mykeys[shu.username].kind_of?(Array)
+          mykeys[shu.username] = Array.new
+        end
+        publickeys = Array.new
         shu.sshuser_mbrs.each do |member|
           if member.sshkey_id
-            public_keys << member.sshkey.key_public_auth
+            publickeys << member.sshkey.key_public_auth
           else
-            public_keys = public_keys + member.sshkey_group.getKeysFromMembers
+            publickeys = publickeys + member.sshkey_group.getKeysFromMembers
           end
         end
-        public_keys.each do |k|
+        mykeys[shu.username] = mykeys[shu.username] + publickeys
+      end
+
+      mykeys.each do |key, value|
+        user_xml = server_xml.add_element "username", {"name" => key}
+        value.each do |kvalue|
           key = user_xml.add_element "key"
-          key.add_text k
+          key.add_text kvalue
         end
       end
     end
