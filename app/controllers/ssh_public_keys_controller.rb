@@ -6,8 +6,12 @@ class SshPublicKeysController < ApplicationController
   before_filter :access, :on => 'getKeys'
 
   def getKeys
-    server = Server.find_by_fqdn(params[:fqdn])
     xml = REXML::Document.new("<?xml version='1.0'?>")
+    begin
+       server = Server.find_by_fqdn(params[:fqdn])
+    rescue ActiveRecord::RecordNotFound
+      xml.add_element "server-not-found", { "name" => '404' }
+    end
     if server
       sshusers = Sshuser.includes(:server, :server_group).where("server_id = #{server.id} OR server_group_id IN (#{server.getServerGroupIds.join(',')})")
       server_xml = xml.add_element "server", {"name" => server.fqdn}
